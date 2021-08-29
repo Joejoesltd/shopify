@@ -2,6 +2,7 @@
   "current": {
     "favicon": "shopify:\/\/shop_images\/fav_icon_dark_1.png",
     "container_width": 1170,
+    "container_fluid_width": 1680,
     "container_fluid_offset": 100,
     "color_primary": "#000",
     "color_sub_text": "#666666",
@@ -625,22 +626,23 @@
         "type": "image-with-text-2",
         "settings": {
           "container": "container",
-          "hero_size": "small",
+          "hero_size": "medium",
           "show_overlay": false,
+          "image": "shopify:\/\/shop_images\/Copy_of_Copy_of_Copy_of_Copy_of_Copy_of_Copy_of_Autumn_Special_Flash_Sale_Landscape_Banner.png",
           "bg_position": "center",
           "parallax": false,
           "content_in_container": true,
           "content_position": "right middle",
-          "text_alignment": "left",
+          "text_alignment": "center",
           "text_size": "medium",
           "text_color": "dark",
-          "title": "<span class=\"text-4xl\">Up to 20% Seclect<br> tables & chairs items<\/span>",
+          "title": "",
           "subtitle": "",
           "text": "",
-          "button_label": "Shop now",
+          "button_label": "",
           "button_link": "",
           "button_style": "sf__btn-link",
-          "button_size": ""
+          "button_size": "sf__btn-large"
         }
       },
       "162329352596f1ff1c": {
@@ -824,6 +826,111 @@
           "show_account_icon": false,
           "show_wishlist_icon": false
         }
+      },
+      "16302536407167d5f1": {
+        "type": "collection-list",
+        "blocks": {
+          "16302536407167d5f1-0": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "coffee-tables",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/8434592039186_P0.jpg"
+            }
+          },
+          "16302536407167d5f1-1": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "bedside-table",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/659200ca-c998-476e-a2e8-ba139e8e8e6b.jpg"
+            }
+          },
+          "16302536407167d5f1-2": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "",
+              "title": ""
+            }
+          },
+          "449d7a36-2155-43c4-86cd-4451f9fa2441": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "",
+              "title": ""
+            }
+          },
+          "ea24a763-f333-4600-8d20-f21452322952": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "",
+              "title": ""
+            }
+          },
+          "6b40ccd1-3323-49c7-b93f-f1c51dcee33f": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "",
+              "title": ""
+            }
+          },
+          "bc9e0b76-9772-4bf0-88a0-b1284b3ff435": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "",
+              "title": ""
+            }
+          },
+          "d03f37f6-2fff-4f99-85f6-2144a396e712": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "",
+              "title": ""
+            }
+          },
+          "09b4067f-c5c3-48be-ab75-a62dad9d3698": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "",
+              "title": ""
+            }
+          }
+        },
+        "block_order": [
+          "16302536407167d5f1-0",
+          "16302536407167d5f1-1",
+          "16302536407167d5f1-2",
+          "449d7a36-2155-43c4-86cd-4451f9fa2441",
+          "ea24a763-f333-4600-8d20-f21452322952",
+          "6b40ccd1-3323-49c7-b93f-f1c51dcee33f",
+          "bc9e0b76-9772-4bf0-88a0-b1284b3ff435",
+          "d03f37f6-2fff-4f99-85f6-2144a396e712",
+          "09b4067f-c5c3-48be-ab75-a62dad9d3698"
+        ],
+        "settings": {
+          "heading": "Shop by Department",
+          "subheading": "",
+          "description": "",
+          "header_alignment": "center",
+          "container": "container-fluid",
+          "background_color": "",
+          "layout": "grid",
+          "card_style": "boxed",
+          "text_alignment": "center",
+          "hover_effect": "scaling-down",
+          "show_product_count": false,
+          "count_inline_title": true,
+          "image_rounded": true,
+          "items_per_row": 6,
+          "item_gap": 0,
+          "mobile_gap": 10,
+          "enable_slider": false,
+          "show_pagination": false,
+          "show_navigation": false,
+          "autorotate": false,
+          "autorotate_speed": 5,
+          "hidden_slide_control_mobile": false
+        }
       }
     },
     "content_for_index": [
@@ -831,6 +938,7 @@
       "1623293128ea15b64a",
       "16232932164704bbe7",
       "162329352596f1ff1c",
+      "16302536407167d5f1",
       "16232937433dca4bc9"
     ]
   },
