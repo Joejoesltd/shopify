@@ -1,11 +1,12 @@
 {
   "current": {
-    "favicon": "shopify:\/\/shop_images\/fav_icon_dark_1.png",
+    "favicon": "shopify:\/\/shop_images\/thumbnail_J_J.png",
     "container_width": 1170,
     "container_fluid_width": 1680,
     "container_fluid_offset": 100,
     "color_primary": "#000",
     "color_sub_text": "#666666",
+    "color_btn_bg": "#999999",
     "color_btn_bg_hover": "#000000",
     "prod_sale_price_color": "#666666",
     "prod_type_color": "#666666",
@@ -52,6 +53,7 @@
     "social_instagram_link": "https:\/\/instagram.com\/",
     "wishlist_page": "wishlist",
     "product_compare_page": "product-compare",
+    "show_cookie_consent": true,
     "gm_api": "AIzaSyD3yeSZBE_RTSx1FE3JtR0uUayaxJ_npRI",
     "instagram_token": "IGQVJXZAHppQ3g0a1BsTVlfNkE1VGRacVIyZAGtyNzhpWFJNSlhaM3p1N2ZA6ODVQUWJsV3hEWWFORzEwRFFKTVEyZAXdYaDVjSjU3b3d4b1lVeGZAlY01KMjNTcDQ1NTRXR1B4dEZAYcHQ2LWxkejl0NGJmUwZDZD",
     "custom_css": ".sf-nav li[data-index=\"0\"] .sf-menu-submenu__content {\n  padding-top: 20px;\n}\n\n.sf-nav li[data-index=\"0\"] .sf__menu-item-level2 .sf__sub-menu-link2 {\n  display: none;\n}\n.sf-nav li[data-index=\"0\"] .sf__menu-item-level2 .sf__sub-menu-column {\n  margin-top: 0;\n}\n#sf-custom-16232926423298a4de .section-my {\n  margin-top: 0;\n}\n.sf__footer-block-title {\n  font-weight: 600;\n}\n.sf__footer-bottom {\n  border-top: 1px solid #e5e5e5;\n}\n@media(min-width: 768px) {\n  #sf-custom-16232937433dca4bc9 .sf-custom__newsletter {\n    border-left: 1px solid #eee;\n  }\n}\n@media(min-width: 1025px) {\n  #sf-hero-16232932164704bbe7 .sf-hero__inner {\n    margin-left: -10%;\n  }\n}",
@@ -830,14 +832,6 @@
       "16302536407167d5f1": {
         "type": "collection-list",
         "blocks": {
-          "16302536407167d5f1-0": {
-            "type": "collection_block",
-            "settings": {
-              "collection": "coffee-tables",
-              "title": "",
-              "item_image": "shopify:\/\/shop_images\/8434592039186_P0.jpg"
-            }
-          },
           "16302536407167d5f1-1": {
             "type": "collection_block",
             "settings": {
@@ -846,66 +840,108 @@
               "item_image": "shopify:\/\/shop_images\/659200ca-c998-476e-a2e8-ba139e8e8e6b.jpg"
             }
           },
-          "16302536407167d5f1-2": {
-            "type": "collection_block",
-            "settings": {
-              "collection": "",
-              "title": ""
-            }
-          },
           "449d7a36-2155-43c4-86cd-4451f9fa2441": {
             "type": "collection_block",
             "settings": {
-              "collection": "",
-              "title": ""
+              "collection": "chest-of-drawers",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/8424001827145_S3023122_P4.jpg"
+            }
+          },
+          "16302536407167d5f1-0": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "coffee-tables",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/8434592039186_P0.jpg"
             }
           },
           "ea24a763-f333-4600-8d20-f21452322952": {
             "type": "collection_block",
             "settings": {
-              "collection": "",
-              "title": ""
+              "collection": "dining-chairs",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/21126_1.jpg"
             }
           },
           "6b40ccd1-3323-49c7-b93f-f1c51dcee33f": {
             "type": "collection_block",
             "settings": {
-              "collection": "",
-              "title": ""
+              "collection": "display-unit",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/19987_1.jpg"
             }
           },
           "bc9e0b76-9772-4bf0-88a0-b1284b3ff435": {
             "type": "collection_block",
             "settings": {
-              "collection": "",
-              "title": ""
+              "collection": "decor",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/8c792e5b-bc7d-4efb-8e5b-051649e39738_7512d62b-f879-4f5c-82fe-61771ce2cb54.jpg"
             }
           },
           "d03f37f6-2fff-4f99-85f6-2144a396e712": {
             "type": "collection_block",
             "settings": {
-              "collection": "",
-              "title": ""
+              "collection": "garden-decor",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/ed6201c9-1126-4e61-b49f-d336d2883d61_900x_348ff371-77cd-41cb-a3a4-d034a13f9f75.jpg"
             }
           },
           "09b4067f-c5c3-48be-ab75-a62dad9d3698": {
             "type": "collection_block",
             "settings": {
-              "collection": "",
-              "title": ""
+              "collection": "garden-furniture",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/8424001666669_S3012827_A0.jpg"
+            }
+          },
+          "1d71995f-9d34-43b3-95e0-b4fd6ba2221e": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "garden-lighting",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/a4fdf3c8-ba9c-4894-b8d9-fdfc0b02fdb4.jpg"
+            }
+          },
+          "d175678d-631b-4bed-a43d-f2cdd8080405": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "lighting",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/RopeChandelierLightFitting5_900x_85acdc60-e041-4368-8875-de145b4f060c.jpg"
+            }
+          },
+          "9b5570ca-eb8e-45f3-ac04-b34b93e1a1de": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "seating",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/8424001808977_S3022893_P5.jpg"
+            }
+          },
+          "16302536407167d5f1-2": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "wall-decor",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/11ffb58e-4337-4a45-9c15-f3e24a987926.jpg"
             }
           }
         },
         "block_order": [
-          "16302536407167d5f1-0",
           "16302536407167d5f1-1",
-          "16302536407167d5f1-2",
           "449d7a36-2155-43c4-86cd-4451f9fa2441",
+          "16302536407167d5f1-0",
           "ea24a763-f333-4600-8d20-f21452322952",
           "6b40ccd1-3323-49c7-b93f-f1c51dcee33f",
           "bc9e0b76-9772-4bf0-88a0-b1284b3ff435",
           "d03f37f6-2fff-4f99-85f6-2144a396e712",
-          "09b4067f-c5c3-48be-ab75-a62dad9d3698"
+          "09b4067f-c5c3-48be-ab75-a62dad9d3698",
+          "1d71995f-9d34-43b3-95e0-b4fd6ba2221e",
+          "d175678d-631b-4bed-a43d-f2cdd8080405",
+          "9b5570ca-eb8e-45f3-ac04-b34b93e1a1de",
+          "16302536407167d5f1-2"
         ],
         "settings": {
           "heading": "Shop by Department",
