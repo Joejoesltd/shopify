@@ -1,0 +1,13 @@
+{% unless settings.wishlist_page == blank %}
+    <a href="{{ pages[settings.wishlist_page].url }}" class="{{ box_size | default: 'relative px-2 py-3.5' }}">
+        {% if display_by == 'icon' %}
+          <span class="sf__tooltip-item block sf__tooltip-bottom sf__tooltip-style-2">
+              {% render 'icon', name: 'star', size: 'medium' %}
+              <span class="sf__tooltip-content">{{ 'layout.wishlist.title' | t }}</span>
+          </span>
+        {% else %}
+          {{ 'layout.wishlist.title' | t }}
+        {% endif %}
+        <sup class="sf-wishlist-count font-medium"></sup>
+    </a>
+{% endunless %}

@@ -1,91 +1,59 @@
-{% comment %}
-
-  The {{ content_for_header }} in theme.liquid will output the following stylesheet just for this page:
-    - <link rel="stylesheet" href="/global/search.css" type="text/css">
-
-  It has a few helpers in there, but this theme writes its own styles so there
-  are no dependencies or conflicts. You can ignore that file.
-
-  Return only products or pages in results:
-    - http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
-    - Or manually add type=product or type=page to the search URL as a parameter
-
-{% endcomment %}
-
-{% comment %}
-  If you're only showing products with the method above, why not show them off in a grid instead?
-  Set grid_results to true and see your updated results page for the new layout.
-{% endcomment %}
-{% assign grid_results = false %}
+{% paginate search.results by 10 %}
 
 {% if search.performed %}
-
-  {% comment %}
-    Avoid accessing search.results before the opening paginate tag.
-    If you do, the pagination of results will be broken.
-  {% endcomment %}
-  {% paginate search.results by 10 %}
-
-    {% comment %}
-      We don't have any results to show. Feel free to show off featured products
-      or suggested searches here.
-    {% endcomment %}
-    {% if search.results_count == 0 %}
-
-      <div class="section-header section-header--large">
-        <h1 class="section-header__title h2">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
-      </div>
-      {% include 'search-bar' %}
-
-    {% else %}
-
-      <div class="section-header section-header--large">
-        <h1 class="section-header__title h2">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
-      </div>
-      {% include 'search-bar' %}
-
-      {% comment %}
-        Each result template, based on the grid_layout variable above
-      {% endcomment %}
-      {% if grid_results == false %}
-
-        <hr>
-        {% for item in search.results %}
-          {% include 'search-result' %}
-          <hr>
-        {% endfor %}
-
-      {% else %}
-
-        <div class="grid-uniform">
-          {% for item in search.results %}
-            {% assign grid_item_width = 'post-large--one-quarter medium--one-third small--one-half' %}
-            {% include 'search-result-grid' %}
-          {% endfor %}
-        </div>
-
-      {% endif %}
-
-    {% endif %}
-
-    {% if paginate.pages > 1 %}
-      <div class="text-center">
-        {% include 'pagination-custom' %}
-      </div>
-    {% endif %}
-
-  {% endpaginate %}
-
+    {% render 'page-title', title: page_title %}
+    {% comment %} <div class="page__header">
+        <span class="page__title">{{ 'general.search.heading' | t: count: search.results_count, query: search.terms }}</span>
+        <p class="text-center mt-3">
+            {{ 'general.search.results_with_count' | t: query: search.terms, count: search.results_count }}
+        </p>
+    </div> {% endcomment %}
 {% else %}
+    {% render 'customer-challenge-style' %}
+    <div class="page__header flex flex-col items-center">
+        <div class="text-xl mb-4">{{ 'general.search.title' | t }}</div>
+        <form
+            action="/search" method="POST" novalidate
+            class="px-4 py-2 rounded-[5px] border relative border-color-border w-full md:w-1/2 lg:w-2/3 xl:w-1/2 2xl:w-1/3"
+        >
+            <input type="hidden" name="type" value="product">
+            <input type="hidden" name="options[unavailable_products]" value="last">
+            <input type="hidden" name="options[prefix]" value="last">
+            <input type="hidden" name="options[fields]" value="title,vendor,product_type,variants.title">
 
-  {% comment %}
-    If search.performed is false, someone either accessed the page without
-    the q parameter, or it was blank.
-    Be sure to show a search form here, along with anything else you want to showcase.
-  {% endcomment %}
-  <div class="section-header section-header--large">
-    <h1 class="section-header__title h2">{{ 'general.search.title' | t }}</h1>
-  </div>
-  {% include 'search-bar' %}
+            <input
+                type="text" name="q" required
+                autocomplete="off"
+                placeholder="{{ 'general.search.placeholder' | t }}"
+                aria-label="{{ 'general.search.placeholder' | t }}"
+                class="sf-search__input w-full leading-6 bg-transparent pr-10" />
 
+            <button type="submit" class="absolute top-0 right-0 px-4 py-2">
+                {% render 'icon', name: 'search', size: 'medium' %}
+            </button>
+        </form>
+    </div>
 {% endif %}
+
+{% if search.performed %}
+    {% if search.results_count == 0 %}
+        <div class="py-16 text-center text-xl sf-search-page__no-results">{{ 'general.search.no_results_html' | t: terms: search.terms }}</div>
+        {% render 'customer-challenge-style' %}
+    {% else %}
+        <ul class="mt-5 md:mt-16 container grid md:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
+        {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+                {% render 'product-card', product: item %}
+            {% endif %}
+        {% endfor %}
+        </ul>
+
+        {% if paginate.pages > 1 %}
+            <div class="my-16">
+                {% render 'pagination', paginate: paginate %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+{% endpaginate %}

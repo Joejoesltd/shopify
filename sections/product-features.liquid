@@ -1,0 +1,190 @@
+{% if section.settings.show_featured %}
+
+    {%- assign st = section.settings -%}
+    {%- assign blocks = section.blocks -%}
+    {%- assign card_style = st.card_style -%}
+    {% assign card_classes = 'flex-col' %}
+    {% assign alignment = 'sm:items-' | append: st.content_alignment  %}
+    {% assign text_alignment = 'sm:text-' | append: st.content_alignment | replace: 'start', 'left' | replace: 'end', 'right' %}
+    {% if card_style == 'horizontal' %}
+        {% assign card_classes = 'flex-col justify-center sm:items-start sm:flex-row flex-nowrap' %}
+        {% assign alignment = '' %}
+    {% endif %}
+
+    <section
+        class="sf-icon-box sf-product-features sf-product__section"
+        data-section-type="icon-box"
+        data-section-id="{{ section.id }}"
+        style="--column-gap: 2rem;--row-gap-mobile: 10px"
+    >
+        <div class="{{ section.settings.container }}">
+            {% if st.heading != blank %}
+                <h2 class="text-2xl md:text-4xl text-center mb-8 md:mb-16">{{ st.heading }}</h2>
+            {% endif %}
+          <div class="sf-grid flex md:grid grid-cols-1 md:grid-cols-{{ section.settings.item_per_row | minus: 1 }} lg:grid-cols-{{ section.settings.item_per_row }} {% if card_style == 'vertical' %}gap-x-4 gap-y-6{% else %}gap-x-5 gap-y-8{% endif %} lg:gap-7 flex-wrap">
+            {% for block in blocks %}
+            {% assign bs = block.settings %}
+            <div class="sf-column w-full md:w-auto">
+              <div class="sf-icon-box sf-icon-box--{{ card_style }} ">
+                <div class="sf-icon-box__inner flex items-center {{ card_classes }} {{ alignment }}">
+                  {% if block.settings.link != blank %}
+                    {%- assign tag = 'a' -%}
+                  {% else %}
+                    {%- assign tag = 'div' -%}
+                  {% endif %}
+                  <{{ tag }}{% if block.settings.link != blank %} href="{{ block.settings.link }}"{% endif %} class="sf-icon-box__icon w-full flex flex-shrink-0 justify-center max-w-full mb-5 md:mb-0{% if card_style == 'horizontal' %} items-start pt-1 sm:mr-5 {% else %} items-center {% endif %}"{% if st.image_max_width != blank %} style="width: {{ st.image_max_width }};"{% endif %}>
+                  {% if bs.image != blank %}
+                    {% render 'responsive-image', image: bs.image, wrapper_class: 'w-full', image_class: "w-full" %}
+                  {% endif %}
+                  {% if bs.image == blank and request.design_mode %}
+                    {{ 'product-1' | placeholder_svg_tag: 'sf__placeholder-svg w-full' }}
+                  {% endif %}
+                </{{ tag }}>
+                {% if bs.title != blank %}
+                  <div class="sf-icon-box__content {% if card_style == 'vertical' %}md:mt-5 {% endif %} text-center flex-1 {{ text_alignment }}">
+                    {% if bs.title != blank %}
+                      <h3 class="mb-1.5 font-medium">{{ bs.title }}</h3>
+                    {% endif %}
+                    {% if bs.description != blank %}
+                      <div class="rte text-color-subtext">{{ bs.description }}</div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+        </div>
+    </section>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Featured promotion",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_featured",
+            "label": "Show featured promotion",
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": "General"
+        },
+        {
+            "type": "select",
+            "id": "container",
+            "label": "Container type",
+            "default": "container",
+            "options": [
+                {
+                    "value": "container-fluid",
+                    "label": "Default"
+                },
+                {
+                    "value": "w-full",
+                    "label": "Full width"
+                },
+                {
+                    "value": "container",
+                    "label": "Use container box"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Why choose us?"
+        },
+        {
+            "type": "range",
+            "id": "item_per_row",
+            "label": "Columns per row",
+            "min": 2,
+            "max": 5,
+            "step": 1,
+            "default": 3
+        },
+        {
+          "type": "header",
+          "content": "Card settings"
+        },
+        {
+          "type": "select",
+          "id": "card_style",
+          "label": "Card layout",
+          "default": "vertical",
+          "options": [
+            {
+              "label": "Vertical",
+              "value": "vertical"
+            },
+            {
+              "label": "Horizontal",
+              "value": "horizontal"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "image_max_width",
+          "label": "Image width",
+            "default": "70px",
+          "info": "Leave blank to use original width."
+        },
+        {
+          "type": "select",
+          "id": "content_alignment",
+          "label": "Content alignment",
+          "default": "center",
+          "options": [
+            {
+              "label": "Left",
+              "value": "start"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Right",
+              "value": "end"
+            }
+          ]
+        }
+    ],
+    "blocks": [
+        {
+            "type": "feature",
+            "name": "Feature",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Heading",
+                    "default": "This is heading text"
+                },
+                {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description",
+                    "default":"<p>Tell about your service.</p>"
+                },
+                {
+                  "type": "url",
+                  "id": "link",
+                  "label": "Image link"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

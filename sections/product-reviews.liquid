@@ -1,0 +1,64 @@
+{% if section.settings.show_product_reviews %}
+    <div class="sf-product-reviews sf-product__section">
+        <div class="{{ section.settings.container }}">
+          {%- assign default_heading = 'products.product.product_reviews_heading' | t  -%}
+          <h2 class="sf-product__section-heading">{{ section.settings.heading | default: default_heading }}</h2>
+          {% render 'product-reviews-app__snippet' %}
+        </div>
+    </div>
+{% else %}
+    <style>
+        .prod__reviews_count { display: none; }
+    </style>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "Product reviews",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Requirements",
+                "info": "This section requires [Product Reviews](https://apps.shopify.com/product-reviews) app by Shopify to work."
+            },
+            {
+                "type": "checkbox",
+                "id": "show_product_reviews",
+                "label": "Show product reviews",
+                "default": false
+            },
+            {
+                "type": "select",
+                "id": "container",
+                "label": "Container type",
+                "default": "container-narrow",
+                "options": [
+                    {
+                        "value": "container",
+                        "label": "Fixed width"
+                    },
+                    {
+                        "value": "container-fluid",
+                        "label": "Stretched width"
+                    },
+                    {
+                        "value": "container-narrow",
+                        "label": "Narrow width"
+                    }
+                ]
+            },
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Reviews",
+                "placeholder": "Reviews"
+            },
+            {
+                "type": "header",
+                "content": "Instructions",
+                "info": "If you wish to use another review app then replace the reviews code snippet in snippets/product-reviews-app__snippet.liquid and nippets/product-reviews-app__badge.liquid file with your reviews app's code."
+            }
+        ]
+    }
+{% endschema %}

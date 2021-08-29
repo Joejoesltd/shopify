@@ -1,476 +1,444 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Minimal",
-    "theme_author": "Shopify",
-    "theme_version": "12.5.1",
-    "theme_documentation_url": "https:\/\/docs.shopify.com\/manual\/more\/official-shopify-themes\/minimal",
-    "theme_support_url": "https:\/\/support.shopify.com\/"
+    "theme_name": "Minimog",
+    "theme_version": "1.0.3",
+    "theme_author": "ThemeMove",
+    "theme_documentation_url": "https:\/\/docs.minimog.co\/",
+    "theme_support_url": "https:\/\/minimog.co"
   },
   {
-    "name": {
-      "cs": "Rozvržení",
-      "da": "Layout",
-      "de": "Layout",
-      "en": "Layout",
-      "es": "Diseño",
-      "fi": "Asettelu",
-      "fr": "Mise en page",
-      "it": "Layout",
-      "ja": "レイアウト",
-      "ko": "레이아웃",
-      "nb": "Oppsett",
-      "nl": "Opmaak",
-      "pl": "Układ",
-      "pt-BR": "Layout",
-      "pt-PT": "Esquema",
-      "sv": "Layout",
-      "th": "เลย์เอาต์",
-      "tr": "Düzen",
-      "vi": "Bố cục",
-      "zh-CN": "布局",
-      "zh-TW": "版面配置"
-    },
+    "name": "General Settings",
     "settings": [
       {
+        "type": "header",
+        "content": "Favicon"
+      },
+      {
         "type": "checkbox",
-        "id": "enable_wide_layout",
-        "label": {
-          "cs": "Povolit široké rozvržení",
-          "da": "Aktivér bredt layout",
-          "de": "Breites Layout aktivieren",
-          "en": "Enable wide layout",
-          "es": "Habilita diseño amplio",
-          "fi": "Ota leveä asettelu käyttöön",
-          "fr": "Activer une mise en page plus large",
-          "it": "Abilita layout esteso",
-          "ja": "ワイドレイアウトを有効にする",
-          "ko": "넓은 레이아웃 사용",
-          "nb": "Aktiver bredt oppsett",
-          "nl": "Brede opmaak inschakelen",
-          "pl": "Włącz układ szeroki",
-          "pt-BR": "Habilitar layout amplo",
-          "pt-PT": "Ativar esquema amplo",
-          "sv": "Aktivera en bredare layout",
-          "th": "เปิดใช้เลย์เอาต์แบบกว้าง",
-          "tr": "Geniş düzeni etkinleştir",
-          "vi": "Bật bố cục rộng",
-          "zh-CN": "启用宽幅布局",
-          "zh-TW": "啟用寬幅版面配置"
-        }
+        "id": "use_favicon",
+        "label": "Use favicon icon (32px x 32px)",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Image favicon",
+        "info": "Will be scaled down to 32 x 32px"
+      },
+      {
+        "type": "header",
+        "content": "Ajax \"ADD TO CART\""
+      },
+      {
+        "type": "checkbox",
+        "id": "use_ajax_atc",
+        "label": "Enable ajax \"ADD TO CART\"",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Scroll to top button"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_scroll_top_button",
+        "label": "Show scroll to top button",
+        "default": true
       }
     ]
   },
   {
-    "name": {
-      "cs": "Barvy",
-      "da": "Farver",
-      "de": "Farben",
-      "en": "Colors",
-      "es": "Colores",
-      "fi": "Värit",
-      "fr": "Couleurs",
-      "it": "Colori",
-      "ja": "色",
-      "ko": "색상",
-      "nb": "Farger",
-      "nl": "Kleuren",
-      "pl": "Kolory",
-      "pt-BR": "Cores",
-      "pt-PT": "Cores",
-      "sv": "Färger",
-      "th": "สี",
-      "tr": "Renkler",
-      "vi": "Màu",
-      "zh-CN": "颜色",
-      "zh-TW": "色彩"
-    },
+    "name": "Layout Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fixed width container"
+      },
+      {
+        "type": "range",
+        "id": "container_width",
+        "label": "Container width",
+        "default": 1280,
+        "min": 1100,
+        "max": 1900,
+        "step": 10,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "Fluid container",
+        "info": "A section with \"Fluid container\" will take-up the complete width of the viewport and will expand or shrink when ever the viewport is resized."
+      },
+      {
+        "type": "range",
+        "id": "container_fluid_width",
+        "label": "Container max-width",
+        "default": 1620,
+        "min": 1280,
+        "max": 2560,
+        "step": 20,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "container_fluid_offset",
+        "label": "Margin left & right",
+        "default": 95,
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "unit": "px"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
     "settings": [
       {
         "type": "header",
         "content": {
-          "cs": "Pozadí",
-          "da": "Baggrund",
-          "de": "Hintergrund",
-          "en": "Background",
-          "es": "Fondo",
-          "fi": "Tausta",
-          "fr": "Arrière-plan",
-          "it": "Sfondo",
-          "ja": "背景",
-          "ko": "배경",
-          "nb": "Bakgrunn",
-          "nl": "Achtergrond",
-          "pl": "Tło",
-          "pt-BR": "Plano de fundo",
-          "pt-PT": "Fundo",
-          "sv": "Bakgrund",
-          "th": "พื้นหลัง",
-          "tr": "Arka plan",
-          "vi": "Nền",
-          "zh-CN": "背景",
-          "zh-TW": "背景"
-        }
-      },
-      {
-        "type": "color",
-        "id": "color_topbar_bg",
-        "label": {
-          "cs": "Pozadí horní lišty",
-          "da": "Baggrunden for den øverste linje",
-          "de": "Hintergrund obere Leiste",
-          "en": "Top bar background",
-          "es": "Fondo de la barra superior",
-          "fi": "Yläpalkin tausta",
-          "fr": "Arrière-plan de la barre supérieure",
-          "it": "Sfondo barra in alto",
-          "ja": "トップバーの背景",
-          "ko": "상단 바 배경",
-          "nb": "Bakgrunn for topplinje",
-          "nl": "Achtergrond bovenste balk",
-          "pl": "Tło górnego paska",
-          "pt-BR": "Plano de fundo da barra superior",
-          "pt-PT": "Fundo da barra superior",
-          "sv": "Översta fältets bakgrund",
-          "th": "พื้นหลังแถบด้านบน",
-          "tr": "Üst çubuk arka planı",
-          "vi": "Nền thanh đầu trang",
-          "zh-CN": "顶栏背景",
-          "zh-TW": "頂端列背景"
-        },
-        "default": "#204a80"
-      },
-      {
-        "type": "color",
-        "id": "color_body_bg",
-        "label": {
-          "cs": "Pozadí hlavní části",
-          "da": "Baggrund for brødtekst",
-          "de": "Textkörperhintergrund",
-          "en": "Body background",
-          "es": "Fondo del cuerpo",
-          "fi": "Näytön pääosan tausta",
-          "fr": "Arrière-plan du corps",
-          "it": "Sfondo corpo del testo",
-          "ja": "本文の背景",
-          "ko": "바디 백그라운드",
-          "nb": "Sidebakgrunn",
-          "nl": "Achtergrond hoofdtekst",
-          "pl": "Tło treści",
-          "pt-BR": "Plano de fundo do corpo",
-          "pt-PT": "Fundo do corpo",
-          "sv": "Brödtextbakgrund",
-          "th": "พื้นหลังส่วนเนื้อหา",
-          "tr": "Gövde arka planı",
-          "vi": "Nền nội dung",
-          "zh-CN": "正文背景",
-          "zh-TW": "本文背景"
-        },
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "color_footer_bg",
-        "label": {
-          "cs": "Pozadí zápatí",
-          "da": "Baggrund for sidefod",
-          "de": "Fußzeilenhintergrund",
-          "en": "Footer background",
-          "es": "Fondo del pie de página",
-          "fi": "Alatunnisteen tausta",
-          "fr": "Arrière-plan du pied de page",
-          "it": "Sfondo footer",
-          "ja": "フッターの背景",
-          "ko": "푸터 백그라운드",
-          "nb": "Bakgrunn for bunntekst",
-          "nl": "Achtergrond voettekst",
-          "pl": "Tło stopki",
-          "pt-BR": "Plano de fundo do rodapé",
-          "pt-PT": "Fundo do rodapé",
-          "sv": "Sidfotsbakgrund",
-          "th": "พื้นหลังส่วนท้าย",
-          "tr": "Altbilgi arka planı",
-          "vi": "Nền chân trang",
-          "zh-CN": "页脚背景",
-          "zh-TW": "頁尾背景"
-        },
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "color_borders",
-        "label": {
-          "cs": "Čáry a ohraničení",
-          "da": "Linjer og kanter",
-          "de": "Linien und Rahmen",
-          "en": "Lines and borders",
-          "es": "Líneas y bordes",
-          "fi": "Rivit ja reunat",
-          "fr": "Lignes et bordures",
-          "it": "Linee e bordi",
-          "ja": "線と罫線",
-          "ko": "선 및 테두리",
-          "nb": "Linjer og kantlinjer",
-          "nl": "Lijnen en randen",
-          "pl": "Linie i obramowania",
-          "pt-BR": "Linhas e bordas",
-          "pt-PT": "Linhas e limites",
-          "sv": "Linjer och gränser",
-          "th": "เส้นและขอบ",
-          "tr": "Çizgiler ve kenarlıklar",
-          "vi": "Đường kẻ và đường viền",
-          "zh-CN": "线条和边框",
-          "zh-TW": "線條與邊框"
-        },
-        "default": "#e5e5e5"
-      },
-      {
-        "type": "header",
-        "content": {
-          "cs": "Tlačítka",
-          "da": "Knapper",
-          "de": "Schaltflächen",
-          "en": "Buttons",
-          "es": "Botones",
-          "fi": "Painikkeet",
-          "fr": "Boutons",
-          "it": "Pulsanti",
-          "ja": "ボタン",
-          "ko": "버튼",
-          "nb": "Knapper",
-          "nl": "Knoppen",
-          "pl": "Przyciski",
-          "pt-BR": "Botões",
-          "pt-PT": "Botões",
-          "sv": "Knappar",
-          "th": "ปุ่ม",
-          "tr": "Düğmeler",
-          "vi": "Nút",
-          "zh-CN": "按钮",
-          "zh-TW": "按鈕"
+          "da": "Markeringsfarver",
+          "de": "Akzentfarben",
+          "en": "Accent Colors",
+          "es": "Colores de acento",
+          "fi": "Korostusvärit",
+          "fr": "Couleurs d'accents",
+          "hi": "एसेंट कलर",
+          "it": "Colori in risalto",
+          "ja": "アクセントの色",
+          "ko": "강조 색상",
+          "nb": "Uthevingsfarger",
+          "nl": "Accentkleuren",
+          "pt-BR": "Cores de destaque",
+          "pt-PT": "Cores de destaque",
+          "sv": "Accentfärg",
+          "th": "สีที่เน้น",
+          "zh-CN": "主题色",
+          "zh-TW": "強調色"
         }
       },
       {
         "type": "color",
         "id": "color_primary",
-        "label": {
-          "cs": "Tlačítka a odkazy",
-          "da": "Knapper og links",
-          "de": "Schaltflächen und Links",
-          "en": "Buttons and links",
-          "es": "Botones y enlaces",
-          "fi": "Painikkeet ja linkit",
-          "fr": "Boutons et liens",
-          "it": "Pulsanti e link",
-          "ja": "ボタンとリンク",
-          "ko": "버튼 및 링크",
-          "nb": "Knapper og koblinger",
-          "nl": "Knoppen en links",
-          "pl": "Przyciski i linki",
-          "pt-BR": "Botões e links",
-          "pt-PT": "Botões e ligações",
-          "sv": "Knappar och länkar",
-          "th": "ปุ่มและลิงก์",
-          "tr": "Düğmeler ve bağlantılar",
-          "vi": "Nút và liên kết",
-          "zh-CN": "按钮和链接",
-          "zh-TW": "按鈕與連結"
-        },
-        "default": "#204a80"
+        "label": "Primary accent",
+        "default": "#000"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Text Colors"
+        }
       },
       {
         "type": "color",
-        "id": "color_button_primary_text",
-        "label": {
-          "cs": "Text tlačítka",
-          "da": "Knaptekst",
-          "de": "Schaltflächentext",
-          "en": "Button text",
-          "es": "Botón de texto",
-          "fi": "Painikkeen teksti",
-          "fr": "Texte du bouton",
-          "it": "Testo pulsante",
-          "ja": "ボタンテキスト",
-          "ko": "버튼 텍스트",
-          "nb": "Knapptekst",
-          "nl": "Knoptekst",
-          "pl": "Tekst przycisku",
-          "pt-BR": "Texto do botão",
-          "pt-PT": "Texto do botão",
-          "sv": "Knapptext",
-          "th": "ข้อความปุ่ม",
-          "tr": "Düğme metni",
-          "vi": "Chữ trên nút",
-          "zh-CN": "按钮文字",
-          "zh-TW": "按鈕文字"
-        },
+        "id": "color_body_text",
+        "label": "Body text",
+        "default": "#161d25"
+      },
+      {
+        "type": "color",
+        "id": "color_heading_text",
+        "label": "Heading texts",
+        "default": "#171717"
+      },
+      {
+        "type": "color",
+        "id": "color_sub_text",
+        "label": "Sub texts",
+        "default": "#9A9A9A"
+      },
+      {
+        "type": "color",
+        "id": "color_text_link",
+        "label": "Text link",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_text_link_hover",
+        "label": "Text link hover",
+        "default": "#999999"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Button Colors (Primary Button)"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_btn_bg",
+        "label": "Background",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_bg_hover",
+        "label": "Background hover",
+        "default": "#555555"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text",
+        "label": "Text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text_hover",
+        "label": "Text color hover",
         "default": "#ffffff"
       },
       {
         "type": "header",
         "content": {
-          "cs": "Text",
-          "da": "Tekst",
-          "de": "Text",
-          "en": "Text",
-          "es": "Texto",
-          "fi": "Teksti",
-          "fr": "Texte",
-          "it": "Testo",
-          "ja": "テキスト",
-          "ko": "텍스트",
-          "nb": "Tekst",
-          "nl": "Tekst",
-          "pl": "Tekst",
-          "pt-BR": "Texto",
-          "pt-PT": "Texto",
-          "sv": "Text",
-          "th": "ข้อความ",
-          "tr": "Metin",
-          "vi": "Văn bản",
-          "zh-CN": "文本",
-          "zh-TW": "文字"
+          "en": "Product Colors"
         }
       },
       {
         "type": "color",
+        "id": "prod_sale_price_color",
+        "label": "Sale price",
+        "default": "#9b9b9b"
+      },
+      {
+        "type": "color",
+        "id": "prod_type_color",
+        "label": "Product vendor, collection",
+        "default": "#9b9b9b"
+      },
+      {
+        "type": "color",
+        "id": "prod_desc_color",
+        "label": "Product description, details",
+        "default": "#666666"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Background Colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_main_bg",
+        "label": "Main background"
+      },
+      {
+        "type": "color",
+        "id": "color_field_bg",
+        "label": "Form field background",
+        "default": "#f8f8f8"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Annoucement bar colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_annoucement_bg",
+        "label": "Background color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "color_annoucement_text",
+        "label": "Text",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Top bar colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_topbar_bg",
+        "label": "Background color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
         "id": "color_topbar_text",
-        "label": {
-          "cs": "Horní lišta",
-          "da": "Øverste linje",
-          "de": "Obere Leiste",
-          "en": "Top bar",
-          "es": "Barra superior",
-          "fi": "Yläpalkki",
-          "fr": "Barre supérieure",
-          "it": "Barra in alto",
-          "ja": "トップバー",
-          "ko": "상단 바",
-          "nb": "Toppfelt",
-          "nl": "Bovenste balk",
-          "pl": "Górny pasek",
-          "pt-BR": "Barra superior",
-          "pt-PT": "Barra superior",
-          "sv": "Översta fältet",
-          "th": "แถบด้านบน",
-          "tr": "Üst çubuk",
-          "vi": "Thanh đầu trang",
-          "zh-CN": "顶栏",
-          "zh-TW": "頂端列"
-        },
+        "label": "Texts & icons",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Header Colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_header_bg",
+        "label": "Background color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_header_link",
+        "label": "Texts & icons",
+        "default": "#171717"
+      },
+      {
+        "type": "color",
+        "id": "color_header_transparent",
+        "label": "Texts & icons on transparent header",
+        "default": "#171717"
+      },
+      {
+        "type": "color",
+        "id": "color_cart_wishlist_count",
+        "label": "Cart & wishlist count color",
         "default": "#ffffff"
       },
       {
         "type": "color",
-        "id": "color_header_text",
-        "label": {
-          "cs": "Hlavní nabídka",
-          "da": "Hovedmenu",
-          "de": "Hauptmenü",
-          "en": "Main menu",
-          "es": "Menú principal",
-          "fi": "Päävalikko",
-          "fr": "Menu principal",
-          "it": "Menu principale",
-          "ja": "メインメニュー",
-          "ko": "주 메뉴",
-          "nb": "Hovedmeny",
-          "nl": "Hoofdmenu",
-          "pl": "Menu główne",
-          "pt-BR": "Menu principal",
-          "pt-PT": "Menu principal",
-          "sv": "Huvudmeny",
-          "th": "เมนูหลัก",
-          "tr": "Ana menü",
-          "vi": "Menu chính",
-          "zh-CN": "主菜单",
-          "zh-TW": "主選單"
+        "id": "bg_cart_wishlist_count",
+        "label": "Cart & wishlist count background",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Menu Bar Colors"
         },
-        "default": "#333333"
+        "info": "For header design where Menu and Logo are in 2 lines"
       },
       {
         "type": "color",
-        "id": "color_body_text",
-        "label": {
-          "cs": "Textová část",
-          "da": "Brødtekst",
-          "de": "Nachricht",
-          "en": "Body",
-          "es": "Cuerpo",
-          "fi": "Runko",
-          "fr": "Corps",
-          "it": "Corpo",
-          "ja": "ボディ",
-          "ko": "본문",
-          "nb": "Brødtekst",
-          "nl": "Hoofdtekst",
-          "pl": "Treść",
-          "pt-BR": "Corpo",
-          "pt-PT": "Corpo",
-          "sv": "Brödtext",
-          "th": "เนื้อหา",
-          "tr": "Gövde",
-          "vi": "Nội dung",
-          "zh-CN": "正文",
-          "zh-TW": "正文"
-        },
-        "default": "#333333"
+        "id": "color_menu_bar_bg",
+        "label": "Background color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "color_menu_bar_text",
+        "label": "Texts",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Footer Colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bg",
+        "label": "Background color",
+        "default": "#efeded"
       },
       {
         "type": "color",
         "id": "color_footer_text",
-        "label": {
-          "cs": "Zápatí",
-          "da": "Sidefod",
-          "de": "Fußzeile",
-          "en": "Footer",
-          "es": "Pie de página",
-          "fi": "Alatunniste",
-          "fr": "Bas de page",
-          "it": "Footer",
-          "ja": "フッター",
-          "ko": "바닥글",
-          "nb": "Footer",
-          "nl": "Voettekst",
-          "pl": "Stopka",
-          "pt-BR": "Rodapé",
-          "pt-PT": "Rodapé",
-          "sv": "Sidfot",
-          "th": "ส่วนท้าย",
-          "tr": "Altbilgi",
-          "vi": "Chân trang",
-          "zh-CN": "页脚",
-          "zh-TW": "頁尾"
-        },
-        "default": "#636363"
+        "label": "Text color",
+        "default": "#000"
       },
       {
         "type": "color",
-        "id": "color_footer_social_link",
-        "label": {
-          "cs": "Ikony sociálních sítí",
-          "da": "Ikoner for sociale medier",
-          "de": "Social Media-Symbole",
-          "en": "Social media icons",
-          "es": "Iconos de redes sociales",
-          "fi": "Some-kuvakkeet",
-          "fr": "Icônes de médias sociaux",
-          "it": "Icone dei social media",
-          "ja": "SNSのアイコン",
-          "ko": "소셜 미디어 아이콘",
-          "nb": "Ikoner for sosiale medier",
-          "nl": "Pictogrammen voor social media",
-          "pl": "Ikony mediów społecznościowych",
-          "pt-BR": "Ícones de redes sociais",
-          "pt-PT": "Ícones de redes sociais",
-          "sv": "Sociala medier-ikoner",
-          "th": "ไอคอนโซเชียลมีเดีย",
-          "tr": "Sosyal medya simgeleri",
-          "vi": "Biểu tượng truyền thông xã hội",
-          "zh-CN": "社交媒体图标",
-          "zh-TW": "社交媒體圖示"
-        },
-        "default": "#bbbbbb"
+        "id": "color_footer_subtext",
+        "label": "Subtext color",
+        "default": "#666666"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_link",
+        "label": "Link color",
+        "default": "#666666"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_link_hover",
+        "label": "Link color hover",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bg_mb",
+        "label": "Mobile background color",
+        "default": "#F5F5F5"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Footer Bottom Colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bottom_bg",
+        "label": "Background color",
+        "default": "#efeded"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bottom_text",
+        "label": "Text color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bottom_bg_mb",
+        "label": "Mobile background color",
+        "default": "#F5F5F5"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Border Colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border",
+        "default": "#EEEEE0"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Image overlay"
+        }
+      },
+      {
+        "type": "color",
+        "id": "img_overlay_bg",
+        "label": "Background",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "img_overlay_opacity",
+        "label": "Opacity",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Tooltip"
+        }
+      },
+      {
+        "type": "color",
+        "id": "tooltip_background_color",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "tooltip_text_color",
+        "label": "Text color",
+        "default": "#ffffff"
       }
     ]
   },
@@ -478,7 +446,7 @@
     "name": {
       "cs": "Typografie",
       "da": "Typografi",
-      "de": "Typografie",
+      "de": "Typographie",
       "en": "Typography",
       "es": "Tipografía",
       "fi": "Typografia",
@@ -504,8 +472,8 @@
         "content": {
           "cs": "Základní text",
           "da": "Brødtekst",
-          "de": "Fließtext",
-          "en": "Body text",
+          "de": "Body-Text",
+          "en": "BODY TEXT",
           "es": "Texto del cuerpo",
           "fi": "Leipäteksti",
           "fr": "Corps du texte",
@@ -527,7 +495,7 @@
       },
       {
         "type": "font_picker",
-        "id": "type_base_family",
+        "id": "type_base_font",
         "label": {
           "cs": "Písmo",
           "da": "Skrifttype",
@@ -538,7 +506,7 @@
           "fr": "Police",
           "it": "Font",
           "ja": "フォント",
-          "ko": "폰트",
+          "ko": "글꼴",
           "nb": "Skrifttype",
           "nl": "Lettertype",
           "pl": "Czcionka",
@@ -554,18 +522,79 @@
         "default": "helvetica_n4"
       },
       {
+        "type": "checkbox",
+        "id": "use_custom_font_body",
+        "label": "Use custom font",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Custom font for Body text"
+      },
+      {
+        "id": "custom_body_font",
+        "type": "textarea",
+        "label": "Font URL",
+        "placeholder": "https:\/\/cdn.shopify.com\/s\/files\/1\/0075\/1288\/3285\/files\/roboto.woff2@400",
+        "info": "Format: Link_to_font@font_weight"
+      },
+      {
+        "id": "custom_body_weight",
         "type": "select",
+        "label": "Default font weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "100",
+            "label": "Thin 100"
+          },
+          {
+            "value": "200",
+            "label": "Extra-light 200"
+          },
+          {
+            "value": "300",
+            "label": "Light 300"
+          },
+          {
+            "value": "400",
+            "label": "Regular 400"
+          },
+          {
+            "value": "500",
+            "label": "Medium 500"
+          },
+          {
+            "value": "600",
+            "label": "Semi-bold 600"
+          },
+          {
+            "value": "700",
+            "label": "Bold 700"
+          },
+          {
+            "value": "800",
+            "label": "Extra-bold 800"
+          },
+          {
+            "value": "900",
+            "label": "Black 900"
+          }
+        ]
+      },
+      {
+        "type": "range",
         "id": "type_base_size",
         "label": {
           "cs": "Základní velikost",
           "da": "Basisstørrelse",
-          "de": "Basisgröße",
+          "de": "Größe",
           "en": "Base size",
           "es": "Tamaño de base",
           "fi": "Peruskoko",
-          "fr": "Taille de base",
+          "fr": "Dimensions de base",
           "it": "Dimensione base",
-          "ja": "ベースサイズ",
+          "ja": "基本サイズ",
           "ko": "기본 사이즈",
           "nb": "Grunnstørrelse",
           "nl": "Basisafmeting",
@@ -579,175 +608,32 @@
           "zh-CN": "基本尺寸",
           "zh-TW": "基本尺寸"
         },
-        "options": [
-          {
-            "value": "12px",
-            "label": {
-              "cs": "12 px",
-              "da": "12 px",
-              "de": "12px",
-              "en": "12px",
-              "es": "12px",
-              "fi": "12 px",
-              "fr": "12 px",
-              "it": "12 px",
-              "ja": "12ピクセル",
-              "ko": "12픽셀",
-              "nb": "12px",
-              "nl": "12px",
-              "pl": "12 px",
-              "pt-BR": "12px",
-              "pt-PT": "12 px",
-              "sv": "12 px",
-              "th": "12px",
-              "tr": "12 piksel",
-              "vi": "12px",
-              "zh-CN": "12 px",
-              "zh-TW": "12px"
-            }
-          },
-          {
-            "value": "13px",
-            "label": {
-              "cs": "13 px",
-              "da": "13 px",
-              "de": "13px",
-              "en": "13px",
-              "es": "13px",
-              "fi": "13 px",
-              "fr": "13 px",
-              "it": "13 px",
-              "ja": "13ピクセル",
-              "ko": "13픽셀",
-              "nb": "13px",
-              "nl": "13px",
-              "pl": "13 px",
-              "pt-BR": "13px",
-              "pt-PT": "13 px",
-              "sv": "13 px",
-              "th": "13px",
-              "tr": "13 piksel",
-              "vi": "13px",
-              "zh-CN": "13 px",
-              "zh-TW": "13px"
-            }
-          },
-          {
-            "value": "14px",
-            "label": {
-              "cs": "14 px",
-              "da": "14 px",
-              "de": "14px",
-              "en": "14px",
-              "es": "14px",
-              "fi": "14 pikseliä",
-              "fr": "14 px",
-              "it": "14 px",
-              "ja": "14ピクセル",
-              "ko": "14픽셀",
-              "nb": "14px",
-              "nl": "14px",
-              "pl": "14 px",
-              "pt-BR": "14px",
-              "pt-PT": "14 px",
-              "sv": "14 px",
-              "th": "14px",
-              "tr": "14 piksel",
-              "vi": "14px",
-              "zh-CN": "14 px",
-              "zh-TW": "14px"
-            }
-          },
-          {
-            "value": "15px",
-            "label": {
-              "cs": "15 px",
-              "da": "15 px",
-              "de": "15px",
-              "en": "15px",
-              "es": "15px",
-              "fi": "15 pikseliä",
-              "fr": "15 px",
-              "it": "15 px",
-              "ja": "15ピクセル",
-              "ko": "15픽셀",
-              "nb": "15px",
-              "nl": "15px",
-              "pl": "15 px",
-              "pt-BR": "15px",
-              "pt-PT": "15 px",
-              "sv": "15 px",
-              "th": "15px",
-              "tr": "15 piksel",
-              "vi": "15px",
-              "zh-CN": "15 px",
-              "zh-TW": "15px"
-            }
-          },
-          {
-            "value": "16px",
-            "label": {
-              "cs": "16 px",
-              "da": "16 px",
-              "de": "16px",
-              "en": "16px",
-              "es": "16px",
-              "fi": "16 pikseliä",
-              "fr": "16 px",
-              "it": "16 px",
-              "ja": "16ピクセル",
-              "ko": "16픽셀",
-              "nb": "16px",
-              "nl": "16px",
-              "pl": "16 px",
-              "pt-BR": "16px",
-              "pt-PT": "16 px",
-              "sv": "16 px",
-              "th": "16px",
-              "tr": "16 piksel",
-              "vi": "16px",
-              "zh-CN": "16 px",
-              "zh-TW": "16px"
-            }
-          },
-          {
-            "value": "17px",
-            "label": {
-              "cs": "17 px",
-              "da": "17 px",
-              "de": "17px",
-              "en": "17px",
-              "es": "17px",
-              "fi": "17 pikseliä",
-              "fr": "17 px",
-              "it": "17 px",
-              "ja": "17ピクセル",
-              "ko": "17픽셀",
-              "nb": "17px",
-              "nl": "17px",
-              "pl": "17 px",
-              "pt-BR": "17px",
-              "pt-PT": "17 px",
-              "sv": "17 px",
-              "th": "17px",
-              "tr": "17 piksel",
-              "vi": "17px",
-              "zh-CN": "17 px",
-              "zh-TW": "17px"
-            }
-          }
-        ]
+        "default": 16,
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_base_line_height",
+        "label": "Line height",
+        "default": 28,
+        "min": 14,
+        "max": 100,
+        "step": 1,
+        "unit": "px"
       },
       {
         "type": "header",
         "content": {
-          "cs": "Nadpisy",
+          "cs": "Nadpisy a tlačítka",
           "da": "Overskrifter",
-          "de": "Überschriften",
-          "en": "Headings",
+          "de": "Titel",
+          "en": "HEADINGS",
           "es": "Títulos",
           "fi": "Otsikot",
-          "fr": "Titres",
+          "fr": "En-têtes",
           "it": "Titoli",
           "ja": "見出し",
           "ko": "제목",
@@ -757,7 +643,7 @@
           "pt-BR": "Títulos",
           "pt-PT": "Títulos",
           "sv": "Rubriker",
-          "th": "ส่วนหัว",
+          "th": "หัวเรื่องแล",
           "tr": "Başlıklar",
           "vi": "Tiêu đề",
           "zh-CN": "标题",
@@ -766,7 +652,7 @@
       },
       {
         "type": "font_picker",
-        "id": "type_header_family",
+        "id": "type_header_font",
         "label": {
           "cs": "Písmo",
           "da": "Skrifttype",
@@ -790,1615 +676,1634 @@
           "zh-CN": "字体",
           "zh-TW": "字型"
         },
-        "default": "crimson_text_n7"
+        "default": "helvetica_n7"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_custom_font_heading",
+        "label": "Use custom font",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Custom font for Headings"
+      },
+      {
+        "type": "paragraph",
+        "content": "Allow multiple links, each link in a new line. Please upload to [Shopify files](\/admin\/settings\/files) and paste link here. These formats TTF, OTF, WOFF & WOFF2 are supported."
+      },
+      {
+        "id": "custom_heading_font",
+        "type": "textarea",
+        "label": "Font file URLS",
+        "placeholder": "https:\/\/cdn.shopify.com\/s\/files\/1\/0075\/1288\/3285\/files\/roboto.woff2@400",
+        "info": "Format: Link_to_font@font_weight"
+      },
+      {
+        "id": "custom_heading_weight",
+        "type": "select",
+        "label": "Default font weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "100",
+            "label": "Thin 100"
+          },
+          {
+            "value": "200",
+            "label": "Extra-light 200"
+          },
+          {
+            "value": "300",
+            "label": "Light 300"
+          },
+          {
+            "value": "400",
+            "label": "Regular 400"
+          },
+          {
+            "value": "500",
+            "label": "Medium 500"
+          },
+          {
+            "value": "600",
+            "label": "Semi-bold 600"
+          },
+          {
+            "value": "700",
+            "label": "Bold 700"
+          },
+          {
+            "value": "800",
+            "label": "Extra-bold 800"
+          },
+          {
+            "value": "900",
+            "label": "Black 900"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "type_header_base_size",
+        "label": {
+          "da": "Basisstørrelse for overskrift",
+          "de": "Titelgröße",
+          "en": "Heading base size",
+          "es": "Tamaño base de título",
+          "fi": "Otsikon peruskoko",
+          "fr": "Dimensions de base de l'en-tête",
+          "hi": "शीर्षक के आधार का आकार",
+          "it": "Dimensione base del titolo",
+          "ja": "見出しの基本サイズ",
+          "ko": "제목 기본 크기",
+          "nb": "Grunnstørrelse for overskrift",
+          "nl": "Afmeting kopbasis",
+          "pt-BR": "Tamanho básico do título",
+          "pt-PT": "Tamanho básico do título",
+          "sv": "Rubrik basstorlek",
+          "th": "ขนาดพื้นฐานของหัวเรื่อง",
+          "zh-CN": "标题基本尺寸",
+          "zh-TW": "標題基本尺寸"
+        },
+        "default": 36,
+        "min": 20,
+        "max": 50,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_header_spacing",
+        "label": {
+          "en": "Letter spacing"
+        },
+        "default": 0,
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "BUTTONS"
+      },
+      {
+        "type": "paragraph",
+        "content": "The button font is inherited from body text."
+      },
+      {
+        "type": "checkbox",
+        "id": "btn_uppercase_text",
+        "label": {
+          "en": "Uppercase text label"
+        },
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "btn_base_size",
+        "label": {
+          "en": "Font size"
+        },
+        "default": 16,
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "btn_letter_spacing",
+        "label": {
+          "en": "Letter spacing"
+        },
+        "default": 0,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "btn_border_width",
+        "label": "Border width",
+        "default": 1,
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "btn_border_radius",
+        "label": {
+          "en": "Border radius"
+        },
+        "default": 5,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "btn_line_height",
+        "label": {
+          "en": "Line height"
+        },
+        "default": 23,
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "id": "btn_weight",
+        "type": "select",
+        "label": "Font weight",
+        "default": "500",
+        "options": [
+          {
+            "value": "100",
+            "label": "Thin 100"
+          },
+          {
+            "value": "200",
+            "label": "Extra-light 200"
+          },
+          {
+            "value": "300",
+            "label": "Light 300"
+          },
+          {
+            "value": "400",
+            "label": "Regular 400"
+          },
+          {
+            "value": "500",
+            "label": "Medium 500"
+          },
+          {
+            "value": "600",
+            "label": "Semi-bold 600"
+          },
+          {
+            "value": "700",
+            "label": "Bold 700"
+          },
+          {
+            "value": "800",
+            "label": "Extra-bold 800"
+          },
+          {
+            "value": "900",
+            "label": "Black 900"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Product Card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Layout"
       },
       {
         "type": "select",
-        "id": "type_header_size",
-        "label": {
-          "cs": "Základní velikost",
-          "da": "Basisstørrelse",
-          "de": "Basisgröße",
-          "en": "Base size",
-          "es": "Tamaño de base",
-          "fi": "Peruskoko",
-          "fr": "Taille de base",
-          "it": "Dimensione base",
-          "ja": "ベースサイズ",
-          "ko": "기본 사이즈",
-          "nb": "Grunnstørrelse",
-          "nl": "Basisafmeting",
-          "pl": "Rozmiar podstawowy",
-          "pt-BR": "Tamanho básico",
-          "pt-PT": "Tamanho básico",
-          "sv": "Basstorlek",
-          "th": "ขนาดพื้นฐาน",
-          "tr": "Temel boyutu",
-          "vi": "Cỡ cơ sở",
-          "zh-CN": "基本尺寸",
-          "zh-TW": "基本尺寸"
-        },
-        "default": "32px",
+        "id": "pcard_layout",
+        "label": "Design layout",
+        "default": "1",
         "options": [
           {
-            "value": "26px",
-            "label": {
-              "cs": "26 px",
-              "da": "26 px",
-              "de": "26px",
-              "en": "26px",
-              "es": "26px",
-              "fi": "26 pikseliä",
-              "fr": "26 px",
-              "it": "26 px",
-              "ja": "26ピクセル",
-              "ko": "26픽셀",
-              "nb": "26px",
-              "nl": "26px",
-              "pl": "25 px",
-              "pt-BR": "26px",
-              "pt-PT": "26 px",
-              "sv": "26 px",
-              "th": "26px",
-              "tr": "26 piksel",
-              "vi": "26px",
-              "zh-CN": "26 px",
-              "zh-TW": "26 像素"
-            }
+            "value": "1",
+            "label": "Style 1"
           },
           {
-            "value": "28px",
-            "label": {
-              "cs": "28 px",
-              "da": "28 px",
-              "de": "28px",
-              "en": "28px",
-              "es": "28px",
-              "fi": "28 pikseliä",
-              "fr": "28 px",
-              "it": "28 px",
-              "ja": "28ピクセル",
-              "ko": "28픽셀",
-              "nb": "28px",
-              "nl": "28px",
-              "pl": "28 px",
-              "pt-BR": "28px",
-              "pt-PT": "28 px",
-              "sv": "28 px",
-              "th": "28px",
-              "tr": "28 piksel",
-              "vi": "28px",
-              "zh-CN": "28 px",
-              "zh-TW": "28 像素"
-            }
+            "value": "2",
+            "label": "Style 2"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "pcard_alignment",
+        "label": "Content alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
           },
           {
-            "value": "30px",
-            "label": {
-              "cs": "30 px",
-              "da": "30 px",
-              "de": "30px",
-              "en": "30px",
-              "es": "30px",
-              "fi": "30 px",
-              "fr": "30 px",
-              "it": "30 px",
-              "ja": "30ピクセル",
-              "ko": "30픽셀",
-              "nb": "30px",
-              "nl": "30px",
-              "pl": "30 px",
-              "pt-BR": "30px",
-              "pt-PT": "30 px",
-              "sv": "30 px",
-              "th": "30px",
-              "tr": "30 piksel",
-              "vi": "30px",
-              "zh-CN": "30 px",
-              "zh-TW": "30 像素"
-            }
+            "value": "center",
+            "label": "Center"
           },
           {
-            "value": "32px",
-            "label": {
-              "cs": "32 px",
-              "da": "32 px",
-              "de": "32px",
-              "en": "32px",
-              "es": "32px",
-              "fi": "32 px",
-              "fr": "32 px",
-              "it": "32 px",
-              "ja": "32ピクセル",
-              "ko": "32픽셀",
-              "nb": "32px",
-              "nl": "32px",
-              "pl": "32 px",
-              "pt-BR": "32px",
-              "pt-PT": "32 px",
-              "sv": "32 px",
-              "th": "32px",
-              "tr": "32 piksel",
-              "vi": "32px",
-              "zh-CN": "32 px",
-              "zh-TW": "32 像素"
-            }
-          },
-          {
-            "value": "34px",
-            "label": {
-              "cs": "34 px",
-              "da": "34 px",
-              "de": "34px",
-              "en": "34px",
-              "es": "34px",
-              "fi": "34 px",
-              "fr": "34 px",
-              "it": "34 px",
-              "ja": "34ピクセル",
-              "ko": "34픽셀",
-              "nb": "34px",
-              "nl": "34px",
-              "pl": "34 px",
-              "pt-BR": "34px",
-              "pt-PT": "34 px",
-              "sv": "34 px",
-              "th": "34px",
-              "tr": "34 piksel",
-              "vi": "34px",
-              "zh-CN": "34 px",
-              "zh-TW": "34 像素"
-            }
-          },
-          {
-            "value": "36px",
-            "label": {
-              "cs": "36 px",
-              "da": "36 px",
-              "de": "36px",
-              "en": "36px",
-              "es": "36px",
-              "fi": "36 px",
-              "fr": "36 px",
-              "it": "36 px",
-              "ja": "36ピクセル",
-              "ko": "36픽셀",
-              "nb": "36px",
-              "nl": "36px",
-              "pl": "36 px",
-              "pt-BR": "36px",
-              "pt-PT": "36 px",
-              "sv": "36 px",
-              "th": "36px",
-              "tr": "36 piksel",
-              "vi": "36px",
-              "zh-CN": "36 px",
-              "zh-TW": "36 像素"
-            }
+            "value": "right",
+            "label": "Right"
           }
         ]
       },
       {
         "type": "header",
-        "content": {
-          "cs": "Navigace a tlačítka",
-          "da": "Navigation og knapper",
-          "de": "Navigations- und Schaltflächen",
-          "en": "Navigation and buttons",
-          "es": "Navegación y botones",
-          "fi": "Navigointi ja painikkeet",
-          "fr": "Navigation et boutons",
-          "it": "Navigazione e pulsanti",
-          "ja": "メニューとボタン",
-          "ko": "탐색 및 버튼",
-          "nb": "Navigasjon og knapper",
-          "nl": "Navigatie en knoppen",
-          "pl": "Nawigacja i przyciski",
-          "pt-BR": "Navegação e botões",
-          "pt-PT": "Navegação e botões",
-          "sv": "Navigering och knappar",
-          "th": "การนำทางและปุ่ม",
-          "tr": "Gezinme ve düğmeler",
-          "vi": "Menu điều hướng và nút",
-          "zh-CN": "网站地图和按钮",
-          "zh-TW": "導覽與按鈕"
-        }
-      },
-      {
-        "type": "font_picker",
-        "id": "type_accent_family",
-        "label": {
-          "cs": "Písmo",
-          "da": "Skrifttype",
-          "de": "Schriftart",
-          "en": "Font",
-          "es": "Fuente",
-          "fi": "Fontti",
-          "fr": "Police",
-          "it": "Font",
-          "ja": "フォント",
-          "ko": "글꼴",
-          "nb": "Skrifttype",
-          "nl": "Lettertype",
-          "pl": "Czcionka",
-          "pt-BR": "Fonte",
-          "pt-PT": "Tipo de letra",
-          "sv": "Typsnitt",
-          "th": "แบบอักษร",
-          "tr": "Yazı tipi",
-          "vi": "Phông chữ",
-          "zh-CN": "字体",
-          "zh-TW": "字型"
-        },
-        "default": "pt_sans_n7"
+        "content": "Image"
       },
       {
         "type": "select",
-        "id": "type_accent_size",
-        "label": {
-          "cs": "Velikost",
-          "da": "Størrelse",
-          "de": "Größe",
-          "en": "Size",
-          "es": "Tamaño",
-          "fi": "Koko",
-          "fr": "Taille",
-          "it": "Misura",
-          "ja": "サイズ",
-          "ko": "사이즈",
-          "nb": "Størrelse",
-          "nl": "Grootte",
-          "pl": "Rozmiar",
-          "pt-BR": "Tamanho",
-          "pt-PT": "Tamanho",
-          "sv": "Storlek",
-          "th": "ขนาด",
-          "tr": "Beden",
-          "vi": "Cỡ",
-          "zh-CN": "大小",
-          "zh-TW": "尺寸"
-        },
-        "default": "16px",
+        "id": "pcard_image_ratio",
+        "label": "Image aspect ratio",
+        "default": "3\/4",
         "options": [
           {
-            "value": "12px",
-            "label": {
-              "cs": "12 px",
-              "da": "12 px",
-              "de": "12px",
-              "en": "12px",
-              "es": "12px",
-              "fi": "12 px",
-              "fr": "12 px",
-              "it": "12 px",
-              "ja": "12ピクセル",
-              "ko": "12픽셀",
-              "nb": "12px",
-              "nl": "12px",
-              "pl": "12 px",
-              "pt-BR": "12px",
-              "pt-PT": "12 px",
-              "sv": "12 px",
-              "th": "12px",
-              "tr": "12 piksel",
-              "vi": "12px",
-              "zh-CN": "12 px",
-              "zh-TW": "12px"
-            }
+            "value": "original",
+            "label": "Original aspect ratio"
           },
           {
-            "value": "13px",
-            "label": {
-              "cs": "13 px",
-              "da": "13 px",
-              "de": "13px",
-              "en": "13px",
-              "es": "13px",
-              "fi": "13 px",
-              "fr": "13 px",
-              "it": "13 px",
-              "ja": "13ピクセル",
-              "ko": "13픽셀",
-              "nb": "13px",
-              "nl": "13px",
-              "pl": "13 px",
-              "pt-BR": "13px",
-              "pt-PT": "13 px",
-              "sv": "13 px",
-              "th": "13px",
-              "tr": "13 piksel",
-              "vi": "13px",
-              "zh-CN": "13 px",
-              "zh-TW": "13px"
-            }
+            "value": "1\/1",
+            "label": "1:1"
           },
           {
-            "value": "14px",
-            "label": {
-              "cs": "14 px",
-              "da": "14 px",
-              "de": "14px",
-              "en": "14px",
-              "es": "14px",
-              "fi": "14 pikseliä",
-              "fr": "14 px",
-              "it": "14 px",
-              "ja": "14ピクセル",
-              "ko": "14픽셀",
-              "nb": "14px",
-              "nl": "14px",
-              "pl": "14 px",
-              "pt-BR": "14px",
-              "pt-PT": "14 px",
-              "sv": "14 px",
-              "th": "14px",
-              "tr": "14 piksel",
-              "vi": "14px",
-              "zh-CN": "14 px",
-              "zh-TW": "14px"
-            }
+            "value": "3\/4",
+            "label": "3:4"
           },
           {
-            "value": "15px",
-            "label": {
-              "cs": "15 px",
-              "da": "15 px",
-              "de": "15px",
-              "en": "15px",
-              "es": "15px",
-              "fi": "15 pikseliä",
-              "fr": "15 px",
-              "it": "15 px",
-              "ja": "15ピクセル",
-              "ko": "15픽셀",
-              "nb": "15px",
-              "nl": "15px",
-              "pl": "15 px",
-              "pt-BR": "15px",
-              "pt-PT": "15 px",
-              "sv": "15 px",
-              "th": "15px",
-              "tr": "15 piksel",
-              "vi": "15px",
-              "zh-CN": "15 px",
-              "zh-TW": "15px"
-            }
+            "value": "4\/3",
+            "label": "4:3"
           },
           {
-            "value": "16px",
-            "label": {
-              "cs": "16 px",
-              "da": "16 px",
-              "de": "16px",
-              "en": "16px",
-              "es": "16px",
-              "fi": "16 pikseliä",
-              "fr": "16 px",
-              "it": "16 px",
-              "ja": "16ピクセル",
-              "ko": "16픽셀",
-              "nb": "16px",
-              "nl": "16px",
-              "pl": "16 px",
-              "pt-BR": "16px",
-              "pt-PT": "16 px",
-              "sv": "16 px",
-              "th": "16px",
-              "tr": "16 piksel",
-              "vi": "16px",
-              "zh-CN": "16 px",
-              "zh-TW": "16px"
-            }
+            "value": "16\/9",
+            "label": "16:9"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_badge_sale",
+        "label": "Show badges",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_button",
+        "label": "Show cart button",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quickview_button",
+        "label": "Show quickview button",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_wishlist_button",
+        "label": "Show wishlist button",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_compare_button",
+        "label": "Show compare button",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_countdown",
+        "label": "Show countdown",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show vendor",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_second_img",
+        "label": "Show second image when hover",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_swatch_option",
+        "label": "Show swatch color option",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "uppercase_prd_name",
+        "label": "Uppercase product name",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Product Variation Swatches",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Variant Option Design 1"
+      },
+      {
+        "type": "paragraph",
+        "content": "Design for variant option"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_title1",
+        "label": "Title",
+        "default": "Size"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_display_name1",
+        "label": "Alternative name",
+        "info": "Example: Select a Size"
+      },
+      {
+        "type": "select",
+        "id": "variant_option_design1",
+        "label": "Design",
+        "options": [
+          {
+            "value": "default",
+            "label": "Image \/ Color"
           },
           {
-            "value": "17px",
-            "label": {
-              "cs": "17 px",
-              "da": "17 px",
-              "de": "17px",
-              "en": "17px",
-              "es": "17px",
-              "fi": "17 pikseliä",
-              "fr": "17 px",
-              "it": "17 px",
-              "ja": "17ピクセル",
-              "ko": "17픽셀",
-              "nb": "17px",
-              "nl": "17px",
-              "pl": "17 px",
-              "pt-BR": "17px",
-              "pt-PT": "17 px",
-              "sv": "17 px",
-              "th": "17px",
-              "tr": "17 piksel",
-              "vi": "17px",
-              "zh-CN": "17 px",
-              "zh-TW": "17px"
-            }
+            "value": "color",
+            "label": "Colors"
           },
           {
-            "value": "18px",
-            "label": {
-              "cs": "18 px",
-              "da": "18 px",
-              "de": "18px",
-              "en": "18px",
-              "es": "18px",
-              "fi": "18 pikseliä",
-              "fr": "18 px",
-              "it": "18 px",
-              "ja": "18ピクセル",
-              "ko": "18픽셀",
-              "nb": "18px",
-              "nl": "18px",
-              "pl": "18 px",
-              "pt-BR": "18px",
-              "pt-PT": "18 px",
-              "sv": "18 px",
-              "th": "18px",
-              "tr": "18 piksel",
-              "vi": "18px",
-              "zh-CN": "18 px",
-              "zh-TW": "18px"
-            }
+            "value": "image",
+            "label": "Images"
           },
           {
-            "value": "20px",
-            "label": {
-              "cs": "20 px",
-              "da": "20 px",
-              "de": "20px",
-              "en": "20px",
-              "es": "20px",
-              "fi": "20 pikseliä",
-              "fr": "20 px",
-              "it": "20 px",
-              "ja": "20ピクセル",
-              "ko": "20픽셀",
-              "nb": "20px",
-              "nl": "20px",
-              "pl": "20 px",
-              "pt-BR": "20px",
-              "pt-PT": "20 px",
-              "sv": "20 px",
-              "th": "20 พิกเซล",
-              "tr": "20 piksel",
-              "vi": "20px",
-              "zh-CN": "20 px",
-              "zh-TW": "20 像素"
-            }
+            "value": "button",
+            "label": "Buttons"
           },
           {
-            "value": "22px",
-            "label": {
-              "cs": "22 px",
-              "da": "22 px",
-              "de": "22px",
-              "en": "22px",
-              "es": "22px",
-              "fi": "22 pikseliä",
-              "fr": "22 px",
-              "it": "22 px",
-              "ja": "22ピクセル",
-              "ko": "22픽셀",
-              "nb": "22px",
-              "nl": "22px",
-              "pl": "22 px",
-              "pt-BR": "22px",
-              "pt-PT": "22 px",
-              "sv": "22 px",
-              "th": "22 พิกเซล",
-              "tr": "22 piksel",
-              "vi": "22px",
-              "zh-CN": "22 px",
-              "zh-TW": "22 像素"
-            }
+            "value": "dropdown",
+            "label": "Dropdown"
+          }
+        ],
+        "default": "button"
+      },
+      {
+        "type": "header",
+        "content": "Variant Option Design 2"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_title2",
+        "label": "Title",
+        "default": "Color"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_display_name2",
+        "label": "Alternative name",
+        "info": "Example: Select a color"
+      },
+      {
+        "type": "select",
+        "id": "variant_option_design2",
+        "label": "Design",
+        "options": [
+          {
+            "value": "default",
+            "label": "Image \/ Color"
           },
           {
-            "value": "24px",
-            "label": {
-              "cs": "24 px",
-              "da": "24 px",
-              "de": "24px",
-              "en": "24px",
-              "es": "24px",
-              "fi": "24 pikseliä",
-              "fr": "24 px",
-              "it": "24 px",
-              "ja": "24ピクセル",
-              "ko": "24픽셀",
-              "nb": "24px",
-              "nl": "24px",
-              "pl": "24 px",
-              "pt-BR": "24px",
-              "pt-PT": "24 px",
-              "sv": "24 px",
-              "th": "24 พิกเซล",
-              "tr": "24 piksel",
-              "vi": "24px",
-              "zh-CN": "24 px",
-              "zh-TW": "24 像素"
-            }
+            "value": "color",
+            "label": "Colors"
           },
           {
-            "value": "26px",
-            "label": {
-              "cs": "26 px",
-              "da": "26 px",
-              "de": "26px",
-              "en": "26px",
-              "es": "26px",
-              "fi": "26 pikseliä",
-              "fr": "26 px",
-              "it": "26 px",
-              "ja": "26ピクセル",
-              "ko": "26픽셀",
-              "nb": "26px",
-              "nl": "26px",
-              "pl": "25 px",
-              "pt-BR": "26px",
-              "pt-PT": "26 px",
-              "sv": "26 px",
-              "th": "26px",
-              "tr": "26 piksel",
-              "vi": "26px",
-              "zh-CN": "26 px",
-              "zh-TW": "26 像素"
-            }
+            "value": "image",
+            "label": "Images"
           },
           {
-            "value": "28px",
-            "label": {
-              "cs": "28 px",
-              "da": "28 px",
-              "de": "28px",
-              "en": "28px",
-              "es": "28px",
-              "fi": "28 pikseliä",
-              "fr": "28 px",
-              "it": "28 px",
-              "ja": "28ピクセル",
-              "ko": "28픽셀",
-              "nb": "28px",
-              "nl": "28px",
-              "pl": "28 px",
-              "pt-BR": "28px",
-              "pt-PT": "28 px",
-              "sv": "28 px",
-              "th": "28px",
-              "tr": "28 piksel",
-              "vi": "28px",
-              "zh-CN": "28 px",
-              "zh-TW": "28 像素"
-            }
+            "value": "button",
+            "label": "Buttons"
           },
           {
-            "value": "30px",
-            "label": {
-              "cs": "30 px",
-              "da": "30 px",
-              "de": "30px",
-              "en": "30px",
-              "es": "30px",
-              "fi": "30 px",
-              "fr": "30 px",
-              "it": "30 px",
-              "ja": "30ピクセル",
-              "ko": "30픽셀",
-              "nb": "30px",
-              "nl": "30px",
-              "pl": "30 px",
-              "pt-BR": "30px",
-              "pt-PT": "30 px",
-              "sv": "30 px",
-              "th": "30px",
-              "tr": "30 piksel",
-              "vi": "30px",
-              "zh-CN": "30 px",
-              "zh-TW": "30 像素"
-            }
+            "value": "dropdown",
+            "label": "Dropdown"
+          }
+        ],
+        "default": "color"
+      },
+      {
+        "type": "header",
+        "content": "Variant Option Design 3"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_title3",
+        "label": "Title",
+        "default": "Material"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_display_name3",
+        "label": "Alternative name",
+        "info": "Example: Select a Material"
+      },
+      {
+        "type": "select",
+        "id": "variant_option_design3",
+        "label": "Design",
+        "options": [
+          {
+            "value": "default",
+            "label": "Image \/ Color"
           },
           {
-            "value": "32px",
-            "label": {
-              "cs": "32 px",
-              "da": "32 px",
-              "de": "32px",
-              "en": "32px",
-              "es": "32px",
-              "fi": "32 px",
-              "fr": "32 px",
-              "it": "32 px",
-              "ja": "32ピクセル",
-              "ko": "32픽셀",
-              "nb": "32px",
-              "nl": "32px",
-              "pl": "32 px",
-              "pt-BR": "32px",
-              "pt-PT": "32 px",
-              "sv": "32 px",
-              "th": "32px",
-              "tr": "32 piksel",
-              "vi": "32px",
-              "zh-CN": "32 px",
-              "zh-TW": "32 像素"
-            }
+            "value": "color",
+            "label": "Colors"
           },
           {
-            "value": "34px",
-            "label": {
-              "cs": "34 px",
-              "da": "34 px",
-              "de": "34px",
-              "en": "34px",
-              "es": "34px",
-              "fi": "34 px",
-              "fr": "34 px",
-              "it": "34 px",
-              "ja": "34ピクセル",
-              "ko": "34픽셀",
-              "nb": "34px",
-              "nl": "34px",
-              "pl": "34 px",
-              "pt-BR": "34px",
-              "pt-PT": "34 px",
-              "sv": "34 px",
-              "th": "34px",
-              "tr": "34 piksel",
-              "vi": "34px",
-              "zh-CN": "34 px",
-              "zh-TW": "34 像素"
-            }
+            "value": "image",
+            "label": "Images"
           },
           {
-            "value": "36px",
-            "label": {
-              "cs": "36 px",
-              "da": "36 px",
-              "de": "36px",
-              "en": "36px",
-              "es": "36px",
-              "fi": "36 px",
-              "fr": "36 px",
-              "it": "36 px",
-              "ja": "36ピクセル",
-              "ko": "36픽셀",
-              "nb": "36px",
-              "nl": "36px",
-              "pl": "36 px",
-              "pt-BR": "36px",
-              "pt-PT": "36 px",
-              "sv": "36 px",
-              "th": "36px",
-              "tr": "36 piksel",
-              "vi": "36px",
-              "zh-CN": "36 px",
-              "zh-TW": "36 像素"
-            }
+            "value": "button",
+            "label": "Buttons"
+          },
+          {
+            "value": "dropdown",
+            "label": "Dropdown"
+          }
+        ],
+        "default": "dropdown"
+      },
+      {
+        "type": "header",
+        "content": "Variant Option Design 4"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_title4",
+        "label": "Title",
+        "default": "Brand"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_display_name4",
+        "label": "Alternative name",
+        "info": "Example: Select a Brand"
+      },
+      {
+        "type": "select",
+        "id": "variant_option_design4",
+        "label": "Design",
+        "options": [
+          {
+            "value": "default",
+            "label": "Image \/ Color"
+          },
+          {
+            "value": "color",
+            "label": "Colors"
+          },
+          {
+            "value": "image",
+            "label": "Images"
+          },
+          {
+            "value": "button",
+            "label": "Buttons"
+          },
+          {
+            "value": "dropdown",
+            "label": "Dropdown"
+          }
+        ],
+        "default": "dropdown"
+      },
+      {
+        "type": "header",
+        "content": "Variant Option Design 5"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_title5",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "variant_option_display_name5",
+        "label": "Alternative name",
+        "info": "Example: Select a Brand"
+      },
+      {
+        "type": "select",
+        "id": "variant_option_design5",
+        "label": "Design",
+        "options": [
+          {
+            "value": "default",
+            "label": "Image \/ Color"
+          },
+          {
+            "value": "color",
+            "label": "Colors"
+          },
+          {
+            "value": "image",
+            "label": "Images"
+          },
+          {
+            "value": "button",
+            "label": "Buttons"
+          },
+          {
+            "value": "dropdown",
+            "label": "Dropdown"
+          }
+        ],
+        "default": "button"
+      },
+      {
+        "type": "header",
+        "content": "Variant's swatch image"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_variant_swatch_image",
+        "label": "Show variant's swatch image on the first option",
+        "info": "Note: it will override the associated image of the first option",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Product Colors"
+      },
+      {
+        "type": "textarea",
+        "id": "product_colors",
+        "label": "Product Color",
+        "default": "red: #ff0000,\r\nyellow: #ffff00,\r\nblack: #000000,\r\nblue: #0000FF,\r\ngreen: #00ff00,\r\npurple: #800080,\r\nsilver: #c0c0c0,\r\nwhite: #ffffff,\r\nbrown: #7B3F00,\r\nlight-brown: #feb035,\r\ndark-turquoise: #23cddc,\r\norange: #fe9001,\r\ntan: #eacea7,\r\nviolet: #EE82EE,\r\npink: #FFC0CB,\r\ngrey: #808080",
+        "info": "Items separate with comma. Write color name from product option and separate option with color HEX value. All texts in lowercase."
+      },
+      {
+        "type": "header",
+        "content": "Associate Parameter with Image"
+      },
+      {
+        "type": "paragraph",
+        "content": "Paste product handle before parameter name and you will have unique image with same name parameter"
+      },
+      {
+        "type": "text",
+        "id": "filter_color1",
+        "label": "Parameter Name 1",
+        "info": "Enter parameter name and select image \"Image Color 1\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color1.png",
+        "label": "Image Color 1",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color2",
+        "label": "Parameter Name 2",
+        "info": "Enter parameter name and select image \"Image Color 2\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color2.png",
+        "label": "Image Color 2",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color3",
+        "label": "Parameter Name 3",
+        "info": "Enter parameter name and select image \"Image Color 3\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color3.png",
+        "label": "Image Color 3",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color4",
+        "label": "Parameter Name 4",
+        "info": "Enter parameter name and select image \"Image Color 4\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color4.png",
+        "label": "Image Color 4",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color5",
+        "label": "Parameter Name 5",
+        "info": "Enter parameter name and select image \"Image Color 5\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color5.png",
+        "label": "Image Color 5",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color6",
+        "label": "Parameter Name 6",
+        "info": "Enter parameter name and select image \"Image Color 6\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color6.png",
+        "label": "Image Color 6",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color7",
+        "label": "Parameter Name 7",
+        "info": "Enter parameter name and select image \"Image Color 7\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color7.png",
+        "label": "Image Color 7",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color8",
+        "label": "Parameter Name 8",
+        "info": "Enter parameter name and select image \"Image Color 8\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color8.png",
+        "label": "Image Color 8",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color9",
+        "label": "Parameter Name 9",
+        "info": "Enter parameter name and select image \"Image Color 9\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color9.png",
+        "label": "Image Color 9",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color10",
+        "label": "Parameter Name 10",
+        "info": "Enter parameter name and select image \"Image Color 10\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color10.png",
+        "label": "Image Color 10",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color11",
+        "label": "Parameter Name 11",
+        "info": "Enter parameter name and select image \"Image Color 11\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color11.png",
+        "label": "Image Color 11",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color12",
+        "label": "Parameter Name 12",
+        "info": "Enter parameter name and select image \"Image Color 12\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color12.png",
+        "label": "Image Color 12",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color13",
+        "label": "Parameter Name 13",
+        "info": "Enter parameter name and select image \"Image Color 13\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color13.png",
+        "label": "Image Color 13",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color14",
+        "label": "Parameter Name 14",
+        "info": "Enter parameter name and select image \"Image Color 14\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color14.png",
+        "label": "Image Color 14",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color15",
+        "label": "Parameter Name 15",
+        "info": "Enter parameter name and select image \"Image Color 15\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color15.png",
+        "label": "Image Color 15",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color16",
+        "label": "Parameter Name 16",
+        "info": "Enter parameter name and select image \"Image Color 16\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color16.png",
+        "label": "Image Color 16",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color17",
+        "label": "Parameter Name 17",
+        "info": "Enter parameter name and select image \"Image Color 17\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color17.png",
+        "label": "Image Color 17",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color18",
+        "label": "Parameter Name 18",
+        "info": "Enter parameter name and select image \"Image Color 118\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color18.png",
+        "label": "Image Color 18",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color19",
+        "label": "Parameter Name 19",
+        "info": "Enter parameter name and select image \"Image Color 19\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color19.png",
+        "label": "Image Color 19",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color20",
+        "label": "Parameter Name 20",
+        "info": "Enter parameter name and select image \"Image Color 20\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color20.png",
+        "label": "Image Color 20",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color21",
+        "label": "Parameter Name 21",
+        "info": "Enter parameter name and select image \"Image Color 21\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color21.png",
+        "label": "Image Color 21",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color22",
+        "label": "Parameter Name 22",
+        "info": "Enter parameter name and select image \"Image Color 22\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color22.png",
+        "label": "Image Color 22",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color23",
+        "label": "Parameter Name 23",
+        "info": "Enter parameter name and select image \"Image Color 23\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color23.png",
+        "label": "Image Color 23",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color24",
+        "label": "Parameter Name 24",
+        "info": "Enter parameter name and select image \"Image Color 24\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color24.png",
+        "label": "Image Color 24",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color25",
+        "label": "Parameter Name 25",
+        "info": "Enter parameter name and select image \"Image Color 25\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color25.png",
+        "label": "Image Color 25",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color26",
+        "label": "Parameter Name 26",
+        "info": "Enter parameter name and select image \"Image Color 26\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color26.png",
+        "label": "Image Color 26",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color27",
+        "label": "Parameter Name 27",
+        "info": "Enter parameter name and select image \"Image Color 27\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color27.png",
+        "label": "Image Color 27",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color28",
+        "label": "Parameter Name 28",
+        "info": "Enter parameter name and select image \"Image Color 28\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color28.png",
+        "label": "Image Color 28",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color29",
+        "label": "Parameter Name 29",
+        "info": "Enter parameter name and select image \"Image Color 29\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color29.png",
+        "label": "Image Color 29",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color30",
+        "label": "Parameter Name 30",
+        "info": "Enter parameter name and select image \"Image Color 30\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color30.png",
+        "label": "Image Color 30",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color31",
+        "label": "Parameter Name 31",
+        "info": "Enter parameter name and select image \"Image Color 31\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color31.png",
+        "label": "Image Color 31",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color32",
+        "label": "Parameter Name 32",
+        "info": "Enter parameter name and select image \"Image Color 32\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color32.png",
+        "label": "Image Color 32",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color33",
+        "label": "Parameter Name 33",
+        "info": "Enter parameter name and select image \"Image Color 33\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color33.png",
+        "label": "Image Color 33",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color34",
+        "label": "Parameter Name 34",
+        "info": "Enter parameter name and select image \"Image Color 34\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color34.png",
+        "label": "Image Color 34",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color35",
+        "label": "Parameter Name 35",
+        "info": "Enter parameter name and select image \"Image Color 35\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color35.png",
+        "label": "Image Color 35",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color36",
+        "label": "Parameter Name 36",
+        "info": "Enter parameter name and select image \"Image Color 36\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color36.png",
+        "label": "Image Color 36",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color37",
+        "label": "Parameter Name 37",
+        "info": "Enter parameter name and select image \"Image Color 37\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color37.png",
+        "label": "Image Color 37",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color38",
+        "label": "Parameter Name 38",
+        "info": "Enter parameter name and select image \"Image Color 38\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color38.png",
+        "label": "Image Color 38",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color39",
+        "label": "Parameter Name 39",
+        "info": "Enter parameter name and select image \"Image Color 39\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color39.png",
+        "label": "Image Color 39",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color40",
+        "label": "Parameter Name 40",
+        "info": "Enter parameter name and select image \"Image Color 40\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color40.png",
+        "label": "Image Color 40",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color41",
+        "label": "Parameter Name 41",
+        "info": "Enter parameter name and select image \"Image Color 41\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color41.png",
+        "label": "Image Color 41",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color42",
+        "label": "Parameter Name 42",
+        "info": "Enter parameter name and select image \"Image Color 42\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color42.png",
+        "label": "Image Color 42",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color43",
+        "label": "Parameter Name 43",
+        "info": "Enter parameter name and select image \"Image Color 43\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color43.png",
+        "label": "Image Color 43",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color44",
+        "label": "Parameter Name 44",
+        "info": "Enter parameter name and select image \"Image Color 44\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color44.png",
+        "label": "Image Color 44",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color45",
+        "label": "Parameter Name 45",
+        "info": "Enter parameter name and select image \"Image Color 45\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color45.png",
+        "label": "Image Color 45",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color46",
+        "label": "Parameter Name 46",
+        "info": "Enter parameter name and select image \"Image Color 46\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color46.png",
+        "label": "Image Color 46",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color47",
+        "label": "Parameter Name 47",
+        "info": "Enter parameter name and select image \"Image Color 47\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color47.png",
+        "label": "Image Color 47",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color48",
+        "label": "Parameter Name 48",
+        "info": "Enter parameter name and select image \"Image Color 48\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color48.png",
+        "label": "Image Color 48",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color49",
+        "label": "Parameter Name 49",
+        "info": "Enter parameter name and select image \"Image Color 49\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color49.png",
+        "label": "Image Color 49",
+        "info": "Image must be PNG, 60 x 60 Px"
+      },
+      {
+        "type": "text",
+        "id": "filter_color50",
+        "label": "Parameter Name 50",
+        "info": "Enter parameter name and select image \"Image Color 50\""
+      },
+      {
+        "type": "image",
+        "id": "filter_color50.png",
+        "label": "Image Color 50",
+        "info": "Image must be PNG, 60 x 60 Px"
+      }
+    ]
+  },
+  {
+    "name": "Article card",
+    "settings": [
+      {
+        "type": "select",
+        "id": "article_image_aspect_ratio",
+        "label": "Image aspect ratio",
+        "default": "16\/9",
+        "options": [
+          {
+            "value": "original",
+            "label": "Original aspect ratio"
+          },
+          {
+            "value": "1\/1",
+            "label": "1:1"
+          },
+          {
+            "value": "3\/4",
+            "label": "3:4"
+          },
+          {
+            "value": "4\/3",
+            "label": "4:3"
+          },
+          {
+            "value": "16\/9",
+            "label": "16:9"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "article_align_content",
+        "label": "Content alignment",
+        "default": "text-left",
+        "options": [
+          {
+            "label": "Left",
+            "value": "text-left"
+          },
+          {
+            "label": "Center",
+            "value": "text-center"
+          },
+          {
+            "label": "Right",
+            "value": "text-right"
           }
         ]
       },
       {
         "type": "checkbox",
-        "id": "type_accent_transform",
-        "label": {
-          "cs": "Nastavit velká písmena",
-          "da": "Skriv teksten med store bogstaver",
-          "de": "Text groß schreiben",
-          "en": "Capitalize text",
-          "es": "Poner texto en mayúsculas",
-          "fi": "Kirjoita isoilla kirjaimilla",
-          "fr": "Mettre le texte en majuscules",
-          "it": "Testo maiuscolo",
-          "ja": "テキストを大文字にする",
-          "ko": "대문자 표기",
-          "nb": "Kapitaliser tekst",
-          "nl": "Tekst kapitaliseren",
-          "pl": "Użyj wielkich liter",
-          "pt-BR": "Texto em maiúscula",
-          "pt-PT": "Colocar texto em maiúsculas",
-          "sv": "Skriv text med versal",
-          "th": "ใช้อักษรตัวพิมพ์ใหญ่",
-          "tr": "Metin harflerini büyüt",
-          "vi": "Viết hoa văn bản",
-          "zh-CN": "大写文本",
-          "zh-TW": "將文字大寫"
-        }
+        "id": "article_show_tags",
+        "label": "Show tags",
+        "default": true
       },
       {
         "type": "checkbox",
-        "id": "type_accent_spacing",
-        "label": {
-          "cs": "Proložení znaků",
-          "da": "Lav afstand mellem bogstaver",
-          "de": "Leerzeichen",
-          "en": "Space letters",
-          "es": "Espaciar letras",
-          "fi": "Harvenna kirjainvälejä",
-          "fr": "Espacer les lettres",
-          "it": "Distanzia lettere",
-          "ja": "文字の隙間を入れる",
-          "ko": "자간",
-          "nb": "Plass mellom bokstaver",
-          "nl": "Spatie letters",
-          "pl": "Wstaw spacje między literami",
-          "pt-BR": "Espaçar letras",
-          "pt-PT": "Espaçar letras",
-          "sv": "Mellanslag",
-          "th": "ตัวเว้นช่องว่าง",
-          "tr": "Harfler arasında boşluk bırak",
-          "vi": "Giãn cách chữ cái",
-          "zh-CN": "隔开字母",
-          "zh-TW": "在字母間空格"
-        }
+        "id": "article_show_date",
+        "label": "Show publised date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "article_show_excerpt",
+        "label": "Show excerpt",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "article_show_button",
+        "label": "Show read more link",
+        "default": true
       }
     ]
   },
   {
-    "name": {
-      "cs": "Favikona",
-      "da": "Favoritikon",
-      "de": "Favicon",
-      "en": "Favicon",
-      "es": "Favicon",
-      "fi": "Favicon",
-      "fr": "Favicon",
-      "it": "Favicon",
-      "ja": "ファビコン",
-      "ko": "Favicon",
-      "nb": "Favicon",
-      "nl": "Favicon",
-      "pl": "Ikona Favicon",
-      "pt-BR": "Favicon",
-      "pt-PT": "Favicon",
-      "sv": "Favicon",
-      "th": "Favicon",
-      "tr": "Favicon",
-      "vi": "Biểu tượng trang web",
-      "zh-CN": "网站图标",
-      "zh-TW": "Favicon"
-    },
+    "name": "Social sharing",
     "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing image"
+      },
       {
         "type": "image_picker",
-        "id": "favicon",
-        "label": {
-          "cs": "Obrázek favikony",
-          "da": "Billede for favoritikon",
-          "de": "Favicon-Bild",
-          "en": "Favicon image",
-          "es": "Imagen de favicon",
-          "fi": "Favicon-kuva",
-          "fr": "Image favicon",
-          "it": "Immagine favicon",
-          "ja": "ファビコン画像",
-          "ko": "파비콘 이미지",
-          "nb": "Favicon-bilde",
-          "nl": "Favicon-afbeelding",
-          "pl": "Obraz ikony Favicon",
-          "pt-BR": "Imagem favicon",
-          "pt-PT": "Imagem Favicon",
-          "sv": "Favicon-bild",
-          "th": "รูปภาพ Favicon",
-          "tr": "Favicon görseli",
-          "vi": "Hình ảnh biểu tượng trang web",
-          "zh-CN": "网站图标图片",
-          "zh-TW": "Favicon 圖片"
-        },
-        "info": {
-          "cs": "Dojde ke zmenšení na 32 × 32 px",
-          "da": "Skaleres ned til 32 x 32 px",
-          "de": "Wird auf 32 x 32 Pixel verkleinert",
-          "en": "Will be scaled down to 32 x 32px",
-          "es": "Se reducirá a 32 x 32px",
-          "fi": "Skaalataan 32 x 32 pikseliin",
-          "fr": "Sera réduite à 32 x 32 px",
-          "it": "Verrà ridimensionata a 32 x 32 pixel.",
-          "ja": "32×32ピクセルに縮小されます。",
-          "ko": "32x32 픽셀로 축소됩니다.",
-          "nb": "Vil skaleres ned til 32 x 32 px",
-          "nl": "Wordt verkleind tot 32x32 pixels",
-          "pl": "Zostanie zmniejszony do rozmiaru 32 x 32 piksele",
-          "pt-BR": "será reduzida para 32 x 32 pixels",
-          "pt-PT": "Será reduzida para 32 x 32 px",
-          "sv": "Kommer skalas ned till 32 x 32 px",
-          "th": "จะถูกลดขนาดลงเป็น 32 x 32 พิกเซล",
-          "tr": "Ölçeği 32 x 32 piksele düşürülür",
-          "vi": "Sẽ được thu nhỏ xuống 32 x 32px",
-          "zh-CN": "将缩小到 32 x 32px",
-          "zh-TW": "將會縮小為 32 x 32 像素"
-        }
-      }
-    ]
-  },
-  {
-    "name": {
-      "cs": "Sociální sítě",
-      "da": "Sociale medier",
-      "de": "Social Media",
-      "en": "Social media",
-      "es": "Redes sociales",
-      "fi": "Some",
-      "fr": "Médias sociaux",
-      "it": "Social media",
-      "ja": "SNS",
-      "ko": "소셜 미디어",
-      "nb": "Sosiale medier",
-      "nl": "Social media",
-      "pl": "Media społecznościowe",
-      "pt-BR": "Redes sociais",
-      "pt-PT": "Redes sociais",
-      "sv": "Sociala medier",
-      "th": "โซเชียลมีเดีย",
-      "tr": "Sosyal medya",
-      "vi": "Truyền thông xã hội",
-      "zh-CN": "社交媒体",
-      "zh-TW": "社交媒體"
-    },
-    "settings": [
-      {
-        "type": "header",
-        "content": {
-          "cs": "Účty",
-          "da": "Konti",
-          "de": "Konten",
-          "en": "Accounts",
-          "es": "Cuentas",
-          "fi": "Tilit",
-          "fr": "Comptes",
-          "it": "Account",
-          "ja": "アカウント",
-          "ko": "계정",
-          "nb": "Kontoer",
-          "nl": "Accounts",
-          "pl": "Konta",
-          "pt-BR": "Contas",
-          "pt-PT": "Contas",
-          "sv": "Konton",
-          "th": "บัญชี",
-          "tr": "Hesaplar",
-          "vi": "Tài khoản",
-          "zh-CN": "账户",
-          "zh-TW": "帳戶"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_twitter_link",
-        "label": {
-          "cs": "Twitter",
-          "da": "Twitter",
-          "de": "Twitter",
-          "en": "Twitter",
-          "es": "Twitter",
-          "fi": "Twitter",
-          "fr": "Twitter",
-          "it": "Twitter",
-          "ja": "Twitter",
-          "ko": "Twitter",
-          "nb": "Twitter",
-          "nl": "Twitter",
-          "pl": "Twitter",
-          "pt-BR": "Twitter",
-          "pt-PT": "Twitter",
-          "sv": "Twitter",
-          "th": "Twitter",
-          "tr": "Twitter",
-          "vi": "Twitter",
-          "zh-CN": "Twitter",
-          "zh-TW": "Twitter"
-        },
-        "info": {
-          "cs": "https:\/\/twitter.com\/shopify",
-          "da": "https:\/\/twitter.com\/shopify",
-          "de": "https:\/\/twitter.com\/shopify",
-          "en": "https:\/\/twitter.com\/shopify",
-          "es": "https:\/\/twitter.com\/shopify",
-          "fi": "https:\/\/twitter.com\/shopify",
-          "fr": "https:\/\/twitter.com\/shopify",
-          "it": "https:\/\/twitter.com\/shopify",
-          "ja": "https:\/\/twitter.com\/shopify",
-          "ko": "https:\/\/twitter.com\/shopify",
-          "nb": "https:\/\/twitter.com\/shopify",
-          "nl": "https:\/\/twitter.com\/shopify",
-          "pl": "https:\/\/twitter.com\/shopify",
-          "pt-BR": "https:\/\/twitter.com\/shopify",
-          "pt-PT": "https:\/\/twitter.com\/shopify",
-          "sv": "https:\/\/twitter.com\/shopify",
-          "th": "https:\/\/twitter.com\/shopify",
-          "tr": "https:\/\/twitter.com\/shopify",
-          "vi": "https:\/\/twitter.com\/shopify",
-          "zh-CN": "https:\/\/twitter.com\/shopify",
-          "zh-TW": "https:\/\/twitter.com\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_facebook_link",
-        "label": {
-          "cs": "Facebook",
-          "da": "Facebook",
-          "de": "Facebook",
-          "en": "Facebook",
-          "es": "Facebook",
-          "fi": "Facebook",
-          "fr": "Facebook",
-          "it": "Facebook",
-          "ja": "Facebook",
-          "ko": "Facebook",
-          "nb": "Facebook",
-          "nl": "Facebook",
-          "pl": "Facebook",
-          "pt-BR": "Facebook",
-          "pt-PT": "Facebook",
-          "sv": "Facebook",
-          "th": "Facebook",
-          "tr": "Facebook",
-          "vi": "Facebook",
-          "zh-CN": "Facebook",
-          "zh-TW": "Facebook"
-        },
-        "info": {
-          "cs": "https:\/\/www.facebook.com\/shopify",
-          "da": "https:\/\/www.facebook.com\/shopify",
-          "de": "https:\/\/www.facebook.com\/shopify",
-          "en": "https:\/\/www.facebook.com\/shopify",
-          "es": "https:\/\/www.facebook.com\/shopify",
-          "fi": "https:\/\/www.facebook.com\/shopify",
-          "fr": "https:\/\/www.facebook.com\/shopify",
-          "it": "https:\/\/www.facebook.com\/shopify",
-          "ja": "https:\/\/www.facebook.com\/shopify",
-          "ko": "https:\/\/www.facebook.com\/shopify",
-          "nb": "https:\/\/www.facebook.com\/shopify",
-          "nl": "https:\/\/www.facebook.com\/shopify",
-          "pl": "https:\/\/www.facebook.com\/shopify",
-          "pt-BR": "https:\/\/www.facebook.com\/shopify",
-          "pt-PT": "https:\/\/www.facebook.com\/shopify",
-          "sv": "https:\/\/www.facebook.com\/shopify",
-          "th": "https:\/\/www.facebook.com\/shopify",
-          "tr": "https:\/\/www.facebook.com\/shopify",
-          "vi": "https:\/\/www.facebook.com\/shopify",
-          "zh-CN": "https:\/\/www.facebook.com\/shopify",
-          "zh-TW": "https:\/\/www.facebook.com\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_pinterest_link",
-        "label": {
-          "cs": "Pinterest",
-          "da": "Pinterest",
-          "de": "Pinterest",
-          "en": "Pinterest",
-          "es": "Pinterest",
-          "fi": "Pinterest",
-          "fr": "Pinterest",
-          "it": "Pinterest",
-          "ja": "Pinterest",
-          "ko": "Pinterest",
-          "nb": "Pinterest",
-          "nl": "Pinterest",
-          "pl": "Pinterest",
-          "pt-BR": "Pinterest",
-          "pt-PT": "Pinterest",
-          "sv": "Pinterest",
-          "th": "Pinterest",
-          "tr": "Pinterest",
-          "vi": "Pinterest",
-          "zh-CN": "Pinterest",
-          "zh-TW": "Pinterest"
-        },
-        "info": {
-          "cs": "https:\/\/www.pinterest.com\/shopify",
-          "da": "https:\/\/www.pinterest.com\/shopify",
-          "de": "https:\/\/www.pinterest.com\/shopify",
-          "en": "https:\/\/www.pinterest.com\/shopify",
-          "es": "https:\/\/www.pinterest.com\/shopify",
-          "fi": "https:\/\/www.pinterest.com\/shopify",
-          "fr": "https:\/\/www.pinterest.com\/shopify",
-          "it": "https:\/\/www.pinterest.com\/shopify",
-          "ja": "https:\/\/www.pinterest.com\/shopify",
-          "ko": "https:\/\/www.pinterest.com\/shopify",
-          "nb": "https:\/\/www.pinterest.com\/shopify",
-          "nl": "https:\/\/www.pinterest.com\/shopify",
-          "pl": "https:\/\/www.pinterest.com\/shopify",
-          "pt-BR": "https:\/\/www.pinterest.com\/shopify",
-          "pt-PT": "https:\/\/www.pinterest.com\/shopify",
-          "sv": "https:\/\/www.pinterest.com\/shopify",
-          "th": "https:\/\/www.pinterest.com\/shopify",
-          "tr": "https:\/\/www.pinterest.com\/shopify",
-          "vi": "https:\/\/www.pinterest.com\/shopify",
-          "zh-CN": "https:\/\/www.pinterest.com\/shopify",
-          "zh-TW": "https:\/\/www.pinterest.com\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_google_plus_link",
-        "label": {
-          "cs": "Google Plus",
-          "da": "Google Plus",
-          "de": "Google Plus",
-          "en": "Google Plus",
-          "es": "Google Plus",
-          "fi": "Google Plus",
-          "fr": "Google Plus",
-          "it": "Google Plus",
-          "ja": "Google Plus",
-          "ko": "Google 플러스",
-          "nb": "Google Plus",
-          "nl": "Google Plus",
-          "pl": "Google Plus",
-          "pt-BR": "Google Plus",
-          "pt-PT": "Google Plus",
-          "sv": "Google Plus",
-          "th": "Google Plus",
-          "tr": "Google Plus",
-          "vi": "Google Plus",
-          "zh-CN": "Google Plus",
-          "zh-TW": "Google Plus"
-        },
-        "info": {
-          "cs": "https:\/\/plus.google.com\/+shopify",
-          "da": "https:\/\/plus.google.com\/+shopify",
-          "de": "https:\/\/plus.google.com\/+shopify",
-          "en": "https:\/\/plus.google.com\/+shopify",
-          "es": "https:\/\/plus.google.com\/+shopify",
-          "fi": "https:\/\/plus.google.com\/+shopify",
-          "fr": "https:\/\/plus.google.com\/+shopify",
-          "it": "https:\/\/plus.google.com\/+shopify",
-          "ja": "https:\/\/plus.google.com\/+shopify",
-          "ko": "https:\/\/plus.google.com\/+shopify",
-          "nb": "https:\/\/plus.google.com\/+shopify",
-          "nl": "https:\/\/plus.google.com\/+shopify",
-          "pl": "https:\/\/plus.google.com\/+shopify",
-          "pt-BR": "https:\/\/plus.google.com\/+shopify",
-          "pt-PT": "https:\/\/plus.google.com\/+shopify",
-          "sv": "https:\/\/plus.google.com\/+shopify",
-          "th": "https:\/\/plus.google.com\/+shopify",
-          "tr": "https:\/\/plus.google.com\/+shopify",
-          "vi": "https:\/\/plus.google.com\/+shopify",
-          "zh-CN": "https:\/\/plus.google.com\/+shopify",
-          "zh-TW": "https:\/\/plus.google.com\/+shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_instagram_link",
-        "label": {
-          "cs": "Instagram",
-          "da": "Instagram",
-          "de": "Instagram",
-          "en": "Instagram",
-          "es": "Instagram",
-          "fi": "Instagram",
-          "fr": "Instagram",
-          "it": "Instagram",
-          "ja": "Instagram",
-          "ko": "Instagram",
-          "nb": "Instagram",
-          "nl": "Instagram",
-          "pl": "Instagram",
-          "pt-BR": "Instagram",
-          "pt-PT": "Instagram",
-          "sv": "Instagram",
-          "th": "Instagram",
-          "tr": "Instagram",
-          "vi": "Instagram",
-          "zh-CN": "Instagram",
-          "zh-TW": "Instagram"
-        },
-        "info": {
-          "cs": "https:\/\/instagram.com\/shopify",
-          "da": "https:\/\/instagram.com\/shopify",
-          "de": "https:\/\/instagram.com\/shopify",
-          "en": "https:\/\/instagram.com\/shopify",
-          "es": "https:\/\/instagram.com\/shopify",
-          "fi": "https:\/\/instagram.com\/shopify",
-          "fr": "https:\/\/instagram.com\/shopify",
-          "it": "https:\/\/instagram.com\/shopify",
-          "ja": "https:\/\/instagram.com\/shopify",
-          "ko": "https:\/\/instagram.com\/shopify",
-          "nb": "https:\/\/instagram.com\/shopify",
-          "nl": "https:\/\/instagram.com\/shopify",
-          "pl": "https:\/\/instagram.com\/shopify",
-          "pt-BR": "https:\/\/instagram.com\/shopify",
-          "pt-PT": "https:\/\/instagram.com\/shopify",
-          "sv": "https:\/\/instagram.com\/shopify",
-          "th": "https:\/\/instagram.com\/shopify",
-          "tr": "https:\/\/instagram.com\/shopify",
-          "vi": "https:\/\/instagram.com\/shopify",
-          "zh-CN": "https:\/\/instagram.com\/shopify",
-          "zh-TW": "https:\/\/instagram.com\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_snapchat_link",
-        "label": {
-          "cs": "Snapchat",
-          "da": "Snapchat",
-          "de": "Snapchat",
-          "en": "Snapchat",
-          "es": "Snapchat",
-          "fi": "Snapchat",
-          "fr": "Snapchat",
-          "it": "Snapchat",
-          "ja": "Snapchat",
-          "ko": "Snapchat",
-          "nb": "Snapchat",
-          "nl": "Snapchat",
-          "pl": "Snapchat",
-          "pt-BR": "Snapchat",
-          "pt-PT": "Snapchat",
-          "sv": "Snapchat",
-          "th": "Snapchat",
-          "tr": "Snapchat",
-          "vi": "Snapchat",
-          "zh-CN": "Snapchat",
-          "zh-TW": "Snapchat"
-        },
-        "info": {
-          "cs": "https:\/\/snapchat.com\/add\/shopify",
-          "da": "https:\/\/snapchat.com\/add\/shopify",
-          "de": "https:\/\/snapchat.com\/add\/shopify",
-          "en": "https:\/\/snapchat.com\/add\/shopify",
-          "es": "https:\/\/snapchat.com\/add\/shopify",
-          "fi": "https:\/\/snapchat.com\/add\/shopify",
-          "fr": "https:\/\/snapchat.com\/add\/shopify",
-          "it": "https:\/\/snapchat.com\/add\/shopify",
-          "ja": "https:\/\/snapchat.com\/add\/shopify",
-          "ko": "https:\/\/snapchat.com\/add\/shopify",
-          "nb": "https:\/\/snapchat.com\/add\/shopify",
-          "nl": "https:\/\/snapchat.com\/add\/shopify",
-          "pl": "https:\/\/snapchat.com\/add\/shopify",
-          "pt-BR": "https:\/\/www.snapchat.com\/add\/shopify",
-          "pt-PT": "https:\/\/snapchat.com\/add\/shopify",
-          "sv": "https:\/\/snapchat.com\/add\/shopify",
-          "th": "https:\/\/snapchat.com\/add\/shopify",
-          "tr": "https:\/\/snapchat.com\/add\/shopify",
-          "vi": "https:\/\/snapchat.com\/add\/shopify",
-          "zh-CN": "https:\/\/snapchat.com\/add\/shopify",
-          "zh-TW": "https:\/\/snapchat.com\/add\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_tumblr_link",
-        "label": {
-          "cs": "Tumblr",
-          "da": "Tumblr",
-          "de": "Tumblr",
-          "en": "Tumblr",
-          "es": "Tumblr",
-          "fi": "Tumblr",
-          "fr": "Tumblr",
-          "it": "Tumblr",
-          "ja": "Tumblr",
-          "ko": "Tumblr",
-          "nb": "Tumblr",
-          "nl": "Tumblr",
-          "pl": "Tumblr",
-          "pt-BR": "Tumblr",
-          "pt-PT": "Tumblr",
-          "sv": "Tumblr",
-          "th": "Tumblr",
-          "tr": "Tumblr",
-          "vi": "Tumblr",
-          "zh-CN": "Tumblr",
-          "zh-TW": "Tumblr"
-        },
-        "info": {
-          "cs": "http:\/\/shopify.tumblr.com",
-          "da": "http:\/\/shopify.tumblr.com",
-          "de": "http:\/\/shopify.tumblr.com",
-          "en": "http:\/\/shopify.tumblr.com",
-          "es": "http:\/\/shopify.tumblr.com",
-          "fi": "http:\/\/shopify.tumblr.com",
-          "fr": "http:\/\/shopify.tumblr.com",
-          "it": "http:\/\/shopify.tumblr.com",
-          "ja": "http:\/\/shopify.tumblr.com",
-          "ko": "http:\/\/shopify.tumblr.com",
-          "nb": "http:\/\/shopify.tumblr.com",
-          "nl": "http:\/\/shopify.tumblr.com",
-          "pl": "http:\/\/shopify.tumblr.com",
-          "pt-BR": "http:\/\/shopify.tumblr.com",
-          "pt-PT": "http:\/\/shopify.tumblr.com",
-          "sv": "http:\/\/shopify.tumblr.com",
-          "th": "http:\/\/shopify.tumblr.com",
-          "tr": "http:\/\/shopify.tumblr.com",
-          "vi": "http:\/\/shopify.tumblr.com",
-          "zh-CN": "http:\/\/shopify.tumblr.com",
-          "zh-TW": "http:\/\/shopify.tumblr.com"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_youtube_link",
-        "label": {
-          "cs": "YouTube",
-          "da": "YouTube",
-          "de": "Youtube",
-          "en": "YouTube",
-          "es": "Youtube",
-          "fi": "YouTube",
-          "fr": "YouTube",
-          "it": "YouTube",
-          "ja": "YouTube",
-          "ko": "YouTube",
-          "nb": "YouTube",
-          "nl": "YouTube",
-          "pl": "Youtube",
-          "pt-BR": "YouTube",
-          "pt-PT": "YouTube",
-          "sv": "YouTube",
-          "th": "YouTube",
-          "tr": "YouTube",
-          "vi": "YouTube",
-          "zh-CN": "YouTube",
-          "zh-TW": "YouTube"
-        },
-        "info": {
-          "cs": "https:\/\/www.youtube.com\/user\/shopify",
-          "da": "https:\/\/www.youtube.com\/user\/shopify",
-          "de": "https:\/\/www.youtube.com\/user\/shopify",
-          "en": "https:\/\/www.youtube.com\/user\/shopify",
-          "es": "https:\/\/www.youtube.com\/user\/shopify",
-          "fi": "https:\/\/www.youtube.com\/user\/shopify",
-          "fr": "https:\/\/www.youtube.com\/user\/shopify",
-          "it": "https:\/\/www.youtube.com\/user\/shopify",
-          "ja": "https:\/\/www.youtube.com\/user\/shopify",
-          "ko": "https:\/\/www.youtube.com\/user\/shopify",
-          "nb": "https:\/\/www.youtube.com\/user\/shopify",
-          "nl": "https:\/\/www.youtube.com\/user\/shopify",
-          "pl": "https:\/\/www.youtube.com\/user\/shopify",
-          "pt-BR": "https:\/\/www.youtube.com\/user\/shopify",
-          "pt-PT": "https:\/\/www.youtube.com\/user\/shopify",
-          "sv": "https:\/\/www.youtube.com\/user\/shopify",
-          "th": "https:\/\/www.youtube.com\/user\/shopify",
-          "tr": "https:\/\/www.youtube.com\/user\/shopify",
-          "vi": "https:\/\/www.youtube.com\/user\/shopify",
-          "zh-CN": "https:\/\/www.youtube.com\/user\/shopify",
-          "zh-TW": "https:\/\/www.youtube.com\/user\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_vimeo_link",
-        "label": {
-          "cs": "Vimeo",
-          "da": "Vimeo",
-          "de": "Vimeo",
-          "en": "Vimeo",
-          "es": "Vimeo",
-          "fi": "Vimeo",
-          "fr": "Vimeo",
-          "it": "Vimeo",
-          "ja": "Vimeo",
-          "ko": "Vimeo",
-          "nb": "Vimeo",
-          "nl": "Vimeo",
-          "pl": "Vimeo",
-          "pt-BR": "Vimeo",
-          "pt-PT": "Vimeo",
-          "sv": "Vimeo",
-          "th": "Vimeo",
-          "tr": "Vimeo",
-          "vi": "Vimeo",
-          "zh-CN": "Vimeo",
-          "zh-TW": "Vimeo"
-        },
-        "info": {
-          "cs": "https:\/\/vimeo.com\/shopify",
-          "da": "https:\/\/vimeo.com\/shopify",
-          "de": "https:\/\/vimeo.com\/shopify",
-          "en": "https:\/\/vimeo.com\/shopify",
-          "es": "https:\/\/vimeo.com\/shopify",
-          "fi": "https:\/\/vimeo.com\/shopify",
-          "fr": "https:\/\/vimeo.com\/shopify",
-          "it": "https:\/\/vimeo.com\/shopify",
-          "ja": "https:\/\/vimeo.com\/shopify",
-          "ko": "https:\/\/vimeo.com\/shopify",
-          "nb": "https:\/\/vimeo.com\/shopify",
-          "nl": "https:\/\/vimeo.com\/shopify",
-          "pl": "https:\/\/vimeo.com\/shopify",
-          "pt-BR": "https:\/\/vimeo.com\/shopify",
-          "pt-PT": "https:\/\/vimeo.com\/shopify",
-          "sv": "https:\/\/vimeo.com\/shopify",
-          "th": "https:\/\/vimeo.com\/shopify",
-          "tr": "https:\/\/vimeo.com\/shopify",
-          "vi": "https:\/\/vimeo.com\/shopify",
-          "zh-CN": "https:\/\/vimeo.com\/shopify",
-          "zh-TW": "https:\/\/vimeo.com\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_fancy_link",
-        "label": {
-          "cs": "Fancy",
-          "da": "Fancy",
-          "de": "Fancy",
-          "en": "Fancy",
-          "es": "Fancy",
-          "fi": "Fancy",
-          "fr": "Fancy",
-          "it": "Fancy",
-          "ja": "Fancy",
-          "ko": "팬시",
-          "nb": "Fancy",
-          "nl": "Chique",
-          "pl": "Fancy",
-          "pt-BR": "Fancy",
-          "pt-PT": "Fancy",
-          "sv": "Fancy",
-          "th": "Fancy",
-          "tr": "Fancy",
-          "vi": "Fancy",
-          "zh-CN": "Fancy",
-          "zh-TW": "Fancy"
-        },
-        "info": {
-          "cs": "http:\/\/fancy.com\/Shopify",
-          "da": "http:\/\/fancy.com\/shopify",
-          "de": "http:\/\/fancy.com\/shopify",
-          "en": "http:\/\/fancy.com\/shopify",
-          "es": "http:\/\/fancy.com\/shopify",
-          "fi": "http:\/\/fancy.com\/Shopify",
-          "fr": "http:\/\/fancy.com\/shopify",
-          "it": "http:\/\/fancy.com\/shopify",
-          "ja": "http:\/\/fancy.com\/shopify",
-          "ko": "http:\/\/fancy.com\/shopify",
-          "nb": "http:\/\/fancy.com\/Shopify",
-          "nl": "http:\/\/fancy.com\/shopify",
-          "pl": "http:\/\/fancy.com\/shopify",
-          "pt-BR": "http:\/\/fancy.com\/shopify",
-          "pt-PT": "http:\/\/fancy.com\/shopify",
-          "sv": "http:\/\/fancy.com\/Shopify",
-          "th": "http:\/\/fancy.com\/shopify",
-          "tr": "http:\/\/fancy.com\/shopify",
-          "vi": "http:\/\/fancy.com\/shopify",
-          "zh-CN": "http:\/\/fancy.com\/shopify",
-          "zh-TW": "http:\/\/fancy.com\/shopify"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_rss_link",
-        "label": {
-          "cs": "RSS",
-          "da": "RSS",
-          "de": "RSS",
-          "en": "RSS",
-          "es": "RSS",
-          "fi": "RSS",
-          "fr": "RSS",
-          "it": "RSS",
-          "ja": "RSS",
-          "ko": "RSS",
-          "nb": "RSS",
-          "nl": "RSS",
-          "pl": "RSS",
-          "pt-BR": "RSS",
-          "pt-PT": "RSS",
-          "sv": "RSS",
-          "th": "RSS",
-          "tr": "RSS",
-          "vi": "RSS",
-          "zh-CN": "RSS",
-          "zh-TW": "RSS"
-        },
-        "info": {
-          "cs": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "da": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "de": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "en": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "es": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "fi": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "fr": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "it": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "ja": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "ko": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "nb": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "nl": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "pl": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "pt-BR": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "pt-PT": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "sv": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "th": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "tr": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "vi": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "zh-CN": "http:\/\/store.myshopify.com\/blogs\/blogname.atom",
-          "zh-TW": "http:\/\/store.myshopify.com\/blogs\/blogname.atom"
-        }
+        "id": "share_image",
+        "label": "Image",
+        "info": "Shown when sharing a link on social media. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/showing-social-media-thumbnail-images\/) about image thumbnails."
       },
       {
         "type": "header",
-        "content": {
-          "cs": "Možnosti sdílení",
-          "da": "Muligheder for deling",
-          "de": "Optionen zum Teilen",
-          "en": "Sharing options",
-          "es": "Opciones para compartir",
-          "fi": "Jakamisasetukset",
-          "fr": "Options de partage",
-          "it": "Opzioni di condivisione",
-          "ja": "シェアのオプション",
-          "ko": "공유 옵션",
-          "nb": "Alternativer for deling",
-          "nl": "Opties voor delen",
-          "pl": "Opcje udostępniania",
-          "pt-BR": "Opções de compartilhamento",
-          "pt-PT": "Opções de partilha",
-          "sv": "Delningsalternativ",
-          "th": "ตัวเลือกการแชร์",
-          "tr": "Paylaşım seçenekleri",
-          "vi": "Tùy chọn chia sẻ",
-          "zh-CN": "共享选项",
-          "zh-TW": "分享選項"
-        }
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
       },
       {
         "type": "checkbox",
         "id": "share_facebook",
-        "label": {
-          "cs": "Sdílet na Facebooku",
-          "da": "Del på Facebook",
-          "de": "Auf Facebook teilen",
-          "en": "Share on Facebook",
-          "es": "Compartir en Facebook",
-          "fi": "Jaa Facebookissa",
-          "fr": "Partager sur Facebook",
-          "it": "Condividi su Facebook",
-          "ja": "Facebookでシェアする",
-          "ko": "Facebook에서 공유",
-          "nb": "Del på Facebook",
-          "nl": "Delen op Facebook",
-          "pl": "Udostępnij na Facebooku",
-          "pt-BR": "Compartilhar no Facebook",
-          "pt-PT": "Partilhe no Facebook",
-          "sv": "Dela på Facebook",
-          "th": "แชร์บน Facebook",
-          "tr": "Facebook'ta paylaş",
-          "vi": "Chia sẻ trên Facebook",
-          "zh-CN": "在 Facebook 上共享",
-          "zh-TW": "分享至 Facebook"
-        }
+        "label": "Share on Facebook",
+        "default": true
       },
       {
         "type": "checkbox",
         "id": "share_twitter",
-        "label": {
-          "cs": "Tweetnout na Twitteru",
-          "da": "Tweet på Twitter",
-          "de": "Auf Twitter twittern",
-          "en": "Tweet on Twitter",
-          "es": "Tuitear en Twitter",
-          "fi": "Twiittaa Twitterissä",
-          "fr": "Tweeter sur Twitter",
-          "it": "Twitta su Twitter",
-          "ja": "Twitterに投稿する",
-          "ko": "Twitter에서 트윗 작성",
-          "nb": "Tweet på Twitter",
-          "nl": "Twitteren op Twitter",
-          "pl": "Tweetuj na Twitterze",
-          "pt-BR": "Tuitar",
-          "pt-PT": "Twittar no Twitter",
-          "sv": "Twittra på Twitter",
-          "th": "ทวีตบน Twitter",
-          "tr": "Twitter'da tweet'le",
-          "vi": "Tweet trên Twitter",
-          "zh-CN": "在 Twitter 上发推文",
-          "zh-TW": "在 Twitter 上發佈推文"
-        }
+        "label": "Tweet on Twitter",
+        "default": true
       },
       {
         "type": "checkbox",
         "id": "share_pinterest",
-        "label": {
-          "cs": "Připnout na Pinterestu",
-          "da": "Pin på Pinterest",
-          "de": "Auf Pinterest pinnen",
-          "en": "Pin on Pinterest",
-          "es": "Pinear en Pinterest",
-          "fi": "Pinnaa Pinterestissä",
-          "fr": "Épingler sur Pinterest",
-          "it": "Pinna su Pinterest",
-          "ja": "Pinterestでピンする",
-          "ko": "Pinterest에 고정하기",
-          "nb": "Pin på Pinterest",
-          "nl": "Pinnen op Pinterest",
-          "pl": "Przypnij do tablicy Pinterest",
-          "pt-BR": "Incluir como pin no Pinterest",
-          "pt-PT": "Adicione no Pinterest",
-          "sv": "Spara en pin på Pinterest",
-          "th": "ปักหมุดบน Pinterest",
-          "tr": "Pinterest'te pin ekle",
-          "vi": "Ghim trên Pinterest",
-          "zh-CN": "固定在 Pinterest 上",
-          "zh-TW": "加入 Pinterest"
-        }
+        "label": "Pin on Pinterest",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Store contact",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Phone and Email"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone_number",
+        "label": "Phone number",
+        "default": "+84 (0)387 392 056"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Email",
+        "default": "hello@domain.com"
+      },
+      {
+        "type": "header",
+        "content": "Social links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_label",
+        "label": "Twitter label"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_label",
+        "label": "Facebook label"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_label",
+        "label": "Pinterest label"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_label",
+        "label": "Instagram label"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat link"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_label",
+        "label": "Snapchat label"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr link"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_label",
+        "label": "Tumblr label"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_label",
+        "label": "Youtube label"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo link"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_label",
+        "label": "Vimeo label"
+      }
+    ]
+  },
+  {
+    "name": "Cart drawer",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Show cart note",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "discount_code_enable",
+        "label": "Show discount code",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_estimate_shipping",
+        "label": "Show estimate shipping rates",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "cart_drawer_trust_badge",
+        "label": "Trust badge"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "popular_search_queries",
+        "label": "Popular searches",
+        "default": "T-Shirt, Blue, Jacket",
+        "info": "Separate by \",\"",
+        "placeholder": "T-Shirt, Blue, Jacket"
+      }
+    ]
+  },
+  {
+    "name": "Additional pages",
+    "settings": [
+      {
+        "type": "page",
+        "id": "wishlist_page",
+        "label": "Wishlist Page"
+      },
+      {
+        "type": "page",
+        "id": "product_compare_page",
+        "label": "Product comparison"
+      }
+    ]
+  },
+  {
+    "name": "Cookie consent",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "It is designed to help you comply with data privacy laws like EU Cookie Law, European GDPR or California CCPA."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cookie_consent",
+        "label": "Show cookie consent",
+        "default": false
+      },
+      {
+        "type": "textarea",
+        "id": "cookie_consent_message",
+        "label": "Message",
+        "default": "This website uses cookies to ensure you get the best experience on our website."
+      },
+      {
+        "type": "text",
+        "id": "cookie_consent_allow",
+        "label": "Allow button",
+        "default": "Allow Cookies"
+      },
+      {
+        "type": "text",
+        "id": "cookie_consent_decline",
+        "label": "Decline button",
+        "info": "Leave blank to hide",
+        "default": "Decline"
+      },
+      {
+        "type": "text",
+        "id": "cookie_consent_learnmore",
+        "label": "Learn more text",
+        "default": "Learn more"
+      },
+      {
+        "type": "text",
+        "id": "cookie_consent_learnmore_link",
+        "label": "Learn more link",
+        "info": "Leave blank to hide",
+        "default": "https:\/\/www.cookiesandyou.com\/"
+      },
+      {
+        "type": "header",
+        "content": "Design"
       },
       {
         "type": "select",
-        "id": "social_sharing_style",
-        "label": {
-          "cs": "Styl tlačítka",
-          "da": "Knaptypografi",
-          "de": "Schaltflächenstil",
-          "en": "Button style",
-          "es": "Estilo de botón",
-          "fi": "Painikkeen tyyli",
-          "fr": "Style de bouton",
-          "it": "Stile pulsante",
-          "ja": "ボタンのスタイル",
-          "ko": "버튼 스타일",
-          "nb": "Knappestil",
-          "nl": "Knopstijl",
-          "pl": "Styl przycisku",
-          "pt-BR": "Estilo de botão",
-          "pt-PT": "Estilo de botão",
-          "sv": "Knappstil",
-          "th": "สไตล์ปุ่ม",
-          "tr": "Düğme stili",
-          "vi": "Kiểu nút",
-          "zh-CN": "按钮样式",
-          "zh-TW": "按鈕樣式"
-        },
+        "id": "cookie_consent_placement",
+        "label": "Placement",
+        "default": "bottom",
         "options": [
           {
-            "value": "normal",
-            "label": {
-              "cs": "Kompletní branding",
-              "da": "Fuld branding",
-              "de": "Vollständig gebrandet",
-              "en": "Fully branded",
-              "es": "Marca completa",
-              "fi": "Täysin brändätty",
-              "fr": "Entièrement marqué",
-              "it": "Completamente personalizzato con il marchio",
-              "ja": "ブランド化されました。",
-              "ko": "전체 브랜드화",
-              "nb": "Fullt merket",
-              "nl": "Volledige branding",
-              "pl": "Z pełnym oznakowaniem firmowym",
-              "pt-BR": "Integralmente com marca",
-              "pt-PT": "Integralmente com a marca",
-              "sv": "Helt märkt",
-              "th": "ใส่แบรนด์แบบเต็ม",
-              "tr": "Tamamen markalı",
-              "vi": "Đầy đủ thương hiệu",
-              "zh-CN": "完全品牌化",
-              "zh-TW": "完整品牌標記"
-            }
+            "value": "bottom",
+            "label": "Bottom bar"
           },
           {
-            "value": "is-clean",
-            "label": {
-              "cs": "Jen logo",
-              "da": "Kun logo",
-              "de": "Nur Logo",
-              "en": "Logo only",
-              "es": "Solo logo",
-              "fi": "Vain logo",
-              "fr": "Logo uniquement",
-              "it": "Solo logo",
-              "ja": "ロゴのみ",
-              "ko": "로고 만",
-              "nb": "Kun logo",
-              "nl": "Alleen logo",
-              "pl": "Tylko logo",
-              "pt-BR": "Apenas logo",
-              "pt-PT": "Apenas logótipo",
-              "sv": "Endast logotyp",
-              "th": "แค่โลโก้เท่านั้น",
-              "tr": "Yalnızca logo",
-              "vi": "Chỉ logo",
-              "zh-CN": "仅限 logo",
-              "zh-TW": "僅限商標"
-            }
+            "value": "bottom-left",
+            "label": "Floating left"
+          },
+          {
+            "value": "bottom-right",
+            "label": "Floating right"
           }
         ]
+      },
+      {
+        "type": "select",
+        "id": "cookie_consent_theme",
+        "label": "Theme",
+        "default": "black",
+        "options": [
+          {
+            "value": "white",
+            "label": "Light"
+          },
+          {
+            "value": "black",
+            "label": "Dark"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Integration",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Google map API"
+      },
+      {
+        "type": "text",
+        "id": "gm_api",
+        "label": "API Key",
+        "info": "[Get Api Key](https:\/\/developers.google.com\/maps\/documentation\/javascript\/get-api-key)"
+      },
+      {
+        "type": "header",
+        "content": "Instagram Token"
+      },
+      {
+        "type": "text",
+        "id": "instagram_token",
+        "label": "Instagram Token",
+        "default": "IGQVJXMTBwYTBabmJsdG9xZA0p2Q3RsLWhYc0RvSFI1cDZA6aG1jWEt5M3VpYVNWdV9tVmIweHF6UHBjNWxvVk1sUFQ4T0NJSHFuWksyVGVzTTB3RkozdGszeDJIbVU3MmVycTJzS1E5VGpZAX0dvVUE0RwZDZD",
+        "info": "[Get Instagram token](https:\/\/medium.com\/javascript-in-plain-english\/how-to-generate-a-token-with-the-new-2020-instagram-api-bf27c57858ab)"
+      }
+    ]
+  },
+  {
+    "name": "Advanced",
+    "settings": [
+      {
+        "type": "html",
+        "id": "custom_css",
+        "label": "Custom CSS"
       }
     ]
   }

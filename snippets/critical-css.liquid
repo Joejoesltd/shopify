@@ -1,0 +1,162 @@
+{% comment %}
+
+Critical Styles for Super Fast First Render
+--------------------------------------------------------------------------------
+
+First render is an important metric when considering perceived performance. The
+faster the browser can get something on the page, the faster that page feels.
+
+When a browser starts processing a webpage, one thing that prevents it from
+starting to render that page is the external style sheet. Most of the time, not
+all the styles included in the external style sheet are needed for the first
+render of the page. Critical styles are the solution to this problem.
+
+Critical styles are the absolute bare minimum styles needed to get something
+useful on the page. In the case of Narrative, we are including the styles for
+header, background color, and slideshow container.
+
+Currently the process of including these styles is very manual. Hopefully #soon
+we'll be able to generate these critical styles automatically.
+
+{% endcomment %}
+{% assign custom_css = settings.custom_css %}
+{% assign container_width = settings.container_width %}
+{% assign container_fluid_offset = settings.container_fluid_offset %}
+{% assign container_fluid_width = settings.container_fluid_width %}
+{% assign color_primary_hsl = settings.color_primary | color_to_hsl | split: ',' | last %}
+{% assign lightness = topbar_bg_hsl | split: '%' | first | strip | plus: 0 %}
+
+{% capture slideNavigation %}
+    @media(min-width: 1280px) {
+        .sf-slider__controls button:hover {
+            color: {% if lightness > 50 %}var(--color-body-text){% else %}#fff{% endif %};
+        }
+    }
+{% endcapture %}
+
+{% style %}
+    {{ slideNavigation }}
+
+    html {
+        font-size: calc(var(--font-base-size, 16) * 1px);
+    }
+    body {
+        font-family: var(--font-stack-body);
+        font-weight: var(--font-weight-body);
+        font-style: var(--font-style-body);
+        transition: opacity .3s ease-in-out;
+        opacity: var(--sf-page-opacity, 0) !important;
+        color: var(--color-body-text);
+        font-size: calc(var(--font-base-size, 16) * 1px);
+        line-height: calc(var(--base-line-height) * 1px);
+        --container-width: {{ container_width }};
+        --fluid-container-width: {{ container_fluid_width }}px;
+        --fluid-container-offset: {{ container_fluid_offset }}px;
+        scroll-behavior: smooth;
+        {% comment %}
+        background-color: var(--color-main-background);
+        {% endcomment %}
+    }
+
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5,
+    h6, .h6 {
+        font-family: var(--font-stack-header);
+        font-weight: var(--font-weight-header);
+        font-style: var(--font-style-header);
+        color: var(--color-heading-text);
+        line-height: normal;
+        letter-spacing: {{ settings.type_header_spacing }}px;
+    }
+    h1, .h1 {
+        font-size:calc(((var(--font-h1-mobile))/ (var(--font-base-size))) * 1rem);
+    }
+
+    h2, .h2 {
+        font-size:calc(((var(--font-h2-mobile))/ (var(--font-base-size))) * 1rem);
+    }
+
+    h3, .h3 {
+        font-size: calc(((var(--font-h3-mobile)) / (var(--font-base-size))) * 1rem);
+    }
+
+    h4, .h4 {
+        font-size: calc(((var(--font-h4-mobile)) / (var(--font-base-size))) * 1rem);
+    }
+
+    h5, .h5 {
+        font-size: calc(((var(--font-h5-mobile)) / (var(--font-base-size))) * 1rem);
+    }
+
+    h6, .h6 {
+        font-size: calc(((var(--font-h6-mobile)) / (var(--font-base-size))) * 1rem);
+        line-height: 1.4;
+    }
+
+    @media only screen and (min-width: 768px){
+        .h1, h1{
+            font-size:calc(((var(--font-h1-desktop))/ (var(--font-base-size))) * 1rem);
+        }
+        .h2, h2{
+            font-size:calc(((var(--font-h2-desktop))/ (var(--font-base-size))) * 1rem);
+        }
+        h3, .h3 {
+            font-size: calc(((var(--font-h3-desktop)) / (var(--font-base-size))) * 1rem);
+        }
+        h4, .h4 {
+            font-size: calc(((var(--font-h4-desktop)) / (var(--font-base-size))) * 1rem);
+        }
+        h5, .h5 {
+            font-size: calc(((var(--font-h5-desktop)) / (var(--font-base-size))) * 1rem);
+        }
+        h6, .h6 {
+            font-size: calc(((var(--font-h6-desktop)) / (var(--font-base-size))) * 1rem);
+        }
+    }
+    .swiper-wrapper {
+        display: flex;
+    }
+    .swiper-container:not(.swiper-container-initialized) .swiper-slide {
+        width: calc(100% / var(--items, 1));
+        flex: 0 0 auto;
+    }
+    @media(max-width: 1023px) {
+        .swiper-container:not(.swiper-container-initialized) .swiper-slide {
+            min-width: 40vw;
+            flex: 0 0 auto;
+        }
+    }
+    @media (max-width: 767px) {
+        .swiper-container:not(.swiper-container-initialized) .swiper-slide {
+            min-width: 66vw;
+            flex: 0 0 auto;
+        }
+    }
+    .opacity-0 {
+      opacity: 0;
+    }
+    .opacity-100 {
+      opacity: 1;
+    }
+    @media (min-width: 768px) {
+      .md\:block {
+        display: block !important;
+      }
+    }
+    @media (min-width: 1024px) {
+      .lg\:block {
+        display: block !important;
+      }
+    }
+    @media (min-width: 1280px)
+      .xl\:block {
+        display: block !important;
+      }
+    }
+    {% if custom_css != blank %}
+        {{ custom_css | strip_newlines }}
+    {% endif %}
+{% endstyle %}

@@ -1,0 +1,174 @@
+{% assign bg_color = section.settings.bg_color %}
+
+{% if section.settings.show_product_tabs and section.blocks.size > 0 %}
+    <section
+        class="sf-product__section sf-product__section-tabs"
+        data-section-type="tabs" data-section-id="{{ section.id }}"
+        style="background-color: {{ bg_color }}"
+    >
+      <div class="{{ section.settings.container }}">
+        <div class="hidden md:block">
+          <div class="sf-tabs">
+            <div class="flex border-b border-color-border justify-center">
+              {% for block in section.blocks %}
+                <div class="sf-tab-header text-lg cursor-pointer" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                  {{ block.settings.header }}
+                </div>
+              {% endfor %}
+            </div>
+            <div class="py-8 md:py-10">
+              {% for block in section.blocks %}
+                <div class="sf-tab-content opacity-0">
+                  <div class="{% if block.type != 'reviews' %} prose{% endif %}">
+                    {% case block.type %}
+                      {% when 'description' %}
+                        {{ product.description }}
+                      {% when 'reviews' %}
+                        <div class="container-narrow">
+                          {% render 'product-reviews-app__snippet' %}
+                        </div>
+                      {% when 'tab' %}
+                        {{ block.settings.content }}
+                        {{ block.settings.content_page.content }}
+                      {% else %}
+                    {% endcase %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="block md:hidden sf-pdt__accordion">
+          {% for block in section.blocks %}
+            <div class="sf__accordion-item mb-6 border-b border-color-border" {{ block.shopify_attributes }} style="--content-max-height:0px;">
+              <div class="sf__accordion-button pb-3 pr-4">{{ block.settings.header }}</div>
+              <div class="sf__accordion-content text-color-secondary">
+                <div class="pb-8{% if block.type != 'reviews' %} prose{% endif %}">
+                  {% case block.type %}
+                    {% when 'description' %}
+                      {{ product.description }}
+                    {% when 'reviews' %}
+                      {% render 'product-reviews-app__snippet' %}
+                    {% when 'tab' %}
+                      {{ block.settings.content }}
+                      {{ block.settings.content_page.content }}
+                    {% else %}
+                  {% endcase %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section>
+    <script>
+        window.themeScriptURLs.tabs.required = true
+    </script>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "Product tabs",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "show_product_tabs",
+                "label": "Show product tabs",
+                "default": true
+            },
+            {
+              "type": "select",
+              "id": "container",
+              "label": "Container type",
+              "default": "container",
+              "options": [
+                  {
+                      "value": "container",
+                      "label": "Fixed width"
+                  },
+                  {
+                      "value": "container-fluid",
+                      "label": "Stretched width"
+                  },
+                  {
+                      "value": "container-narrow",
+                      "label": "Narrow width"
+                  }
+              ]
+            },
+            {
+                "type": "color",
+                "id": "bg_color",
+                "label": "Background color"
+            }
+        ],
+        "max_blocks": 6,
+        "blocks": [
+            {
+                "type": "description",
+                "name": "Product description",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "paragraph",
+                        "content": "This tab will show the product's description"
+                    },
+                    {
+                        "type": "text",
+                        "id": "header",
+                        "label": "Tab header",
+                        "default": "Product description"
+                    }
+                ]
+            },
+            {
+                "type": "reviews",
+                "name": "Product reviews",
+                "limit": 1,
+                "settings": [
+                    {
+                      "type": "header",
+                      "content": "Requirements",
+                      "info": "This section requires [Product Reviews](https://apps.shopify.com/product-reviews) app by Shopify to work."
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": "This tab will show the product's reviews"
+                    },
+                    {
+                        "type": "text",
+                        "id": "header",
+                        "label": "Tab header",
+                        "default": "Product reviews"
+                    }
+                ]
+            },
+            {
+                "type": "tab",
+                "name": "Custom content",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "header",
+                        "label": "Tab heading",
+                        "default": "Shipping & Return",
+                        "placeholder": "Shipping & Return"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "content",
+                        "label": "Tab content",
+                        "default": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.</p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.</p>"
+                    },
+                    {
+                        "type": "page",
+                        "id": "content_page",
+                        "label": "Tab content from page"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

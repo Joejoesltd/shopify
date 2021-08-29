@@ -1,0 +1,59 @@
+<div class="sf__collection-toolbar" data-layout="{{ grid_layout }}">
+  <div class="sf__toolbar-wrapper transition-all duration-300 flex items-center justify-between lg:justify-end">
+    <div class="flex-auto flex sf__toggle-filter {% unless show_filter %}xl:hidden{% endunless %}">
+      {%- if show_filter and section.blocks.size > 0 -%}
+      <button class="flex items-center sf__sidebar-open mr-4 font-medium">
+          <span class="mr-2">{{ 'collections.toolbar.show_filter' | t }}</span>
+          {% render 'icon', name: 'chevron-down', size: 'extra-small' %}
+      </button>
+      {%- endif -%}
+      <button class="md:hidden sf__sortmb-icon flex items-center font-medium">
+        <span class="mr-2">Sort</span>
+        {% render 'icon', name: 'chevron-down', size: 'extra-small' %}
+      </button>
+    </div>
+
+    {% assign class_name = '' %}
+    {% if show_filter %}
+      {% if section.settings.sidebar != 'fixed' %}
+        {% assign class_name = 'xl:flex-1 md:w-full w-auto' %}
+      {% endif %}
+    {% else %}
+      {% assign class_name = 'xl:flex-1 md:w-full w-auto' %}
+    {% endif %}
+    <div class="flex {{ class_name }} items-center justify-between sf__group-sortView{% unless section.blocks.size > 0 %} w-full{% endunless %}">
+      <div class="sf__collection-sort hidden md:block">
+        <div class="sf__custom-select sf__select-medium leading-relaxed" style="min-width: 150px;">
+          <select class="cursor-pointer lg:w-auto w-full py-1.5 pl-4 pr-10 border rounded border-black" name="SortBy" id="sf-sort-by">
+            <option value="" disabled selected>{{ 'collections.sorting.title' }}</option>
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="sf__gridColumn-view flex flex-wrap pl-7" data-product-in-column="{{ grid_columns_view }}">
+        <a href="#" class="flex sf__tooltip-item sf__tooltip-top sf__col-one{% if grid_layout == 'list' %} active{% endif %}" data-value="sf__col-one">
+          {% render 'icon', name: 'view-list', size: 'extra-small' %}
+          <span class="sf__tooltip-content text-[12px]">{{ 'collections.toolbar.view_list' | t }}</span>
+        </a>
+        <a href="#" class="flex sf__tooltip-item sf__tooltip-top sf__col-two" data-value="sf__col-two">
+          {% render 'icon', name: 'view-grid-2column', size: 'extra-small' %}
+          <span class="sf__tooltip-content text-[12px]">{{ 'collections.toolbar.grid_2cloumns' | t }}</span>
+        </a>
+        <a href="#" class="hidden sf__tooltip-item sf__tooltip-top md:flex sf__col-three" data-value="sf__col-three">
+          {% render 'icon', name: 'view-grid-3column', size: 'extra-small' %}
+          <span class="sf__tooltip-content text-[12px]">{{ 'collections.toolbar.grid_3cloumns' | t }}</span>
+        </a>
+        <a href="#" class="hidden sf__tooltip-item sf__tooltip-top md:flex sf__col-four" data-value="sf__col-four">
+          {% render 'icon', name: 'view-grid-4column', size: 'extra-small' %}
+          <span class="sf__tooltip-content text-[12px]">{{ 'collections.toolbar.grid_4cloumns' | t }}</span>
+        </a>
+        <a href="#" class="hidden sf__tooltip-item sf__tooltip-top lg:flex sf__col-five" data-value="sf__col-five">
+          {% render 'icon', name: 'view-grid-5column', size: 'extra-small' %}
+          <span class="sf__tooltip-content text-[12px]">{{ 'collections.toolbar.grid_5cloumns' | t }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

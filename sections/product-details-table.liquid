@@ -1,0 +1,79 @@
+{% if section.settings.show_product_details_table %}
+    {%- capture default_heading -%}
+        {{ 'products.product.product_details_heading' | t }}
+    {%- endcapture -%}
+    <section
+        class="px-3 md:container sf-product__section"
+        data-section-type="product-details-table"
+        data-section-id="{{ section.id }}"
+    >
+        <h2 class="text-2xl md:text-4xl text-center mb-8 md:mb-16">{{ section.settings.heading | default: default_heading }}</h2>
+        {% assign size = section.blocks | size %}
+        <div class="hidden md:grid grid-cols-2 lg:grid-cols-{{ size | minus: 1 }} xl:grid-cols-{{ size }} gap-4 md:gap-8 lg:gap-16">
+            {% for block in section.blocks %}
+                <div class="mb-4">
+                    <h3 class="font-medium mb-4">{{ block.settings.title }}</h3>
+                    <div class="text-color-secondary">{{ block.settings.content }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="block md:hidden sf-pdt__accordion">
+            {% for block in section.blocks %}
+                <div class="sf__accordion-item mb-2" {{ block.shopify_attributes }}>
+                    <h3 class="sf__accordion-button border-b border-color-border pb-3 pr-4">{{ block.settings.title }}</h3>
+                    <div class="sf__accordion-content mt-4 text-color-secondary">
+                        <div class="pb-8">
+                            {{ block.settings.content }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <script>
+        window.themeScriptURLs.prodDetailsTable.required = true
+    </script>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "Product details table",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "show_product_details_table",
+                "label": "Show product details table",
+                "default": true
+            },
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "The Details",
+                "placeholder": "The Details"
+            }
+        ],
+        "max_blocks": 6,
+        "blocks": [
+            {
+                "type": "column",
+                "name": "Column",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "header",
+                        "default": "Size & Fit",
+                        "info": "Column header"
+                    },
+                    {
+                        "type": "html",
+                        "id": "content",
+                        "label": "Custom HTML content",
+                        "default": "<ul style=\"list-style: inside; padding-left: 4px;\"><li>Cropped pink crepe knit top</li><li>Square neckline</li><li>Embroidered Aje logo</li><li>Cross back straps</li></ul>"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

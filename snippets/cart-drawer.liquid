@@ -1,0 +1,257 @@
+{% assign f_cart_countdown = shop.metafields.foxecom-bs-kit.cart-countdown %}
+<div
+    style="--tw-bg-opacity: 0;"
+    class="scd__wrapper hidden transition-colors duration-300 bg-black fixed z-[100] inset-0"
+>
+    <div class="scd__content transition-transform duration-300 translate-x-0 translate-x-full ml-auto min-h-full md:w-[450px] bg-white z-50">
+      <button class="scd__close p-2 cursor-pointer absolute">
+        {% render 'icon', name: 'times', size: 'large' %}
+      </button>
+      <form action="/checkout" method="post" class="flex flex-col h-full" novalidate>
+        <div class="scd__header mx-6 py-4 md:py-6 border-b border-color-border">
+          <h3 class="text-2xl font-medium">{{ 'cart.general.title' | t }}</h3>
+          {% if f_cart_countdown.show_on_drawer == true and template != 'cart' %}
+            {% render 'foxkit-cart-countdown' %}
+          {% endif %}
+        </div>
+        <div class="scd__body sf__custom_scroll px-6 py-4 flex flex-col flex-grow">
+          {% render 'foxkit-cart-goal' %}
+          <div class="scd__items pt-2.5">
+            {% for item in cart.items %}
+              {% assign properties = item.properties %}
+              <div class="scd-item" data-line-key="{{ item.key }}" data-line-item-index="{{ forloop.index }}" data-variant-id="{{ item.variant_id }}" data-product-id="{{ item.product_id }}" data-cart-item>
+                <div class="scd-item__inner flex items-start">
+                  <div class="scd-item__image">
+                    <a href="{{ item.url }}" class="block" style="--aspect-ratio: {{ item.image.aspect_ratio | default: 0.75 }}">
+                      {% if item.image != blank %}
+                        {{ item | img_url: '360x' | img_tag: item.title }}
+                      {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'sf__placeholder-svg w-full h-full' }}
+                      {% endif %}
+                    </a>
+                  </div>
+                  <div class="scd-item__info">
+                    <a href="{{ item.url }}" class="font-medium hover:underline">
+                      {{ item.product.title }}
+                    </a>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <div class="scd-item__variant mb-0.5 flex">
+                        {%- for option in item.options_with_values -%}
+                          <span class="scd-item__variant-option">
+                          <span>{{ option.name }}: </span>
+                          {{ option.value }}
+                        </span>
+                        {%- endfor -%}
+                      </div>
+                    {%- endunless -%}
+                    <div class="scd-item__prices">
+                      {%- if item.original_price != item.final_price -%}
+                        <div class="cart-drawer__discounted-prices">
+                          <del class="scd-item__original-price">
+                            {{ item.original_price | money }}
+                          </del>
+                          <span class="scd-item__price scd-item__price--discount sf-currency">{{ item.final_price | money }}</span>
+                        </div>
+                      {%- else -%}
+                        <span class="scd-item__original-price scd-item__price sf-currency">{{ item.original_price | money }}</span>
+                      {%- endif -%}
+                    </div>
+                    {%- if item.discounts.size > 0 -%}
+                      <ul class="scd-item__discounts flex" role="list">
+                        {%- for discount in item.discounts -%}
+                          <li>
+                            {% render 'icon', name: 'discount' %}
+                            {{ discount.title }}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                    <div class="flex items-center mt-[10px]">
+                      <div class="scd-item__quantity flex justify-between rounded">
+                        <button class="scd-item__btn" data-qty-change="dec--{{ item.key }}">-</button>
+                        <input
+                          class="py-1 scd-item__qty_input w-9 text-center"
+                          type="number"
+                          name="updates[]"
+                          id="updates_{{ item.key }}"
+                          data-line-key="{{ item.key }}"
+                          value="{{ item.quantity }}"
+                          min="0"
+                        />
+                        <button class="scd-item__btn" data-qty-change="inc--{{ item.key }}">+</button>
+                      </div>
+                      <button class="scd-item__remove underline p-2 ml-2" data-line-key="{{ item.key }}" data-item-index="{{ forloop.index }}">
+                        {{ 'cart.general.remove' | t }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="scd-empty-msg mt-4 px-6 opacity-100 transition-opacity duration-300 delay-300">
+            {{ 'cart.general.empty' | t }}
+          </div>
+        </div>
+        <div class="scd__footer py-4 px-6">
+          {% if settings.cart_notes_enable or settings.cart_estimate_shipping or settings.discount_code_enable %}
+            <div class="scd__footer-actions">
+              {% if settings.cart_notes_enable %}
+                <button data-open="note" class="sf__tooltip-item sf__tooltip-top">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="none" viewBox="0 0 19 19"><path fill="#000" d="M17.3672 2.21875c.4453.44531.668.98437.668 1.61719 0 .60937-.2227 1.13672-.668 1.58203L4.99219 17.793l-4.007815.457H.878906c-.257812 0-.46875-.0938-.632812-.2812-.164063-.1876-.234375-.4102-.210938-.668l.457032-4.0078L12.8672.917969C13.3125.472656 13.8398.25 14.4492.25c.6328 0 1.1719.222656 1.6172.667969l1.3008 1.300781zM4.46484 16.7383l9.28126-9.28127-2.918-2.91797-9.28122 9.28124-.35157 3.2695 3.26953-.3515zM16.5938 4.60938c.2109-.21094.3164-.46875.3164-.77344 0-.32813-.1055-.59766-.3164-.8086l-1.336-1.33593c-.2109-.21094-.4805-.31641-.8086-.31641-.3047 0-.5625.10547-.7734.31641l-2.0391 2.03906 2.918 2.91797 2.0391-2.03906z"/></svg>
+                  <span>{{ 'cart.general.drawer_note' | t }}</span>
+                  <span class="sf__tooltip-content text-[12px]">{{ 'cart.general.note_title' | t }}</span>
+                </button>
+              {% endif %}
+              {% if settings.cart_estimate_shipping %}
+                <button data-open="shipping" class="sf__tooltip-item sf__tooltip-top">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="18" fill="none" viewBox="0 0 23 18"><path fill="#000" d="M10.0938 6H1.65625c-.1875 0-.28125-.09375-.28125-.28125v-.5625c0-.1875.09375-.28125.28125-.28125h8.43755c.1874 0 .2812.09375.2812.28125v.5625c0 .1875-.0938.28125-.2812.28125zm12.375 6.75c.1874 0 .2812.0938.2812.2812v.5626c0 .1874-.0938.2812-.2812.2812h-2.0391c.0469.1875.0703.375.0703.5625 0 .7734-.2812 1.4297-.8438 1.9687-.539.5626-1.1953.8438-1.9687.8438-.7734 0-1.4414-.2812-2.0039-.8438-.5391-.539-.8086-1.1953-.8086-1.9687 0-.1875.0234-.375.0703-.5625H8.05469c.04687.1875.07031.375.07031.5625 0 .7734-.28125 1.4297-.84375 1.9687-.53906.5626-1.19531.8438-1.96875.8438-.77344 0-1.44141-.2812-2.00391-.8438-.53906-.539-.80859-1.1953-.80859-1.9687V9.375h1.125v2.8125c.51562-.375 1.07812-.5625 1.6875-.5625.91406 0 1.66406.375 2.25 1.125H13.75V2.02734c0-.14062-.0586-.25781-.1758-.35156-.1172-.11719-.2578-.17578-.4219-.17578H4.22266c-.09375 0-.1875.02344-.28125.07031-.09375.04688-.17579.11719-.2461.21094-.04687.07031-.07031.15234-.07031.24609V2.625h5.34375c.1875 0 .28125.09375.28125.28125v.5625c0 .1875-.09375.28125-.28125.28125H.53125C.34375 3.75.25 3.65625.25 3.46875v-.5625c0-.1875.09375-.28125.28125-.28125H2.5v-.59766c0-.46875.16406-.85546.49219-1.160152C3.34375.539063 3.75391.375 4.22266.375h8.92964c.4688 0 .8672.164063 1.1954.492188.3515.304692.5273.691402.5273 1.160152V3.75h1.5469c.6328 0 1.1601.22266 1.582.66797l2.9531 2.95312c.4453.42188.668.94922.668 1.58203V12.75h.8438zM4.11719 15.6328c.32812.3281.72656.4922 1.19531.4922.46875 0 .86719-.1641 1.19531-.4922C6.83594 15.3047 7 14.9062 7 14.4375s-.16406-.8672-.49219-1.1953c-.32812-.3281-.72656-.4922-1.19531-.4922-.46875 0-.86719.1641-1.19531.4922-.32813.3281-.49219.7266-.49219 1.1953s.16406.8672.49219 1.1953zM14.875 4.875V8.25h5.3438v-.03516c-.0235-.02343-.0352-.04687-.0352-.07031l-2.9531-2.95312c-.2344-.21094-.5039-.31641-.8086-.31641H14.875zm1.6172 10.7578c.3281.3281.7266.4922 1.1953.4922s.8672-.1641 1.1953-.4922c.3281-.3281.4922-.7266.4922-1.1953s-.1641-.8672-.4922-1.1953c-.3281-.3281-.7266-.4922-1.1953-.4922s-.8672.1641-1.1953.4922c-.3281.3281-.4922.7266-.4922 1.1953s.1641.8672.4922 1.1953zM20.5 12.75V9.375h-5.625v3.375h.5625c.5859-.75 1.3359-1.125 2.25-1.125.9141 0 1.6641.375 2.25 1.125H20.5zM9.25 7.96875c0 .1875-.09375.28125-.28125.28125H.53125C.34375 8.25.25 8.15625.25 7.96875v-.5625c0-.1875.09375-.28125.28125-.28125h8.4375c.1875 0 .28125.09375.28125.28125v.5625z"/></svg>
+                  <span>{{ 'cart.general.shipping' | t }}</span>
+                  <span class="sf__tooltip-content text-[12px]">{{ 'cart.general.estimate_shipping_title' | t }}</span>
+                </button>
+              {% endif %}
+              {% if settings.discount_code_enable %}
+                <button data-open="coupon" class="sf__tooltip-item sf__tooltip-top">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="14" fill="none" viewBox="0 0 21 14"><path fill="#000" d="M15.2812 3.875c.2344 0 .4336.08203.5977.24609.1641.16407.2461.36328.2461.59766v5.0625c0 .23435-.082.43355-.2461.59765-.1641.1641-.3633.2461-.5977.2461H5.71875c-.23437 0-.43359-.082-.59766-.2461-.16406-.1641-.24609-.3633-.24609-.59765v-5.0625c0-.23438.08203-.43359.24609-.59766.16407-.16406.36329-.24609.59766-.24609h9.56245zM15 9.5V5H6v4.5h9zm4.5-3.375c-.3047 0-.5742.11719-.8086.35156-.2109.21094-.3164.46875-.3164.77344s.1055.57422.3164.80859c.2344.21094.5039.31641.8086.31641h1.125v3.9375c0 .4687-.1641.8672-.4922 1.1953-.3281.3281-.7266.4922-1.1953.4922H2.0625c-.46875 0-.86719-.1641-1.195312-.4922C.539062 13.1797.375 12.7812.375 12.3125V8.375H1.5c.30469 0 .5625-.10547.77344-.31641.23437-.23437.35156-.5039.35156-.80859s-.11719-.5625-.35156-.77344C2.0625 6.24219 1.80469 6.125 1.5 6.125H.375V2.1875c0-.46875.164062-.86719.492188-1.195312C1.19531.664063 1.59375.5 2.0625.5h16.875c.4687 0 .8672.164063 1.1953.492188.3281.328122.4922.726562.4922 1.195312V6.125H19.5zm0 3.375c-.6094 0-1.1367-.22266-1.582-.66797-.4453-.44531-.668-.97265-.668-1.58203s.2227-1.13672.668-1.58203C18.3633 5.22266 18.8906 5 19.5 5V2.1875c0-.16406-.0586-.29297-.1758-.38672-.0937-.11719-.2226-.17578-.3867-.17578H2.0625c-.16406 0-.30469.05859-.42188.17578-.09374.09375-.14062.22266-.14062.38672V5c.60938 0 1.13672.22266 1.58203.66797.44531.44531.66797.97265.66797 1.58203s-.22266 1.13672-.66797 1.58203C2.63672 9.27734 2.10938 9.5 1.5 9.5v2.8125c0 .1641.04688.3047.14062.4219.11719.0937.25782.1406.42188.1406h16.875c.1641 0 .293-.0469.3867-.1406.1172-.1172.1758-.2578.1758-.4219V9.5z"/></svg>
+                  <span>{{ 'cart.general.drawer_coupon' | t }}</span>
+                  <span class="sf__tooltip-content text-[12px]">{{ 'cart.general.coupon_title' | t }}</span>
+                </button>
+              {% endif %}
+            </div>
+          {% endif %}
+          <div class="scd__summary mb-4 pt-4" data-cart-summary>
+            <div data-discounts>
+              <ul class="scd-cart__discounts" role="list" data-discounts-list>
+              {% unless cart.cart_level_discount_applications.size == 0 %}
+                  {% for discount in cart.cart_level_discount_applications %}
+                    <li>
+                      {% render 'icon', name: 'discount' %}
+                      <span>{{ discount.title | upcase }}&nbsp;(-{{ discount.total_allocated_amount | money }})</span>
+                    </li>
+                  {% endfor %}
+              {% endunless %}
+              </ul>
+            </div>
+            <div class="scd__subtotal flex justify-between" data-cart-subtotal>
+              <span class="font-medium">{{ 'cart.general.subtotal' | t }}</span>
+              <span class="scd__subtotal-price font-medium sf-currency" data-cart-subtotal-price>{{ cart.total_price | money }}</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <button type="submit" class="sf__btn sf__btn-primary w-full scd__checkout mb-3" name="checkout">
+              {{ 'cart.general.checkout' | t }}
+            </button>
+            <a class="underline" href="{{ routes.cart_url }}">
+              {{ 'cart.general.viewcart' | t }}
+            </a>
+          </div>
+          {% if settings.cart_drawer_trust_badge %}
+          <div class="scd__trust-badge mt-2">
+            <img src="{{ settings.cart_drawer_trust_badge | img_url: '840x' }}" alt="Trust secure badge">
+          </div>
+          {% endif %}
+        </div>
+        {% if settings.cart_notes_enable %}
+        <div class="scd__addon" id="scd-note">
+          <div class="scd__addon-title font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="none" viewBox="0 0 19 19"><path fill="#000" d="M17.3672 2.21875c.4453.44531.668.98437.668 1.61719 0 .60937-.2227 1.13672-.668 1.58203L4.99219 17.793l-4.007815.457H.878906c-.257812 0-.46875-.0938-.632812-.2812-.164063-.1876-.234375-.4102-.210938-.668l.457032-4.0078L12.8672.917969C13.3125.472656 13.8398.25 14.4492.25c.6328 0 1.1719.222656 1.6172.667969l1.3008 1.300781zM4.46484 16.7383l9.28126-9.28127-2.918-2.91797-9.28122 9.28124-.35157 3.2695 3.26953-.3515zM16.5938 4.60938c.2109-.21094.3164-.46875.3164-.77344 0-.32813-.1055-.59766-.3164-.8086l-1.336-1.33593c-.2109-.21094-.4805-.31641-.8086-.31641-.3047 0-.5625.10547-.7734.31641l-2.0391 2.03906 2.918 2.91797 2.0391-2.03906z"/></svg>
+            <span>{{ 'cart.general.note_title' | t }}</span>
+          </div>
+          <div class="scd__addon-content">
+            <textarea name="note" class="form-control" rows="3" placeholder="{{ 'cart.general.note' | t }}">{{ cart.note }}</textarea>
+          </div>
+          <div class="scd__addon-actions flex flex-col">
+            <button class="sf__btn sf__btn-primary btn-save" data-action="note">{{ 'cart.general.save' | t }}</button>
+            <button class="sf__btn sf__btn-plain btn-cancel" data-action="note">{{ 'cart.general.cancel' | t }}</button>
+          </div>
+        </div>
+        {% endif %}
+        {% if settings.cart_estimate_shipping %}
+        <div class="scd__addon" id="scd-shipping">
+          <div class="scd__addon-title font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="18" fill="none" viewBox="0 0 23 18"><path fill="#000" d="M10.0938 6H1.65625c-.1875 0-.28125-.09375-.28125-.28125v-.5625c0-.1875.09375-.28125.28125-.28125h8.43755c.1874 0 .2812.09375.2812.28125v.5625c0 .1875-.0938.28125-.2812.28125zm12.375 6.75c.1874 0 .2812.0938.2812.2812v.5626c0 .1874-.0938.2812-.2812.2812h-2.0391c.0469.1875.0703.375.0703.5625 0 .7734-.2812 1.4297-.8438 1.9687-.539.5626-1.1953.8438-1.9687.8438-.7734 0-1.4414-.2812-2.0039-.8438-.5391-.539-.8086-1.1953-.8086-1.9687 0-.1875.0234-.375.0703-.5625H8.05469c.04687.1875.07031.375.07031.5625 0 .7734-.28125 1.4297-.84375 1.9687-.53906.5626-1.19531.8438-1.96875.8438-.77344 0-1.44141-.2812-2.00391-.8438-.53906-.539-.80859-1.1953-.80859-1.9687V9.375h1.125v2.8125c.51562-.375 1.07812-.5625 1.6875-.5625.91406 0 1.66406.375 2.25 1.125H13.75V2.02734c0-.14062-.0586-.25781-.1758-.35156-.1172-.11719-.2578-.17578-.4219-.17578H4.22266c-.09375 0-.1875.02344-.28125.07031-.09375.04688-.17579.11719-.2461.21094-.04687.07031-.07031.15234-.07031.24609V2.625h5.34375c.1875 0 .28125.09375.28125.28125v.5625c0 .1875-.09375.28125-.28125.28125H.53125C.34375 3.75.25 3.65625.25 3.46875v-.5625c0-.1875.09375-.28125.28125-.28125H2.5v-.59766c0-.46875.16406-.85546.49219-1.160152C3.34375.539063 3.75391.375 4.22266.375h8.92964c.4688 0 .8672.164063 1.1954.492188.3515.304692.5273.691402.5273 1.160152V3.75h1.5469c.6328 0 1.1601.22266 1.582.66797l2.9531 2.95312c.4453.42188.668.94922.668 1.58203V12.75h.8438zM4.11719 15.6328c.32812.3281.72656.4922 1.19531.4922.46875 0 .86719-.1641 1.19531-.4922C6.83594 15.3047 7 14.9062 7 14.4375s-.16406-.8672-.49219-1.1953c-.32812-.3281-.72656-.4922-1.19531-.4922-.46875 0-.86719.1641-1.19531.4922-.32813.3281-.49219.7266-.49219 1.1953s.16406.8672.49219 1.1953zM14.875 4.875V8.25h5.3438v-.03516c-.0235-.02343-.0352-.04687-.0352-.07031l-2.9531-2.95312c-.2344-.21094-.5039-.31641-.8086-.31641H14.875zm1.6172 10.7578c.3281.3281.7266.4922 1.1953.4922s.8672-.1641 1.1953-.4922c.3281-.3281.4922-.7266.4922-1.1953s-.1641-.8672-.4922-1.1953c-.3281-.3281-.7266-.4922-1.1953-.4922s-.8672.1641-1.1953.4922c-.3281.3281-.4922.7266-.4922 1.1953s.1641.8672.4922 1.1953zM20.5 12.75V9.375h-5.625v3.375h.5625c.5859-.75 1.3359-1.125 2.25-1.125.9141 0 1.6641.375 2.25 1.125H20.5zM9.25 7.96875c0 .1875-.09375.28125-.28125.28125H.53125C.34375 8.25.25 8.15625.25 7.96875v-.5625c0-.1875.09375-.28125.28125-.28125h8.4375c.1875 0 .28125.09375.28125.28125v.5625z"/></svg>
+            <span>{{ 'cart.general.estimate_shipping_title' | t }}</span>
+          </div>
+          <div class="scd__addon-content">
+            <div data-address="root">
+              <div class="hidden">
+                <label for="AddressFirstName">{{ 'customer.addresses.first_name' | t }}</label>
+                <input type="text" id="AddressFirstName" name="address[first_name]" value="{{ form.first_name }}">
+              </div>
+              <div class="hidden">
+                <label for="AddressLastName">{{ 'customer.addresses.last_name' | t }}</label>
+                <input type="text" id="AddressLastName" name="address[last_name]" value="{{ form.last_name }}">
+              </div>
+
+              <div class="hidden">
+                <label for="AddressCompany">{{ 'customer.addresses.company' | t }}</label>
+                <input type="text" id="AddressCompany" name="address[company]" value="{{ form.company }}">
+              </div>
+
+              <div class="hidden">
+                <label for="AddressAddress1">{{ 'customer.addresses.address1' | t }}</label>
+                <input type="text" id="AddressAddress1" name="address[address1]" value="{{ form.address1 }}">
+              </div>
+
+              <div class="hidden">
+                <label for="AddressAddress2">{{ 'customer.addresses.address2' | t }}</label>
+                <input type="text" id="AddressAddress2" name="address[address2]" value="{{ form.address2 }}">
+              </div>
+
+              <div class="hidden">
+                <label for="AddressCity">{{ 'customer.addresses.city' | t }}</label>
+                <input type="text" id="AddressCity" name="address[city]" value="{{ form.city }}">
+              </div>
+
+              <div class="form-group">
+                <label for="AddressCountry">{{ 'customer.addresses.country' | t }}</label>
+                <select id="AddressCountry" class="form-control" name="address[country]" data-default="US"></select>
+              </div>
+
+              <div class="form-group">
+                <label for="AddressProvince">{{ 'customer.addresses.province' | t }}</label>
+                <select id="AddressProvince" class="form-control" name="address[province]" data-default="{{ form.province }}"></select>
+              </div>
+
+              <div class="form-group">
+                <label for="AddressZip">{{ 'customer.addresses.zip' | t }}</label>
+                <input type="text" class="form-control" id="AddressZip" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
+              </div>
+
+              <div class="hidden">
+                <label for="AddressPhone">{{ 'customer.addresses.phone' | t }}</label>
+                <input type="tel" id="AddressPhone" name="address[phone]" value="{{ form.phone }}">
+              </div>
+            </div>
+          </div>
+          <div class="scd__addon-actions flex flex-col">
+            <button class="sf__btn sf__btn-primary btn-calc" data-action="shipping">{{ 'cart.general.estimate_shipping_button' | t }}</button>
+            <button class="sf__btn sf__btn-plain btn-cancel" data-action="shipping">{{ 'cart.general.cancel' | t }}</button>
+          </div>
+          <div class="scd__addon-message py-5"></div>
+        </div>
+        {% endif %}
+        {% if settings.discount_code_enable %}
+          <div class="scd__addon" id="scd-coupon">
+            <div class="scd__addon-title font-medium">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="14" fill="none" viewBox="0 0 21 14"><path fill="#000" d="M15.2812 3.875c.2344 0 .4336.08203.5977.24609.1641.16407.2461.36328.2461.59766v5.0625c0 .23435-.082.43355-.2461.59765-.1641.1641-.3633.2461-.5977.2461H5.71875c-.23437 0-.43359-.082-.59766-.2461-.16406-.1641-.24609-.3633-.24609-.59765v-5.0625c0-.23438.08203-.43359.24609-.59766.16407-.16406.36329-.24609.59766-.24609h9.56245zM15 9.5V5H6v4.5h9zm4.5-3.375c-.3047 0-.5742.11719-.8086.35156-.2109.21094-.3164.46875-.3164.77344s.1055.57422.3164.80859c.2344.21094.5039.31641.8086.31641h1.125v3.9375c0 .4687-.1641.8672-.4922 1.1953-.3281.3281-.7266.4922-1.1953.4922H2.0625c-.46875 0-.86719-.1641-1.195312-.4922C.539062 13.1797.375 12.7812.375 12.3125V8.375H1.5c.30469 0 .5625-.10547.77344-.31641.23437-.23437.35156-.5039.35156-.80859s-.11719-.5625-.35156-.77344C2.0625 6.24219 1.80469 6.125 1.5 6.125H.375V2.1875c0-.46875.164062-.86719.492188-1.195312C1.19531.664063 1.59375.5 2.0625.5h16.875c.4687 0 .8672.164063 1.1953.492188.3281.328122.4922.726562.4922 1.195312V6.125H19.5zm0 3.375c-.6094 0-1.1367-.22266-1.582-.66797-.4453-.44531-.668-.97265-.668-1.58203s.2227-1.13672.668-1.58203C18.3633 5.22266 18.8906 5 19.5 5V2.1875c0-.16406-.0586-.29297-.1758-.38672-.0937-.11719-.2226-.17578-.3867-.17578H2.0625c-.16406 0-.30469.05859-.42188.17578-.09374.09375-.14062.22266-.14062.38672V5c.60938 0 1.13672.22266 1.58203.66797.44531.44531.66797.97265.66797 1.58203s-.22266 1.13672-.66797 1.58203C2.63672 9.27734 2.10938 9.5 1.5 9.5v2.8125c0 .1641.04688.3047.14062.4219.11719.0937.25782.1406.42188.1406h16.875c.1641 0 .293-.0469.3867-.1406.1172-.1172.1758-.2578.1758-.4219V9.5z"/></svg>
+              <span>{{ 'cart.general.coupon_title' | t }}</span>
+            </div>
+            <div class="scd__addon-content">
+              <input
+                      placeholder="{{ 'cart.general.enter_discount_code' | t }}"
+                      type="text"
+                      name="discount"
+                      class="scd__discount_code form-control"
+              />
+            </div>
+            <div class="scd__addon-actions flex flex-col">
+              <button class="sf__btn sf__btn-primary btn-save" data-action="coupon">{{ 'cart.general.save' | t }}</button>
+              <button class="sf__btn sf__btn-plain btn-cancel" data-action="coupon">{{ 'cart.general.cancel' | t }}</button>
+            </div>
+          </div>
+        {% endif %}
+        <div class="scd__overlay inset-0"></div>
+      </form>
+    </div>
+</div>

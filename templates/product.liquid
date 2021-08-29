@@ -1,6 +1,20 @@
-{% comment %}
+{%- comment -%}
   The contents of the product.liquid template can be found in /sections/product-template.liquid
-{% endcomment %}
+{%- endcomment -%}
 
 {% section 'product-template' %}
+<div
+        id="fox-product-bundle-outside"
+        data-fox-app="true"
+        data-section-product-bundle
+></div>
+
+{% section 'product-details-accordion' %}
+{% section 'product-details-tabs' %}
+{% section 'product-reviews' %}
 {% section 'product-recommendations' %}
+{% section 'recent-viewed-products' %}
+{% section 'product-features' %}
+
+{%- render 'product-data' -%}
+

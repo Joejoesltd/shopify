@@ -1,0 +1,177 @@
+{%- assign header_height = section.settings.header_height -%}
+{%- assign text_alignment = section.settings.text_alignment -%}
+{%- assign show_breadcrumb = section.settings.show_breadcrumb -%}
+{%- assign bg_color = section.settings.bg_color -%}
+{%- assign bg_image = section.settings.bg_image -%}
+{%- assign layout = section.settings.layout -%}
+{%- assign enable_parallax = section.settings.enable_parallax -%}
+
+{% for block in section.blocks %}
+    {%- assign selected_collection = collections[block.settings.collection] -%}
+    {% if selected_collection.handle == collection.handle %}
+        {% assign bg_image = block.settings.image %}
+    {% endif %}
+{% endfor %}
+
+<div
+    data-section-type="collection-header"
+    data-section-id="{{ section.id }}"
+    data-enable-parallax="{{ enable_parallax }}"
+    class="collection-header overflow-hidden collection-header--{{header_height}} overflow-hidden flex {% if header_height == 'small' %}py-10{% else %}py-14{% endif %} items-{{ section.settings.vertical_alignment }} justify-center relative"
+    style="--bg-color: {{ section.settings.bg_color | default: 'transparent' }}; {% if bg_image != blank %}--bg-image: url({{ bg_image | img_url: 'master' }}){% endif %}"
+>
+    <div class="collection-header__bg absolute -inset-0 bg-color bg-no-repeat bg-cover bg-center pointer-events-none {% if enable_parallax %} bg-fixed{% endif %}"></div>
+    <div class="{{classes}} container text-{{ text_alignment }}">
+        <div class="sf__collection-headerContent relative z-1">
+            <h1 class="lg:text-[42px] text-2xl {% if section.settings.upper_title %}uppercase{% else %}capitalize{% endif %}">{{ collection.title }}</h1>
+            {% if show_breadcrumb and layout == 'inside' %}
+                <div class="collection-header__breadcrumb">
+                    {% capture justify %}{% if text_alignment == 'right' %}end{% else %}{{ text_alignment }}{% endif %}{% endcapture %}
+                    {% render 'breadcrumb', container: '', justify: justify %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if show_breadcrumb and layout == 'outside' %}
+<div class="sf__collection-breadcrumb">
+    {% render 'breadcrumb', container: 'container' %}
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Page header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Page header"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "outside",
+        "options": [
+          {
+            "value": "outside",
+            "label": "Breadcrumb outside"
+          },
+          {
+            "value": "inside",
+            "label": "Breadcrumb inside"
+          }
+        ]
+      },
+    {
+        "type": "select",
+        "id": "header_height",
+        "label": "Height",
+        "default": "medium",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Content alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+        {
+        "type": "select",
+        "id": "vertical_alignment",
+        "label": "Vertical alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "start",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Middle"
+          },
+          {
+            "value": "end",
+            "label": "Bottom"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#f5f1ed"
+      },
+        {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background image"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_parallax",
+        "label": "Enable parallax effect",
+        "default": false
+      },
+        {
+        "type": "checkbox",
+        "id": "show_breadcrumb",
+        "label": "Show breadcrumb",
+        "default": true
+      },
+        {
+        "type": "checkbox",
+        "id": "upper_title",
+        "label": "Uppercase title",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "banner",
+        "name": "Custom banner",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection",
+            "info": "Choose a collection to show this banner."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

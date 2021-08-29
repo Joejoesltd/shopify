@@ -1,0 +1,47 @@
+<div class="sf-prod__layout-1">
+    <div class="flex flex-wrap sf-prod__block sf-prod__container">
+        <div class="w-full md:w-1/2">
+            <div class="sf-prod-media__wrapper default-variant">
+                {% comment %}
+                <div class="hidden lg:block mr-5 sf-prod-media__navs-wrapper relative" style="min-width: 70px;">
+                    <div class="sf-prod-media__navs pt-6">
+                        {% for media in product.media %}
+                            <div class="sf-prod-media__nav relative" data-media-id="{{ media.id }}" data-index="{{ forloop.index0 }}">
+                                {% render 'media', media: media, render_by_image: true %}
+                                {% if media.media_type contains 'video' %}
+                                    <div class="absolute right-0 top-0 text-white bg-gray-800 p-1 rounded-sm">
+                                        {% render 'icon', name: 'video', size: 'small' %}
+                                    </div>
+                                {% endif %}
+                                {% if media.media_type == 'model' %}
+                                    <div class="absolute right-0 top-0 text-white bg-gray-800 p-1 rounded-sm">
+                                        {% render 'icon', name: 'cube', size: 'small' %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endcomment %}
+                <div class="sf-product-media__desktop flex justify-end hidden md:block">
+                  <div class="flex-grow">
+                    {% for media in product.media %}
+                      <div class="sf-prod-media-item media-type-{{ media.media_type }} overflow-hidden relative group" data-index={{ forloop.index0 }}>
+                        {% render 'media', media: media, aspect_ratio: media.aspect_ratio %}
+                        <div class="transition-all opacity-100 md:opacity-0 absolute z-10 right-5 md:-right-14 top-5 group-hover:opacity-100 group-hover:right-5">
+                          {% render 'tooltip', type: 'zoom-in', class_name: 'sf__tooltip-left' %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="sf-product-media__mobile md:hidden">
+                  {% render 'product-page-mobile-media' %}
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+          {% render 'product-page__info' %}
+        </div>
+    </div>
+</div>

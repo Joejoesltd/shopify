@@ -1,84 +1,163 @@
+<!-- /snippets/breadcrumb.liquid -->
 {% comment %}
   Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
 {% endcomment %}
-{% unless request.page_type == 'index' or request.page_type == 'cart' %}
-<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
-  <a href="{{ routes.root_url }}" title="{{ 'general.breadcrumbs.home_link_title' | t }}" id="breadcrumb-home">{{ 'general.breadcrumbs.home' | t }}</a>
 
-  {% if request.page_type == 'product' %}
-    <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-    <span>{{ product.title }}</span>
+{%- capture separator -%}
+    <span aria-hidden="true" class="sf__breadcrumb-separator py-2 text-gray-400">
+        {% render 'icon', name: 'chevron-right', size: 'extra-small' %}
+    </span>
+{%- endcapture -%}
 
-  {% elsif request.page_type == 'collection' and collection.handle %}
+{%- capture home -%}
+    <a href="/" class="bread-crumb__item" title="{{ 'general.breadcrumbs.home_link_title' | t }}">
+        {{ 'general.breadcrumbs.home' | t }}
+    </a>
+{%- endcapture -%}
 
-    <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-    {% if current_tags %}
-      {%- if collection.url == blank -%}
-        {% assign url = routes.all_products_collection_url %}
-      {%- else -%}
-        {% assign url = collection.url %}
-      {%- endif -%}
+{% if container == nil %}
+  {% assign container = 'container-fluid' %}
+{% endif %}
 
-      {{ collection.title | link_to: url }}
-      <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-      <span>{{ current_tags | join: " + " }}</span>
-    {% else %}
-      <span>{{ collection.title }}</span>
-    {% endif %}
+{% unless template == 'index' %}
+    <nav
+        class="sf-breadcrumb w-full{% if container == 'w-full' %} px-4{% endif %}"
+        role="navigation"
+        aria-label="breadcrumbs"
+    >
+      <div class="{{ container }}">
+        <div class="flex -mx-4 items-center justify-{{ justify | default: 'start' }}"
+        >
+          {% unless template == 'product'%}
+            {{ home }}
+          {% endunless %}
 
-  {% elsif request.page_type == 'blog' %}
+          {% if template == 'product' %}
+            <div class="sf-breadcrumb__nav flex items-center">
+              {{ home }}
+              {% assign current_collection = null %}
+              {% assign is_in_collection = false %}
+              {% if collection %}
+                {% assign current_collection = collection %}
+                {% assign is_in_collection = true %}
+              {% elsif product and product.collections.size > 0 %}
+                {% assign current_collection = product.collections.first %}
+              {% endif %}
+              {% if current_collection %}
+                {{ separator }}
+                {% if current_collection.handle %}
+                  {% capture url %}/collections/{{ current_collection.handle }}{% endcapture %}
+                  <a href="{{url}}" class="bread-crumb__item">{{ current_collection.title }}</a>
+                {% endif %}
+              {% endif %}
+              {{ separator }}
+              <span class="sf__breabcrumb-page-title p-4">{{ product.title }}</span>
+            </div>
 
-    <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-    {% if current_tags %}
-      {{ blog.title | link_to: blog.url }}
-      <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-      <span>{{ current_tags | join: " + " }}</span>
-    {% else %}
-    <span>{{ blog.title }}</span>
-    {% endif %}
 
-  {% elsif request.page_type == 'article' %}
+            {%- comment -%}
+            TODO: update layout
+            {% if is_in_collection %}
+                <div class="px-4 flex items-center sf-breadcrumb__product-nav">
+                    {% if current_collection.previous_product %}
+                        <div class="relative group flex items-center">
+                            <a class="inline-block text-base" href="{{current_collection.previous_product.url}}">
+                                {% render 'icon', name: 'prev', size: 'medium' %}
+                            </a>
+                            <div
+                                class="sf-breadcrumb__product absolute -right-8 top-8 rounded w-64 bg-white p-3 flex opacity-0 transition-all group-hover:opacity-100"
+                            >
+                                <img
+                                    src="{{current_collection.previous_product.featured_image | img_url: '60x'}}"
+                                    alt="{{current_collection.previous_product.title}}"
+                                    class="object-cover mr-3"
+                                />
+                                <div class="text-base">
+                                    <div class="mb-1 font-medium text-sm">{{ current_collection.previous_product.title }}</div>
+                                    <div class="text-xs">{{ current_collection.previous_product.price | money }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <span class="inline-block bread-crumb__item">
+                            {% render 'icon', name: 'prev', size: 'medium' %}
+                        </span>
+                    {% endif %}
+                    {% if current_collection.next_product %}
+                        <div class="relative group flex items-center ml-5">
+                            <a class="inline-block text-base" href="{{current_collection.next_product.url}}">
+                                {% render 'icon', name: 'next', size: 'medium' %}
+                            </a>
+                            <div
+                                class="sf-breadcrumb__product absolute right-0 top-8 rounded w-64 bg-white p-3 flex opacity-0 transition-all group-hover:opacity-100"
+                            >
+                            <img
+                                src="{{current_collection.next_product.featured_image | img_url: '60x'}}"
+                                alt="{{current_collection.next_product.title}}"
+                                class="object-cover mr-3"
+                            />
+                            <div class="text-base">
+                                <div class="mb-1 font-medium text-sm">{{ current_collection.next_product.title }}</div>
+                                <div class="text-xs">{{ current_collection.next_product.price | money }}</div>
+                            </div>
+                        </div>
+                        </div>
+                    {% else %}
+                        <span class="inline-block bread-crumb__item ml-5">
+                            {% render 'icon', name: 'next', size: 'medium' %}
+                        </span>
+                    {% endif %}
+                </div>
+            {% endif %}
+            {%- endcomment -%}
 
-    <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-    {{ blog.title | link_to: blog.url }}
-    <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-    <span>{{ article.title }}</span>
+          {% elsif template == 'collection' and collection.handle %}
 
-  {% elsif request.page_type == 'page' %}
+            {{ separator }}
+            {% if current_tags %}
+              {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+              <a href="{{url}}" class="bread-crumb__item">{{ collection.title }}</a>
+              {{ separator }}
+              <span class="p-4">{{ current_tags | join: " + " }}</span>
+            {% else %}
+              <span class="p-4">{{ collection.title }}</span>
+            {% endif %}
 
-   <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-   <span>{{ page.title }}</span>
+          {% elsif template == 'blog' %}
 
-  {% else %}
+            {{ separator }}
+            {% if current_tags %}
+              <a href="{{blog.url}}" class="bread-crumb__item">{{ blog.title }}</a>
+              {{ separator }}
+              <span class="p-4">{{ current_tags | join: " + " }}</span>
+            {% else %}
+              <span class="sf__breabcrumb-page-title p-4">{{ blog.title }}</span>
+            {% endif %}
 
-   <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-   <span>{{ page_title }}</span>
+          {% elsif template == 'article' %}
 
-  {% endif %}
-</nav>
+            {{ separator }}
+            <a href="{{blog.url}}" class="bread-crumb__item">{{ blog.title }}</a>
 
-<script>
-  if(sessionStorage.breadcrumb) {
-    theme.breadcrumbs = {};
-    theme.breadcrumbs.collection = JSON.parse(sessionStorage.breadcrumb);
-    var showCollection = false;
-    {%- if request.page_type == "product" -%}
-      var breadcrumbHTML = '<span aria-hidden="true">&nbsp;&rsaquo;&nbsp;</span><a href="' + theme.breadcrumbs.collection.link + '" title="' + theme.breadcrumbs.collection.title + '">'+ theme.breadcrumbs.collection.title +'</a>';
-      var homeBreadcrumb = document.getElementById('breadcrumb-home');
-      var productCollections = {{ product.collections | json }};
+          {% elsif template == "customers/addresses" %}
 
-      if (productCollections) {
-        productCollections.forEach(function(collection) {
-          if (collection.title === theme.breadcrumbs.collection.title) {
-            showCollection = true;
-          }
-        });
-      }
+            {{ separator }}
+            <a href="{{ routes.account_url }}" class="bread-crumb__item">{{ 'customer.account.page_title' | t }}</a>
+            {{ separator }}
+            <span class="sf__breabcrumb-page-title p-4">{{ page_title }}</span>
 
-      if(homeBreadcrumb && showCollection) {
-        homeBreadcrumb.insertAdjacentHTML('afterend', breadcrumbHTML);
-      }
-    {%- endif -%}
-  }
-</script>
+          {% elsif template contains 'page' %}
+
+            {{ separator }}
+            <span class="sf__breabcrumb-page-title p-4">{{ page.title }}</span>
+
+          {% else %}
+
+            {{ separator }}
+            <span class="sf__breabcrumb-page-title p-4">{{ page_title }}</span>
+
+          {% endif %}
+        </div>
+      </div>
+    </nav>
 {% endunless %}

@@ -1,0 +1,128 @@
+{%- assign st = section.settings -%}
+{% if st.show_accordion and section.blocks.size > 0 %}
+    <section
+        class="{% if st.use_container %} container {% else %} container-fluid {% endif %} sf-product__section transition-opacity opacity-0"
+        data-section-type="product-accordion" data-section-id="{{ section.id }}"
+        data-position="{{ st.position }}"
+    >
+        <div class="prod__accordion">
+            {% for block in section.blocks %}
+                <div
+                    class="sf__accordion-item {% if block.type == 'reviews' %} overflow-hidden{% endif %}" {{ block.shopify_attributes }}
+                    data-index="{{ forloop.index0 }}"
+                    style="--content-max-height: 0px;"
+                >
+                    <div class="sf__accordion-button lg:text-[18px] pb-2.5 pr-4 border-b border-color-border">
+                        {{ block.settings.header | default: 'Accordion header' }}
+                    </div>
+                    <div class="sf__accordion-content text-color-secondary">
+                        <div class="pt-5 pb-10 {% if st.position == 'bottom_template' %} flex {% endif %}">
+                          <div class="{% if block.type != 'reviews' %}prose{% endif %}">
+                            {% case block.type %}
+                              {% when 'description' %}
+                                {{ product.description }}
+                              {% when 'reviews' %}
+                                {% render 'product-reviews-app__snippet' %}
+                              {% when 'item' %}
+                                {{ block.settings.content }}
+                              {% else %}
+                            {% endcase %}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}
+
+{% schema %}
+    {
+        "name": "Product accordion",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "show_accordion",
+                "label": "Show product accordion",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "use_container",
+                "label": "Use container box",
+                "default": false
+            },
+            {
+                "type": "select",
+                "id": "position",
+                "label": "Position",
+                "default": "bottom_info",
+                "options": [
+                    {
+                        "value": "bottom_info",
+                        "label": "Under product info"
+                    },
+                    {
+                        "value": "bottom_template",
+                        "label": "Under product template"
+                    }
+                ]
+            }
+        ],
+        "max_blocks": 6,
+        "blocks": [
+            {
+                "type": "description",
+                "name": "Product description",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "paragraph",
+                        "content": "This accordion item will show the product's description"
+                    },
+                    {
+                        "type": "text",
+                        "id": "header",
+                        "label": "Accordion header",
+                        "default": "Product description"
+                    }
+                ]
+            },
+            {
+                "type": "reviews",
+                "name": "Product reviews",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "paragraph",
+                        "content": "This accordion item will show the product's reviews"
+                    },
+                    {
+                        "type": "text",
+                        "id": "header",
+                        "label": "Accordion header",
+                        "default": "Product reviews"
+                    }
+                ]
+            },
+            {
+                "type": "item",
+                "name": "Custom content",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "header",
+                        "label": "Accordion header",
+                        "default": "Shipping & Return"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "content",
+                        "label": "Accordion content HTML",
+                        "default": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.</p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.</p>"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

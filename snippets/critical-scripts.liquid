@@ -1,0 +1,302 @@
+<script>
+    {%- capture color_swatches -%}
+      {%- for i in (1..100) -%}
+          {%- assign key = 'filter_color' | append: i -%}
+          {%- assign key2 = 'filter_color' | append: i | append: '.png' -%}
+
+          {%- capture texture_style -%}
+              {{ key2 | asset_url }}
+          {%- endcapture -%}
+
+          {%- if texture_style != '' and settings[key] != null and settings[key] != '' -%}
+              {{ key2 | json }}: {{ texture_style | json }},
+              {{ key | json }}: {{ settings[key] | json }},
+          {% endif %}
+      {%- endfor -%}
+    {%- endcapture -%}
+
+    window.spratlyThemeStrings = {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      unavailable: {{ 'products.product.unavailable' | t | json }},
+      checkout: {{ 'cart.general.checkout' | t | json }},
+      cartRemove: {{ 'cart.general.remove' | t | json }},
+      zipcodeValidate: {{ 'cart.general.zipcode_validate' | t | json }},
+      noShippingRate: {{ 'cart.general.no_found_shipping_rate' | t | json }},
+      shippingRatesResult: {{ 'cart.general.shipping_rates_result' | t | json }},
+      recommendTitle: {{ 'cart.general.recommend_title' | t | json }},
+      shipping: {{ 'cart.general.shipping' | t | json }},
+      add: {{ 'general.foxkit.add' | t | json }},
+    }
+
+    window.spratlyThemeSettings = {
+        rootUrl: "{{ routes.root_url }}",
+        requestPath: "{{ request.path }}",
+        template: "{{ template }}",
+        templateName: "{{ template.name }}",
+        {%- if template.name == "product" -%}
+          productHandle: "{{ product.handle }}",
+          productId: {{ product.id }},
+        {%- endif -%}
+        money_format: {{ shop.money_format | json }},
+        currency_code: {{ shop.currency | json }},
+        shop_locale: {{ request.locale.iso_code | json }},
+        not_enough_item_message: "{{ 'products.product.not_enough_items_message' | t: quantity: '__inventory_quantity__' }}",
+        sold_out_items_message: "{{ 'products.product.sold_out_items_message' | t }}",
+        money_with_currency_format: {{ shop.money_with_currency_format | strip_html | json }},
+        {{- color_swatches | strip_html | strip_newlines | strip -}}
+        theme: {
+          id: {{ theme.id }},
+          name: "{{ theme.name }}",
+          role: "{{ theme.role }}",
+          online_store_version: '1.0'
+        },
+        foxkitAppURL: "{{ shop.metafields['foxecom-bs-kit'].shop.foxkitAppURL }}"
+    };
+
+    window.adminThemeSettings = {{ settings | json }};
+
+    window.themeStyleURLs = {
+        foxkitApp: {
+            url: "{{ 'foxkit-app.css' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true // assets will load after window "loaded" event
+        },
+        productTemplate: {
+            url: "{{ 'product-template.css' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true // assets will load after window "loaded" event
+        },
+        collection: {
+            url: "{{ 'collection.css' | asset_url }}",
+            required: false
+        },
+        swiper: {
+            url: "{{ 'swiper.css' | asset_url }}",
+            required: false,
+        },
+        cookieConsent: {
+            url: "{{ 'cookie-consent.css' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true
+        },
+        glightbox: {
+            url: "{{ 'glightbox.css' | asset_url }}",
+            required: {% if template.name == "product" %} true {% else %} false {% endif %},
+            afterWindowLoaded: true
+        },
+        plyr: {
+            url: "{{ 'plyr.css' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true
+        },
+    }
+
+    window.themeScriptURLs = {
+        productTemplate: {
+            url: "{{ 'product-template.js' | asset_url }}",
+            required: {% if template.name == "product" %} true {% else %} false {% endif %},
+            afterWindowLoaded: true
+        },
+        collection: {
+            url: "{{ 'collection.js' | asset_url }}",
+            required: {% if template.name == "collection" %} true {% else %} false {% endif %},
+        },
+        customer: {
+            url: "{{ 'customer.js' | asset_url }}",
+            required: {% if template == "customers/addresses" %} true {% else %} false {% endif %},
+        },
+        salesNotification: {
+            url: "{{ 'sales-notifications.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        bundle: {
+            url: "{{ 'bundle.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        luckyWheel: {
+            url: "{{ 'lucky-wheel.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        prePurchase: {
+            url: "{{ 'pre-purchase.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        inCart: {
+            url: "{{ 'incart.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        cartGoal: {
+            url: "{{ 'cart-goal.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        quantityDiscount: {
+            url: "{{ 'quantity-discount.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        popup: {
+            url: "{{ 'popup.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: false
+        },
+        countdown: {
+            url: "{{ 'product-countdown.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true
+        },
+        productQuickView: {
+            url: "{{ 'product-quick-view.js' | asset_url }}",
+            required: true,
+            afterWindowLoaded: true
+        },
+        tabs: {
+            url: "{{ 'tabs.js' | asset_url }}",
+            required: false,
+        },
+        cookieConsent: {
+            url: "{{ 'cookie-consent.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true
+        },
+        glightbox: {
+            url: "{{ 'glightbox.js' | asset_url }}",
+            required: {% if template.name == "product" %} true {% else %} false {% endif %},
+            afterWindowLoaded: true
+        },
+        mansory: {
+            url: "{{ 'mansory-layout.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true
+        },
+        plyr: {
+            url: "{{ 'plyr.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true
+        },
+        swiper: {
+            url: "{{ 'swiper.js' | asset_url }}",
+            required: false,
+        },
+        parallax: {
+            url: "{{ 'simple-parallax.js' | asset_url }}",
+            required: false,
+            afterWindowLoaded: true
+        }
+    }
+</script>
+
+
+<script>
+    try {
+        var _mobileHeader = document.querySelector('header.sf-header__mobile')
+        var _desktopHeader = document.querySelector('header.sf-header__desktop')
+        var _innerWidth = window.innerWidth
+        function __setHeaderHeight() {
+            if (!_mobileHeader || !_desktopHeader) {
+                _mobileHeader = document.querySelector('header.sf-header__mobile')
+                _desktopHeader = document.querySelector('header.sf-header__desktop')
+                _desktopHeader = document.querySelector('header.sf-header__desktop')
+                _headerSection = document.querySelector('#shopify-section-header')
+            }
+
+            var _header = window.innerWidth < 1280 ? _mobileHeader : _desktopHeader;
+            if (_header) {
+                if(_header.classList.contains('logo-center__2l')) {
+                    document.documentElement.style.setProperty('--sf-header-height', _header.offsetHeight + 'px')
+                    window.spratlyThemeSettings.headerHeight = _header.offsetHeight
+                } else if (_header.classList.contains('logo-left__2l')) {
+                    document.documentElement.style.setProperty('--sf-header-height', _header.offsetHeight + 'px')
+                    window.spratlyThemeSettings.headerHeight = _header.offsetHeight
+                } else {
+                    document.documentElement.style.setProperty('--sf-header-height', _header.offsetHeight + 'px')
+                    window.spratlyThemeSettings.headerHeight = _header.offsetHeight
+                }
+            }
+        }
+        window.addEventListener("resize", __setHeaderHeight)
+
+        var _topbar = document.querySelector('.sf-topbar')
+        function __setTopbarHeight() {
+            if (!_topbar) {
+                _topbar = document.querySelector('.sf-topbar')
+            }
+            if (_topbar) {
+                document.documentElement.style.setProperty('--sf-topbar-height', _topbar.offsetHeight + 'px')
+                window.spratlyThemeSettings.topbarHeight = _topbar.offsetHeight
+            }
+        }
+        window.addEventListener("resize", __setTopbarHeight)
+
+        var _announcement_bar = document.querySelector('.announcement-bar')
+        function __setAnnouncementHeight() {
+            if (!_announcement_bar) {
+                _announcement_bar = document.querySelector('.announcement-bar')
+            }
+            if (_announcement_bar) {
+                document.documentElement.style.setProperty('--sf-announcement-height', _announcement_bar.offsetHeight + 'px')
+                window.spratlyThemeSettings.topbarHeight = _announcement_bar.offsetHeight
+            }
+        }
+        window.addEventListener("resize", __setAnnouncementHeight)
+
+        function __setMainContentPadding() {
+            var _pageTemplate = "{{ template.name }}"
+            if (_innerWidth > 1279) {
+                if (_desktopHeader && _desktopHeader.dataset.transparent === "true") {
+                    if (_pageTemplate === 'index' || _pageTemplate === 'collection') {
+                        document.documentElement.style.setProperty('--main-content-padding-top', '0px')
+                    }
+                }
+            } else {
+                document.documentElement.style.removeProperty('--main-content-padding-top')
+            }
+
+        }
+
+        window.addEventListener('resize', () => {
+            _innerWidth = window.innerWidth
+            __setMainContentPadding()
+        })
+
+        function __showPage() {
+            __setHeaderHeight();
+            __setTopbarHeight();
+            __setAnnouncementHeight();
+            __setMainContentPadding();
+            var __sectionHeader = document.querySelector('.sf-header')
+            if (__sectionHeader) {
+                __sectionHeader.classList.add('opacity-100');
+            }
+            document.documentElement.style.setProperty('--sf-page-opacity', '1');
+        }
+
+        function __onThemeStyleLoad() {
+            console.log('%c theme.css loaded', 'color: #f7a046; font-size: 24px;')
+            if (document.readyState !== 'loading') {
+                console.log('======--------> document is already ready, call __showPage');
+                __showPage();
+            } else {
+                document.addEventListener('DOMContentLoaded', function () {
+                    console.log('======--------> DOMContentLoaded')
+                    __showPage();
+                });
+            }
+        }
+
+        function _sfPreLoader() {
+          window.addEventListener('beforeunload', function(e) {
+            document.documentElement.style.setProperty('--sf-page-opacity', '0');
+          })
+        }
+        _sfPreLoader()
+    } catch (error) {
+        console.warn('Failed to execute critical scripts', error)
+    }
+</script>

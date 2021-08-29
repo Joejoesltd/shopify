@@ -1,0 +1,86 @@
+<section data-section-id="{{ section.id }}" data-section-type="reviews-page" style="opacity: 0;">
+  <div class="sf__page-reviews">
+    <div class="sf__masonry-wrapper">
+      {% for block in section.blocks %}
+      <div class="sf__masonry-item">
+        <div>
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | img_url: 'master' }}" class="w-full" alt="">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'sf__placeholder-svg' }}
+          {% endif %}
+          <div class="p-2.5">
+            <h3 class="mb-1">{{ block.settings.title }}</h3>
+            <span class="text-[12px] text-gray-400 mb-1.5 block">{{ block.settings.date }}</span>
+            <div class="flex mb-2" style="color: #DEB097;">
+              {% render 'icon', name: 'star-solid', size: 'extra-small' %}
+              {% render 'icon', name: 'star-solid', size: 'extra-small' %}
+              {% render 'icon', name: 'star-solid', size: 'extra-small' %}
+              {% render 'icon', name: 'star-solid', size: 'extra-small' %}
+              {% render 'icon', name: 'star-solid', size: 'extra-small' %}
+            </div>
+            <p>{{ block.settings.content }}</p>
+          </div>
+          {% if block.settings.product != blank %}
+          {% assign prdImage = all_products[block.settings.product].featured_image | img_url: '300x' %}
+          {% assign prdTitle = all_products[block.settings.product].title %}
+          {% assign prdUrl = all_products[block.settings.product].url %}
+          <a href="{{ prdUrl }}">
+            <div class="flex p-2.5 border-t border-solid border-color-border">
+              <div class="w-10"><img src="{{ prdImage }}" alt=""></div>
+              <h3 class="pl-2.5 text-[12px]">{{ prdTitle }}</h3>
+            </div>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+      window.themeScriptURLs.mansory.required = true
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Page Reviews",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Review item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name of reviewer",
+          "default": "Name of reviewer"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Time at comment",
+          "default": "5/10/2021"
+        },
+        {
+          "type": "html",
+          "id": "content",
+          "label": "Content",
+          "default": "Omg love love love!! My partner was so surprised when it arrived! Going straight up on our wall."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

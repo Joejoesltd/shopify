@@ -1,0 +1,18 @@
+{% assign default = 'products.product.add_to_cart' | t %}
+<button type="submit"
+    class="add-to-cart sf__btn flex-grow flex-shrink not-change relative {{ class }} {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}"
+>
+    {% render 'atc-spinner' %}
+    <span
+        class="not-change"
+        data-add-to-cart-text="{{ 'products.product.add_to_cart' | t  }}"
+        data-sold-out="{{ 'products.product.sold_out' | t }}"
+        data-unavailable="{{ 'products.product.unavailable' | t }}"
+    >
+        {% if product.available %}
+            {{ btn_text | default: default }}
+        {% else %}
+            {{ 'products.product.sold_out' | t }}
+        {% endif %}
+    </span>
+</button>

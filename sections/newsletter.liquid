@@ -1,287 +1,382 @@
-<style>
-  .newsletter-grid__item {
-    background-color: {{ section.settings.color_bg }};
-  }
+{%- assign st = section.settings -%}
+{%- assign blocks = section.blocks -%}
+{% assign bg_color = section.settings.background_color %}
+{% assign has_bg = false %}
 
-  .newsletter-grid__item:first-child {
-    background-color: {{ section.settings.color_bg | color_modify: 'alpha', 0.5 }};
-  }
-</style>
+{% unless bg_color == "rgba(0,0,0,0)" or bg_color == blank %}
+    {% assign has_bg = true %}
+{% endunless %}
 
-<div class="grid-uniform newsletter-grid">
-  <div class="grid__item newsletter-grid__item post-large--one-half">
-    <div class="newsletter-content-wrapper">
-      <div class="newsletter-content">
-        {% unless section.settings.heading == blank %}
-        <div class="section-header section-header--small">
-          <h2 class="section-header__title{% unless section.settings.subtext == blank %} section-header__title-spacing{% endunless %}">
-            {{ section.settings.heading | escape }}
-          </h2>
-        </div>
-        {% endunless %}
-        {% unless section.settings.subtext == blank %}
-          {{ section.settings.subtext }}
-        {% endunless %}
-      </div>
-    </div>
-  </div>
+{% assign form_layout = section.settings.form_layout %}
+{% assign show_icon = section.settings.show_icon %}
 
-  <div class="grid__item newsletter-grid__item post-large--one-half">
-    <div class="newsletter-content-wrapper">
-      <div class="newsletter-content">
-        {% form 'customer' %}
-          {{ form.errors | default_errors }}
-          {% if form.posted_successfully? %}
-            <p class="note form-success">{{ 'general.newsletter_form.confirmation' | t }}</p>
-          {% else %}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            <div class="input-group">
-              <label for="Email" class="visually-hidden">{{ 'contact.form.email' | t }}</label>
-              <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
-              <span class="input-group-btn">
-                <button type="submit" class="btn" name="commit" id="subscribe">{{ 'general.newsletter_form.submit' | t }}</button>
-              </span>
+{% capture container %}
+    {{ section.settings.container }}
+    {% if section.settings.container == 'w-full' %}
+        {% if has_bg == false or form_layout == 'with_image' %} section-my {% else %} section-py {% endif %}
+    {% else %}
+        {% if has_bg == false %} section-my {% else %} section-py {% endif %}
+    {% endif %}
+{% endcapture %}
+
+<section
+    id="newsletter-{{ section.id }}"
+    class="sf__newsletter-section sf__newsletter-section-{{ section.id }}"
+    style="background-color: {{ st.background_color }};"
+    {% if has_bg %}
+        data-bg="{{ bg_color | color_to_hsl }}"
+    {% endif %}
+    style="background-color: {{ bg_color }};"
+>
+    <div class="{{ container }}">
+        <div class="flex flex-wrap items-stretch">
+            {% if form_layout == 'with_image' %}
+                {% for block in blocks %}
+                    {%- assign bs = block.settings -%}
+
+                    {% if block.type == 'image' %}
+                        {% case bs.image_width %}
+                            {% when '16%' %}
+                                {%- assign block_width = 'w-full md:w-1/2 xl:w-1/6' -%}
+                                {%- assign form_width = 'w-full md:w-1/2 xl:w-5/6' -%}
+                            {% when '25%' %}
+                                {%- assign block_width = 'w-full md:w-1/2 xl:w-1/4' -%}
+                                {%- assign form_width = 'w-full md:w-1/2 xl:w-3/4' -%}
+                            {% when '33%' %}
+                                {%- assign block_width = 'w-full md:w-1/2 xl:w-1/3' -%}
+                                {%- assign form_width = 'w-full md:w-1/2 xl:w-2/3' -%}
+                            {% when '50%' %}
+                                {%- assign block_width = 'w-full md:w-1/2 xl:w-1/2' -%}
+                                {%- assign form_width = 'w-full md:w-1/2 xl:w-1/2' -%}
+                            {% when '66%' %}
+                                {%- assign block_width = 'w-full md:w-1/2 xl:w-2/3' -%}
+                                {%- assign form_width = 'w-full md:w-1/2 xl:w-1/3' -%}
+                            {% when '75%' %}
+                                {%- assign block_width = 'w-full md:w-1/2 xl:w-3/4' -%}
+                                {%- assign form_width = 'w-full md:w-1/2 xl:w-1/4' -%}
+                            {% when '83%' %}
+                                {%- assign block_width = 'w-full md:w-1/2 xl:w-10/12' -%}
+                                {%- assign form_width = 'w-full md:w-1/2 xl:w-2/12' -%}
+                            {% when '100%' %}
+                                {%- assign block_width = 'w-full' -%}
+                                {%- assign form_width = 'w-full' -%}
+                        {% endcase %}
+
+                        <div class="{{ block_width }} w-full relative">
+                            {% if bs.image != blank %}
+                                {% render 'responsive-image', image: bs.image, aspect_ratio: '21/9', wrapper_class: 'h-full' %}
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag: 'sf__placeholder-svg w-full lg:absolute h-full object-cover' }}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <div class="{% if form_layout == 'with_image' %}{% if blocks.size <= 0 %}mx-auto lg:w-1/3 w-full {% endif %}{{ form_width }} xl:px-15 xl:px-16 {% if section.settings.container == 'container' %}xl:pt-16{% else %}xl:pt-32{% endif %} xl:pb-16 md:px-8 md:py-10 p-10{% else %}w-full{% endif %}">
+                <div class="sf__newsletter-content px-4 md:px-0 {% if form_layout == 'with_image' %} h-full flex flex-col justify-between{% endif %}{% if form_layout == 'horizontal' %} sm:flex justify-between{% endif %}">
+                    <div class="newsletter__form-heading {% if form_layout == 'with_image' %}{% if section.settings.container == 'container' %}lg:mb-18{% else %}lg:mb-24{% endif %}{% endif %} flex flex-wrap flex-col items-center text-center{% if form_layout == 'horizontal' %} sm:text-left sm:items-start flex-1{% else %} mb-6 md:mb-10 justify-center{% endif %}">
+                        {% if form_layout != 'horizontal' and show_icon %}
+                            {% if st.icon_img != blank %}
+                            <span class="mb-5" style="width: {{ st.icon_img_width }}px;">{% render 'responsive-image', image: st.icon_img %}</span>
+                            {% else %}
+                            <span class="text-{{ st.text_color }}">
+                                {% render 'icon', name: 'envelope', size: 'custom', fill: fill, class: 'w-16 h-10 mb-8' %}
+                            </span>
+                            {% endif %}
+                        {% endif %}
+                        {%- if st.heading != blank -%}
+                            <h3 class="hidden-br-mobile text-xl md:text-2xl xl:text-5xl{% if form_layout == 'with_image' %} 2xl:text-6xl{% endif %} text-{{ st.text_color }} leading-tight rte">{{ st.heading }}</h3>
+                        {%- endif -%}
+                        {%- if st.description != blank -%}
+                            <div class="mt-3 w-full text-{{ st.text_color }} opacity-40 rte">{{ st.description }}</div>
+                        {%- endif -%}
+                    </div>
+                    <div class="newsletter__form-input w-full {% if form_layout == 'horizontal' %}mt-4 sm:mt-0 sm:w-1/2{% endif %} mx-auto{% if blocks.size < 0 %} md:w-7/12 xl:w-4/12{% endif %}">
+                        {%- assign formId = 'ContactSubscribe' -%}
+                        {% form 'customer', id: formId, class: "sf-newsletter" %}
+                            {%- capture success_message -%}
+                                {{ 'contact.form.post_success' | t }}
+                            {%- endcapture -%}
+                            {% render 'form__error', form: form %}
+                            {% render 'form__success', form: form, success_message: success_message %}
+                            <input type="hidden" name="contact[tags]" value="newsletter">
+                            {% if st.form_design == '1' %}
+                            <div class="flex items-center {% if form_layout == 'horizontal' %}justify-end{% else %}justify-center{% endif %}">
+                                <div class="sf__newsletter-form-group flex {% if form_layout != 'horizontal' and form_layout != 'with_image' %}md:w-5/12 lg:w-4/12 w-full{% else %}w-full{% endif %} border border-{{ st.text_color }} rounded items-center self-stretch">
+                                    {%- capture placeholder -%}{%- if st.text_color == 'black' -%}placeholder-gray-500 placeholder-opacity-75{% else %}placeholder-white placeholder-opacity-75{% endif %}{%- endcapture -%}
+                                    <input type="email"
+                                    name="contact[email]"
+                                    id="{{ formId }}-email"
+                                    value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+                                    placeholder="{{ st.email_placeholder }}"
+                                    autocorrect="off"
+                                    autocapitalize="off"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                    class="w-full block {{ placeholder }} text-{{ st.text_color }} bg-transparent  px-4 py-2 newsletter__input-st"
+                                    >
+                                    <button type="submit" name="commit" class="h-full not-move newsletter-button px-4 py-2 text-{{ st.text_color }} {% if st.submit_button != blank %}border-l{% endif %} border-{{ st.text_color }} rounded-tr rounded-br">
+                                        {% if st.submit_button != blank %}
+                                        <span>{{ st.submit_button }}</span>
+                                        {% else %}
+                                            {% render 'icon', name: 'next' %}
+                                        {% endif %}
+                                    </button>
+                                </div>
+                            </div>
+                            {% else %}
+                                <div class="flex items-center justify-center md:flex-row flex-col">
+                                    <div class="sf__newsletter-form-group sf__form-group-minimal flex {% if form_layout != 'horizontal' and form_layout != 'with_image' %}md:w-1/4 w-full{% else %}w-full{% endif %} {% if st.submit_button != blank %}border-b-2 border-{{ st.text_color }}{% endif %}">
+                                        {%- capture placeholder -%}{%- if st.text_color == 'black' -%}placeholder-gray-500 placeholder-opacity-75{% else %}placeholder-white placeholder-opacity-75{% endif %}{%- endcapture -%}
+                                        <input type="email"
+                                        name="contact[email]"
+                                        id="{{ formId }}-email"
+                                        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+                                        placeholder="{{ st.email_placeholder }}"
+                                        autocorrect="off"
+                                        autocapitalize="off"
+                                        autocomplete="off"
+                                        spellcheck="false"
+                                        class="w-full block pl-0 {% if st.submit_button == blank %}border-b-2 border-{{ st.text_color }}{% else %}pr-4{% endif %} {{ placeholder }} text-{{ st.text_color }} bg-transparent py-2 newsletter__input-st"
+                                        >
+                                        {%- capture text_color -%}{%- if st.text_color == 'white' -%}black{%- else -%}white{%- endif -%}{%- endcapture -%}
+                                        {% capture btn %}
+                                            {%- if st.submit_button == blank -%}
+                                                md:mt-0 mt-6 ml-0 md:ml-2.5 md:w-12 md:h-12 w-10 h-10 rounded-full bg-{{ st.text_color }} text-{{text_color}}
+                                            {%- else -%}
+                                                text-{{ st.text_color }}
+                                            {%-endif -%}
+                                        {% endcapture %}
+                                        <button type="submit" name="commit" class="newsletter-button flex flex-none items-center justify-center{{ btn }}">
+                                            {% if st.submit_button != blank %}
+                                                <span>{{ st.submit_button }}</span>
+                                            {% else %}
+                                                {% render 'icon', name: 'next' %}
+                                            {% endif %}
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if section.settings.show_agreement and section.settings.term_condition_text != blank %}
+                            <div class="flex justify-center items-center newsletter__agreement-text mt-7">
+                                <input type="checkbox" id="{{ formId }}-term-condition" name="contact[term&condition]" value="I Agree to Terms"/>
+                                <label class="pl-2 text-[14px] md:text-base text-{{ st.text_color }}" for="{{ formId }}-term-condition">{{ st.term_condition_text }}</label>
+                            </div>
+                            {% endif %}
+                        {% endform %}
+                    </div>
+                </div>
             </div>
-          {% endif %}
-        {% endform %}
-      </div>
+        </div>
     </div>
-  </div>
-</div>
-
-
+</section>
 
 {% schema %}
 {
-  "name": {
-    "cs": "Novinky",
-    "da": "Nyhedsbrev",
-    "de": "Newsletter",
-    "en": "Newsletter",
-    "es": "Boletín",
-    "fi": "Uutiskirje",
-    "fr": "Newsletter",
-    "it": "Newsletter",
-    "ja": "ニュースレター",
-    "ko": "뉴스레터",
-    "nb": "Nyhetsbrev",
-    "nl": "Nieuwsbrief",
-    "pl": "Newsletter",
-    "pt-BR": "Newsletter",
-    "pt-PT": "Newsletter",
-    "sv": "Nyhetsbrev",
-    "th": "จดหมายข่าว",
-    "tr": "Bülten",
-    "vi": "Bản tin",
-    "zh-CN": "新闻通讯",
-    "zh-TW": "電子報"
-  },
-  "class": "newsletter-section index-section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": {
-        "cs": "Nadpis",
-        "da": "Overskrift",
-        "de": "Titel",
-        "en": "Heading",
-        "es": "Título",
-        "fi": "Otsake",
-        "fr": "Titre",
-        "it": "Heading",
-        "ja": "見出し",
-        "ko": "제목",
-        "nb": "Overskrift",
-        "nl": "Kop",
-        "pl": "Nagłówek",
-        "pt-BR": "Título",
-        "pt-PT": "Título",
-        "sv": "Rubrik",
-        "th": "ส่วนหัว",
-        "tr": "Başlık",
-        "vi": "Tiêu đề",
-        "zh-CN": "标题",
-        "zh-TW": "標題"
-      },
-      "default": {
-        "cs": "Přihlaste se k odběru novinek",
-        "da": "Tilmeld dig vores nyhedsbrev",
-        "de": "Unseren Newsletter abonnieren",
-        "en": "Subscribe to our newsletter",
-        "es": "Suscríbete a nuestro boletín de noticias",
-        "fi": "Tilaa uutiskirjeemme",
-        "fr": "Inscription à la newsletter",
-        "it": "Iscriviti alla nostra newsletter",
-        "ja": "ストアからのお知らせを受け取る",
-        "ko": "뉴스 레터 구독",
-        "nb": "Abonner på nyhetsbrevet vårt",
-        "nl": "Abonneren op onze nieuwsbrief",
-        "pl": "Zapisz się do naszego newslettera",
-        "pt-BR": "Assine a nossa newsletter",
-        "pt-PT": "Subscreva a nossa newsletter",
-        "sv": "Prenumerera på vårt nyhetsbrev",
-        "th": "สมัครรับจดหมายข่าวของเรา",
-        "tr": "Bültenimize abone olun",
-        "vi": "Đăng ký nhận bản tin",
-        "zh-CN": "订阅我们的新闻通讯",
-        "zh-TW": "訂閱我們的電子報"
-      }
-    },
-    {
-      "type": "richtext",
-      "id": "subtext",
-      "label": {
-        "cs": "Text nižší úrovně",
-        "da": "Undertekst",
-        "de": "Subtext",
-        "en": "Subtext",
-        "es": "Subtexto",
-        "fi": "Alateksti",
-        "fr": "Sous-texte",
-        "it": "Sottotesto",
-        "ja": "サブテキスト",
-        "ko": "하위 텍스트",
-        "nb": "Undertekst",
-        "nl": "Subtekst",
-        "pl": "Tekst podrzędny",
-        "pt-BR": "Subtexto",
-        "pt-PT": "Subtexto",
-        "sv": "Undertext",
-        "th": "ข้อความรอง",
-        "tr": "Alt metin",
-        "vi": "Văn bản phụ",
-        "zh-CN": "子文本",
-        "zh-TW": "子文字"
-      },
-      "default": {
-        "cs": "<p>Získejte informace o propagačních akcích, nových produktech a slevách – přímo do své schránky.</p>",
-        "da": "<p>Reklamer, nye produkter og salg. Direkte i din indbakke.</p>",
-        "de": "<p>Werbeaktionen, neue Produkte und Sonderangebote. Direkt in deinem Posteingang.</p>",
-        "en": "<p>Promotions, new products and sales. Directly to your inbox.</p>",
-        "es": "<p>Promociones, nuevos productos y ventas. Directamente a tu bandeja de entrada.</p>",
-        "fi": "<p>Kampanjat, uudet tuotteet ja myynti. Suoraan saapuneet-kansioosi</p>",
-        "fr": "<p>Promotions, nouveaux produits et soldes. Directement dans votre boîte de réception.</p>",
-        "it": "<p>Promozioni, nuovi prodotti e offerte. Direttamente nella tua casella di posta.</p>",
-        "ja": "<p>新商品やセール情報などのお得な情報をお届けします。</p>",
-        "ko": "<p>프로모션, 신제품, 판매. 받은 편지함으로 바로 이동.</p>",
-        "nb": "<p>Kampanjer, nye produkter og salg. Direkte i innboksen din.</p>",
-        "nl": "<p>Promoties, nieuwe producten en uitverkoop rechtstreeks in je inbox.</p>",
-        "pl": "<p>Promocje, nowe produkty i wyprzedaże. Bezpośrednio do Twojej skrzynki odbiorczej.</p>",
-        "pt-BR": "<p>Promoções, novos produtos e ofertas, diretamente em sua caixa de entrada.</p>",
-        "pt-PT": "<p>Promoções, novos produtos e ofertas. Diretamente na sua caixa de entrada.</p>",
-        "sv": "<p>Kampanjer, nya produkter och försäljning. Direkt till din inkorg.</p>",
-        "th": "<p>โปรโมชัน สินค้าใหม่ และการลดราคา ตรงสู่กล่องจดหมายเข้าของคุณ</p>",
-        "tr": "<p>Promosyonlar, yeni ürünler ve indirimler. Doğrudan gelen kutunuzda.</p>",
-        "vi": "<p>Khuyến mãi, sản phẩm mới và chương trình giảm giá. Trực tiếp vào hộp thư đến của bạn.</p>",
-        "zh-CN": "<p>促销、新产品和销售。直接发送到您的收件箱。</p>",
-        "zh-TW": "<p>讓您直接在收件匣內收取促銷活動、最新產品和特賣活動訊息。</p>"
-      }
-    },
-    {
-      "type": "color",
-      "id": "color_bg",
-      "label": {
-        "cs": "Barva pozadí",
-        "da": "Baggrundsfarve",
-        "de": "Hintergrundfarbe",
-        "en": "Background color",
-        "es": "Color de fondo",
-        "fi": "Taustaväri",
-        "fr": "Couleur de fond",
-        "it": "Colore sfondo",
-        "ja": "背景の色",
-        "ko": "배경색",
-        "nb": "Bakgrunnsfarge",
-        "nl": "Achtergrondkleur",
-        "pl": "Kolor tła",
-        "pt-BR": "Cor do fundo",
-        "pt-PT": "Cor do fundo",
-        "sv": "Bakgrundsfärg",
-        "th": "สีพื้นหลัง",
-        "tr": "Arka plan rengi",
-        "vi": "Màu nền",
-        "zh-CN": "背景色",
-        "zh-TW": "背景顏色"
-      },
-      "default": "#eeeeee"
-    },
-    {
-      "type": "paragraph",
-      "content": {
-        "cs": "Pro všechny zákazníky, kteří se zaregistrují, se v Shopify vytvoří účet. [Zobrazit zákazníky](/admin/customers?query=&accepts_marketing=1)",
-        "da": "Alle kunder, der tilmelder sig, får oprettet en konto i Shopify. [Se kunder](/admin/customers?query=&accepts_marketing=1)",
-        "de": "Für alle Kunden, die sich registrieren, wird in Shopify ein Konto erstellt. [Kunden ansehen](/admin/customers?query=&accepts_marketing=1)",
-        "en": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)",
-        "es": "Todos los clientes que se registren tendrán una cuenta creada para ellos en Shopify. [Ver clientes](/admin/customers?query=&accepts_marketing=1)",
-        "fi": "Tilaaville asiakkaille luodaan tili Shopifyssa. [Näytä asiakkaat](/admin/customers?query=&accepts_marketing=1)",
-        "fr": "Un compte sera créé dans Shopify pour les abonnés qui s'inscrivent. [Afficher les abonnés](/admin/customers?query=&accepts_marketing=1)",
-        "it": "Qualsiasi cliente che si iscrive avrà un account creato appositamente per lui su Shopify. [Visualizza clienti](/admin/customers?query=&accepts_marketing=1)",
-        "ja": "サインアップしたお客様は、Shopifyでアカウントが作成されます。[お客様を表示する](/admin/customers?query=&accepts_marketing=1)",
-        "ko": "가입한 고객은 Shopify에서 생성된 계정을 보유하게 됩니다. [고객 보기](/admin/customers?query=&accepts_marketing=1)",
-        "nb": "Alle kunder som melder seg på, vil få opprettet en konto i Shopify. [Se kunder](/admin/customers?query=&accepts_marketing=1)",
-        "nl": "Voor alle klanten die zich aanmelden, wordt een Shopify-account gemaakt. [Bekijk klanten](/admin/customers?query=&accepts_marketing=1)",
-        "pl": "Dla wszystkich klientów, którzy się zarejestrują, utworzone zostaną konta w Shopify. [Wyświetl klientów](/admin/customers?query=&accepts_marketing=1)",
-        "pt-BR": "Todos os clientes que se inscreverem terão uma conta criada para eles na Shopify. [Visualizar clientes](/admin/customers?query=&accepts_marketing=1)",
-        "pt-PT": "Será criada uma conta na Shopify para todos os clientes que se registarem. [Ver clientes](/admin/customers?query=&accepts_marketing=1)",
-        "sv": "Alla kunder som registrerar sig kommer att få ett konto skapat i Shopify. [Visa kunder](/admin/customers?query=&accepts_marketing=1)",
-        "th": "ระบบจะสร้างบัญชีผู้ใช้ใน Shopify ให้แก่ลูกค้ารายที่ลงทะเบียนแล้ว [ดูลูกค้า](/admin/customers?query=&accepts_marketing=1)",
-        "tr": "Kaydolan tüm müşteriler için Shopify'da bir hesap oluşturulur. [Müşterileri görüntüleyin](/admin/customers?query=&accepts_marketing=1)",
-        "vi": "Bất kỳ khách hàng nào đăng ký sẽ được tạo tài khoản trong Shopify. [Xem khách hàng](/admin/customers?query=&accepts_marketing=1)",
-        "zh-CN": "任何注册用户都将在 Shopify 中拥有一个为他们创建的账户。[查看客户](/admin/customers?query=&accepts_marketing=1)",
-        "zh-TW": "顧客註冊後就可以擁有 Shopify 帳號。[查看顧客](/admin/customers?query=&accepts_marketing=1)"
-      }
-    }
-  ],
-  "presets": [
-    {
-      "name": {
-        "cs": "Novinky",
-        "da": "Nyhedsbrev",
-        "de": "Newsletter",
-        "en": "Newsletter",
-        "es": "Boletín",
-        "fi": "Uutiskirje",
-        "fr": "Newsletter",
-        "it": "Newsletter",
-        "ja": "ニュースレター",
-        "ko": "뉴스레터",
-        "nb": "Nyhetsbrev",
-        "nl": "Nieuwsbrief",
-        "pl": "Newsletter",
-        "pt-BR": "Newsletter",
-        "pt-PT": "Newsletter",
-        "sv": "Nyhetsbrev",
-        "th": "จดหมายข่าว",
-        "tr": "Bülten",
-        "vi": "Bản tin",
-        "zh-CN": "新闻通讯",
-        "zh-TW": "電子報"
-      },
-      "category": {
-        "cs": "Propagace",
-        "da": "Kampagne",
-        "de": "Promotional",
-        "en": "Promotional",
-        "es": "Promocional",
-        "fi": "Mainonnallinen",
-        "fr": "Promotionnel",
-        "it": "Promozionale",
-        "ja": "プロモーション用",
-        "ko": "프로모션",
-        "nb": "Kampanjer",
-        "nl": "Promotioneel",
-        "pl": "Promocyjne",
-        "pt-BR": "Promocional",
-        "pt-PT": "Promocional",
-        "sv": "Kampanjer",
-        "th": "ส่งเสริมการขาย",
-        "tr": "Promosyon",
-        "vi": "Khuyến mãi",
-        "zh-CN": "促销",
-        "zh-TW": "宣傳活動"
-      }
-    }
-  ]
+    "name": "Newsletter",
+    "settings": [
+		{
+            "type": "header",
+            "content": "Layout"
+        },
+        {
+            "type": "select",
+            "id": "container",
+            "label": "Container type",
+            "default": "w-full",
+            "options": [
+                {
+                    "value": "container-fluid",
+                    "label": "Default"
+                },
+                {
+                    "value": "w-full",
+                    "label": "Full width"
+                },
+                {
+                    "value": "container",
+                    "label": "Use container box"
+                }
+            ]
+        },
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background color"
+        },
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "select",
+            "id": "form_layout",
+            "label": "Form layout",
+            "default": "vertical",
+            "options": [
+                {
+                    "value": "vertical",
+                    "label": "Vertical"
+                },
+                {
+                    "value": "horizontal",
+                    "label": "Horizontal"
+                },
+                {
+                    "value": "with_image",
+                    "label": "Form with image"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "form_design",
+            "label": "Form style",
+            "default": "1",
+            "options": [
+                {
+                    "value": "1",
+                    "label": "Bordered"
+                },
+                {
+                    "value": "2",
+                    "label": "Minimal"
+                }
+            ]
+        },
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Stay up to date with all fashion news<br> and exclusive offers"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description"
+        },
+        {
+            "type": "text",
+            "id": "email_placeholder",
+            "label": "Email placeholder text",
+            "default": "Enter your email"
+        },
+        {
+            "type": "text",
+            "id": "submit_button",
+            "label": "Button label",
+            "default": "Subscribe",
+            "info": "Leave blank to use icon"
+        },
+        {
+            "type": "select",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "black",
+            "options": [
+                {
+                    "value": "black",
+                    "label": "Dark"
+                },
+                {
+                    "value": "white",
+                    "label": "Light"
+                }
+            ]
+        },
+        {
+            "type": "checkbox",
+            "id": "show_icon",
+            "label": "Show icon",
+            "default": true
+        },
+        {
+            "type": "image_picker",
+            "id": "icon_img",
+            "label": "Icon image"
+        },
+        {
+            "type": "text",
+            "id": "icon_img_width",
+            "label": "Icon image width (px)",
+            "default": "30"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_agreement",
+            "label": "Show \"I agree to terms\" checkbox",
+            "default": false
+        },
+        {
+            "type": "richtext",
+            "id": "term_condition_text",
+            "label": "Agree Terms & Conditions text",
+            "default": "<p>I agree to the Terms and Conditions.</p>"
+        },
+        {
+            "type": "paragraph",
+            "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Image",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "image_width",
+                    "label": "Width",
+                    "default": "66%",
+                    "options": [
+                        {
+                            "value": "16%",
+                            "label": "16%"
+                        },
+                        {
+                            "value": "25%",
+                            "label": "25%"
+                        },
+                        {
+                            "value": "33%",
+                            "label": "33%"
+                        },
+                        {
+                            "value": "50%",
+                            "label": "50%"
+                        },
+                        {
+                            "value": "66%",
+                            "label": "66%"
+                        },
+                        {
+                            "value": "75%",
+                            "label": "75%"
+                        },
+                        {
+                            "value": "83%",
+                            "label": "83%"
+                        },
+                        {
+                            "value": "100%",
+                            "label": "100%"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Newsletter",
+            "category": "Promotional"
+        }
+    ]
 }
 {% endschema %}

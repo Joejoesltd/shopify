@@ -1,0 +1,203 @@
+{% render 'collection-template', section: section, show_title: title %}
+
+{% schema %}
+  {
+    "name": "Brand page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "select",
+        "id": "container",
+        "label": "Container type",
+        "default": "container",
+        "options": [
+            {
+                "value": "container-fluid",
+                "label": "Default"
+            },
+            {
+                "value": "w-full",
+                "label": "Full width"
+            },
+            {
+                "value": "container",
+                "label": "Use container box"
+            }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "layout"
+      },
+      {
+        "type": "select",
+        "id": "grid_layout",
+        "label": "Layout",
+        "options": [
+          {
+            "label": "Grid",
+            "value": "grid"
+          },
+          {
+            "label": "List",
+            "value": "list"
+          }
+        ],
+        "default": "grid"
+      },
+      {
+        "type": "text",
+        "id": "pagination_limit",
+        "label": "No.Of products per page",
+        "default": "12"
+      },
+      {
+        "type": "select",
+        "id": "grid_columns",
+        "label": "Default columns",
+        "info": "For \"Grid\" layout and device width > 1024px",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ],
+        "default": "3"
+      },
+      {
+        "type": "select",
+        "id": "collection_paginate",
+        "label": "Pagination",
+        "options": [
+          {
+            "value": "paginate",
+            "label": "Pagination"
+          },
+          {
+            "value": "loadmore",
+            "label": "\"Show More\" Button"
+          },
+          {
+            "value": "autoscroll",
+            "label": "Auto Scroll"
+          }
+        ],
+        "default": "paginate"
+      },
+      {
+        "type": "header",
+        "content": "Filter"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_filter",
+        "label": "Show filter",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "sidebar",
+        "label": "Position",
+        "options": [
+          {
+            "value": "leftColumn",
+            "label": "Left"
+          },
+          {
+            "value": "rightColumn",
+            "label": "Right"
+          },
+          {
+            "value": "fixed",
+            "label": "Fixed"
+          }
+        ],
+        "default": "leftColumn"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "filter",
+        "name": "Filter widget",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Filter Group"
+          },
+          {
+            "type": "paragraph",
+            "content": "[Filter values correspond to the value \"Tags\" in the product.](https:\/\/docs.shopify.com\/manual\/your-store\/products\/edit-tags)"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_filtergroup",
+            "label": "Show Filter Group",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "open_filtergroup",
+            "label": "Open Tab By Default",
+            "default": true
+          },
+          {
+            "type": "select",
+            "id": "design_filtergroup",
+            "label": "Design",
+            "options": [
+              {
+                "value": "default",
+                "label": "Links"
+              },
+              {
+                "value": "inrow",
+                "label": "Links in row"
+              },
+              {
+                "value": "button",
+                "label": "Buttons"
+              },
+              {
+                "value": "button_rounded",
+                "label": "Buttons rounded"
+              },
+              {
+                "value": "color",
+                "label": "Color Group"
+              }
+            ],
+            "default": "default"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Group"
+          },
+          {
+            "type": "textarea",
+            "id": "filtergroup",
+            "label": "Unique Tags List",
+            "default": "dress,tops,shirts",
+            "info": "Example: dress,tops,shirts"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

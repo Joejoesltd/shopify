@@ -1,0 +1,86 @@
+{% if section.settings.show_breadcrumb  %}
+    <div class="sf__collection-breadcrumb">
+        {% render 'breadcrumb', container: 'container' %}
+    </div>
+{% endif %}
+<div class="brand-header pt-14 pb-20 sm:pt-20" data-section-type="brand-header" data-section-id={{ section.id }}>
+    <div class="container">
+        {% for block in section.blocks %}
+            {%- assign selected_collection = collections[block.settings.collection] -%}
+            {% if selected_collection.handle == collection.handle %}
+                {% render 'brand-description', block: block %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Brand page header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_breadcrumb",
+        "label": "Show breadcrumb",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Brand description",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection",
+            "info": "Choose a collection to show these information."
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Brand logo"
+          },
+          {
+            "type": "richtext",
+            "id": "content",
+            "label": "Brand description"
+          },
+          {
+            "type": "header",
+            "content": "Gallery"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_3",
+            "label": "Image 3"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_4",
+            "label": "Image 4"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_5",
+            "label": "Image 5"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
