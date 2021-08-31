@@ -215,14 +215,6 @@
               "width": "25%"
             }
           },
-          "8c703d19-ac3c-4ed5-ab33-ad72083ece6f": {
-            "type": "menu",
-            "settings": {
-              "menu": "main-menu",
-              "title": "Contact",
-              "width": "25%"
-            }
-          },
           "054bc4f0-afef-4699-a678-60098b8ad10e": {
             "type": "menu",
             "settings": {
@@ -230,13 +222,24 @@
               "title": "Services",
               "width": "25%"
             }
+          },
+          "f747588e-3ed9-453f-8f49-561405efc912": {
+            "type": "our_store",
+            "settings": {
+              "title": "Contact",
+              "description": "<p><strong>Company Number : <\/strong><\/p><p>13570621<\/p><p><strong>Email : <\/strong><\/p><p>info@joejoes.co.uk<\/p><p><strong>Registered Company Address :<\/strong><\/p><p>101 Bath Road, Willsbridge<\/p><p>Bristol, BS30 6ED<\/p><p><\/p><p><\/p><p><a href=\"\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\"><strong>Returns Policy<\/strong><\/a><\/p><p><a href=\"\/policies\/terms-of-service\" target=\"_blank\" title=\"Terms of Service\"><strong>Terms of Service<\/strong><\/a><\/p><p><a href=\"\/policies\/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\"><strong>Privacy Policy<\/strong><\/a><\/p>",
+              "show_email": false,
+              "show_phone": false,
+              "show_socials_link": true,
+              "width": "33%"
+            }
           }
         },
         "block_order": [
           "7527ffa4-1a31-4e5c-b642-96aa834daf84",
           "c85629c7-7aae-4666-b5f0-150990439c91",
-          "8c703d19-ac3c-4ed5-ab33-ad72083ece6f",
-          "054bc4f0-afef-4699-a678-60098b8ad10e"
+          "054bc4f0-afef-4699-a678-60098b8ad10e",
+          "f747588e-3ed9-453f-8f49-561405efc912"
         ],
         "settings": {
           "design": "footer-1",
