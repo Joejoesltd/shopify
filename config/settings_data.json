@@ -202,9 +202,9 @@
           "7527ffa4-1a31-4e5c-b642-96aa834daf84": {
             "type": "menu",
             "settings": {
-              "menu": "main-menu",
-              "title": "Company",
-              "width": "25%"
+              "menu": "joe-joes-footer",
+              "title": "Joe Joes",
+              "width": "33%"
             }
           },
           "c85629c7-7aae-4666-b5f0-150990439c91": {
@@ -212,7 +212,7 @@
             "settings": {
               "menu": "main-menu",
               "title": "Information",
-              "width": "25%"
+              "width": "33%"
             }
           },
           "054bc4f0-afef-4699-a678-60098b8ad10e": {
@@ -220,17 +220,6 @@
             "settings": {
               "menu": "main-menu",
               "title": "Services",
-              "width": "25%"
-            }
-          },
-          "f747588e-3ed9-453f-8f49-561405efc912": {
-            "type": "our_store",
-            "settings": {
-              "title": "Contact",
-              "description": "<p><strong>Company Number : <\/strong><\/p><p>13570621<\/p><p><strong>Email : <\/strong><\/p><p>info@joejoes.co.uk<\/p><p><strong>Registered Company Address :<\/strong><\/p><p>101 Bath Road, Willsbridge<\/p><p>Bristol, BS30 6ED<\/p><p><\/p><p><\/p><p><a href=\"\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\"><strong>Returns Policy<\/strong><\/a><\/p><p><a href=\"\/policies\/terms-of-service\" target=\"_blank\" title=\"Terms of Service\"><strong>Terms of Service<\/strong><\/a><\/p><p><a href=\"\/policies\/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\"><strong>Privacy Policy<\/strong><\/a><\/p>",
-              "show_email": false,
-              "show_phone": false,
-              "show_socials_link": true,
               "width": "33%"
             }
           }
@@ -238,17 +227,16 @@
         "block_order": [
           "7527ffa4-1a31-4e5c-b642-96aa834daf84",
           "c85629c7-7aae-4666-b5f0-150990439c91",
-          "054bc4f0-afef-4699-a678-60098b8ad10e",
-          "f747588e-3ed9-453f-8f49-561405efc912"
+          "054bc4f0-afef-4699-a678-60098b8ad10e"
         ],
         "settings": {
           "design": "footer-1",
-          "container": "container",
+          "container": "w-full",
           "bordered": false,
-          "copyright": "© Minimog 2020",
+          "copyright": "Company Number : 13570621 Registered Company Address :101 Bath Road, Willsbridge, Bristol, BS30 6ED © 2021 by Joe Joes Limited",
           "show_currency_selector": false,
           "show_language_selector": false,
-          "show_social_links": false,
+          "show_social_links": true,
           "show_payment_icons": true
         }
       },
