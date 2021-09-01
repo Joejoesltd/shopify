@@ -204,30 +204,12 @@
             "settings": {
               "menu": "joe-joes-footer",
               "title": "Joe Joes",
-              "width": "33%"
-            }
-          },
-          "c85629c7-7aae-4666-b5f0-150990439c91": {
-            "type": "menu",
-            "settings": {
-              "menu": "main-menu",
-              "title": "Information",
-              "width": "33%"
-            }
-          },
-          "054bc4f0-afef-4699-a678-60098b8ad10e": {
-            "type": "menu",
-            "settings": {
-              "menu": "main-menu",
-              "title": "Services",
-              "width": "33%"
+              "width": "50%"
             }
           }
         },
         "block_order": [
-          "7527ffa4-1a31-4e5c-b642-96aa834daf84",
-          "c85629c7-7aae-4666-b5f0-150990439c91",
-          "054bc4f0-afef-4699-a678-60098b8ad10e"
+          "7527ffa4-1a31-4e5c-b642-96aa834daf84"
         ],
         "settings": {
           "design": "footer-1",
@@ -580,7 +562,7 @@
           "subheading": "",
           "description": "",
           "header_alignment": "center",
-          "container": "container",
+          "container": "w-full",
           "background_color": "",
           "gap": 30,
           "use_scroll_mobile": false,
@@ -706,11 +688,11 @@
           "subheading": "",
           "description": "",
           "header_alignment": "center",
-          "container": "container",
+          "container": "w-full",
           "background_color": "rgba(0,0,0,0)",
-          "gap": 30,
+          "gap": 0,
           "use_scroll_mobile": false,
-          "gap_mobile": 16
+          "gap_mobile": 0
         }
       },
       "16232937433dca4bc9": {
@@ -958,13 +940,72 @@
           "autorotate_speed": 5,
           "hidden_slide_control_mobile": false
         }
+      },
+      "1630525862f0153637": {
+        "type": "custom-content",
+        "blocks": {
+          "1630525862f0153637-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Copy_of_Copy_of_Untitled.png",
+              "width": "25%",
+              "alignment": "center",
+              "block_custom_class": ""
+            }
+          },
+          "8a640a70-6b9e-4142-8a1f-5f9900860e5f": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Copy_of_Untitled_772e2f6a-2740-4236-8cf1-cb02bd0bccb2.png",
+              "width": "25%",
+              "alignment": "center",
+              "block_custom_class": ""
+            }
+          },
+          "6de7249b-42d7-4bd4-96d6-48c7390055a4": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Copy_of_Copy_of_Copy_of_Copy_of_Untitled.png",
+              "width": "25%",
+              "alignment": "center",
+              "block_custom_class": ""
+            }
+          },
+          "813b680f-eb82-43eb-ad1f-a546cfca879c": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Copy_of_Copy_of_Copy_of_Untitled.png",
+              "width": "25%",
+              "alignment": "center",
+              "block_custom_class": ""
+            }
+          }
+        },
+        "block_order": [
+          "1630525862f0153637-1",
+          "8a640a70-6b9e-4142-8a1f-5f9900860e5f",
+          "6de7249b-42d7-4bd4-96d6-48c7390055a4",
+          "813b680f-eb82-43eb-ad1f-a546cfca879c"
+        ],
+        "settings": {
+          "heading": "",
+          "subheading": "",
+          "description": "",
+          "header_alignment": "center",
+          "container": "container-fluid",
+          "background_color": "",
+          "gap": 30,
+          "use_scroll_mobile": false,
+          "gap_mobile": 16
+        }
       }
     },
     "content_for_index": [
       "16232926423298a4de",
+      "1630525862f0153637",
+      "162329352596f1ff1c",
       "1623293128ea15b64a",
       "16232932164704bbe7",
-      "162329352596f1ff1c",
       "16302536407167d5f1",
       "16232937433dca4bc9"
     ]
