@@ -1,10 +1,11 @@
 {
   "current": {
-    "favicon": "shopify:\/\/shop_images\/thumbnail_J_J.png",
+    "favicon": "shopify:\/\/shop_images\/Copy_of_House_Garden.png",
     "container_width": 1170,
     "container_fluid_width": 1680,
     "container_fluid_offset": 100,
     "color_primary": "#000",
+    "color_body_text": "#000000",
     "color_sub_text": "#666666",
     "color_btn_bg": "#999999",
     "color_btn_bg_hover": "#000000",
@@ -41,22 +42,31 @@
     "pcard_layout": "1",
     "pcard_alignment": "center",
     "pcard_image_ratio": "1\/1",
+    "show_cart_button": false,
+    "show_quickview_button": false,
+    "show_compare_button": false,
     "show_vendor": false,
+    "uppercase_prd_name": false,
     "variant_option_design3": "color",
     "show_variant_swatch_image": true,
     "product_colors": "red: #FF6961,\nyellow: #FDDA76,\nblack: #000000,\nblue: #8DB4D2,\ngreen: #C1E1C1,\npurple: #B19CD9,\nsilver: #EEEEEF,\nwhite: #FFFFFF,\nbrown: #836953,\nlight-brown: #feb035,\ndark-turquoise: #23cddc,\norange: #FFB347,\ntan: #E9D1BF,\nviolet: #B490B0,\npink: #FFD1DC,\ngrey: #E0E0E0,\nsky: #96BDC6,\npale-leaf: #CCD4BF",
     "filter_color1": "",
+    "share_image": "shopify:\/\/shop_images\/Copy_of_Copy_of_Copy_of_House_Garden.png",
     "share_facebook": true,
+    "contact_phone_number": "",
+    "contact_email": "info@joejoes.co.uk",
     "social_twitter_link": "https:\/\/twitter.com\/home",
     "social_facebook_link": "https:\/\/facebook.com\/",
     "social_pinterest_link": "https:\/\/pinterest.com\/",
     "social_instagram_link": "https:\/\/instagram.com\/",
+    "popular_search_queries": "Coffee Table, Sofas, Solar Lights",
     "wishlist_page": "wishlist",
     "product_compare_page": "product-compare",
     "show_cookie_consent": true,
     "gm_api": "AIzaSyD3yeSZBE_RTSx1FE3JtR0uUayaxJ_npRI",
     "instagram_token": "IGQVJXZAHppQ3g0a1BsTVlfNkE1VGRacVIyZAGtyNzhpWFJNSlhaM3p1N2ZA6ODVQUWJsV3hEWWFORzEwRFFKTVEyZAXdYaDVjSjU3b3d4b1lVeGZAlY01KMjNTcDQ1NTRXR1B4dEZAYcHQ2LWxkejl0NGJmUwZDZD",
     "custom_css": ".sf-nav li[data-index=\"0\"] .sf-menu-submenu__content {\n  padding-top: 20px;\n}\n\n.sf-nav li[data-index=\"0\"] .sf__menu-item-level2 .sf__sub-menu-link2 {\n  display: none;\n}\n.sf-nav li[data-index=\"0\"] .sf__menu-item-level2 .sf__sub-menu-column {\n  margin-top: 0;\n}\n#sf-custom-16232926423298a4de .section-my {\n  margin-top: 0;\n}\n.sf__footer-block-title {\n  font-weight: 600;\n}\n.sf__footer-bottom {\n  border-top: 1px solid #e5e5e5;\n}\n@media(min-width: 768px) {\n  #sf-custom-16232937433dca4bc9 .sf-custom__newsletter {\n    border-left: 1px solid #eee;\n  }\n}\n@media(min-width: 1025px) {\n  #sf-hero-16232932164704bbe7 .sf-hero__inner {\n    margin-left: -10%;\n  }\n}",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Copy_of_Copy_of_Copy_of_House_Garden.png",
     "use_theme_currencies": true,
     "theme_currencies": "USD | EUR | GBP | VND",
     "sections": {
@@ -264,7 +274,6 @@
           "shipping_text": "<p><strong>Free Shipping & Returns: <\/strong>On all orders over $75<\/p>",
           "show_trust_badges": true,
           "trust_badges_text": "<p>Guarantee safe & secure checkout<\/p>",
-          "trust_badges_image": "shopify:\/\/shop_images\/trustbag.png",
           "trust_badges_image_width": "320px",
           "use_sticky_atc": true,
           "sticky_atc_wishtlist": false,
@@ -298,7 +307,8 @@
             "type": "tab",
             "settings": {
               "header": "Shipping & Return",
-              "content": "<p>So beautiful you’ll want to show it off, so comfortable you’ll forget it’s there. Our 24\/7™ Lace Contour Plunge Bra combines gorgeous floral lace with sheer overlay straps that hold you in and eliminates gaping. Removable pads let you customize you<\/p>"
+              "content": "<p>So beautiful you’ll want to show it off, so comfortable you’ll forget it’s there. Our 24\/7™ Lace Contour Plunge Bra combines gorgeous floral lace with sheer overlay straps that hold you in and eliminates gaping. Removable pads let you customize you<\/p>",
+              "content_page": ""
             }
           },
           "b338ebc2-66e4-4649-98fd-71c43d9bffad": {
@@ -536,9 +546,9 @@
           "show_announcement": true,
           "homepage_only": true,
           "show_close": true,
-          "message": "<span class=\"tracking-wide\">WORLDWIDE SHIPPING • FREE SHIPPING ON ORDERS OVER $100<span><\/span><\/span>",
+          "message": "<span class=\"tracking-wide\">FREE SHIPPING ON ALL ORDERS <span><\/span><\/span>",
           "message_link": "",
-          "show_divider": false
+          "show_divider": true
         }
       },
       "16232926423298a4de": {
@@ -572,7 +582,7 @@
       "1623293128ea15b64a": {
         "type": "featured-collection",
         "settings": {
-          "heading": "The chair’s unique rail construction under<br> the seat in form-pressed.",
+          "heading": "Some of our lovely sofas",
           "subheading": "",
           "description": "",
           "header_alignment": "center",
@@ -580,7 +590,7 @@
           "background_color": "rgba(0,0,0,0)",
           "collection": "seating",
           "product_to_show": 12,
-          "items_per_row": 4,
+          "items_per_row": 6,
           "item_gap": 50,
           "item_gap_mobile": 10,
           "pcard_layout": "",
@@ -622,6 +632,7 @@
       },
       "162329352596f1ff1c": {
         "type": "custom-content",
+        "disabled": true,
         "blocks": {
           "71ad9efa-9538-4a97-8eb4-05da1ea4d0cf": {
             "type": "image_card",
@@ -702,7 +713,7 @@
             "type": "social",
             "settings": {
               "heading": "Follow Us On",
-              "description": "<p>Shapes and proportions are for your intellect. I’ve treated the waistcoat as if it were a corset.<\/p>",
+              "description": "",
               "width": "50%",
               "block_custom_class": ""
             }
@@ -750,7 +761,6 @@
           "6ea6ed22-93fe-44b9-ba36-ed6d6a154fb1": {
             "type": "feature",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Frame_1.png",
               "title": "Free Shipping",
               "description": "<p>Get complimentary ground shipping on every <br\/>order.Don’t love it? Send it back, on us.<\/p>",
               "link": ""
@@ -759,7 +769,6 @@
           "1ea29e3c-9321-4099-af56-bd254164ba22": {
             "type": "feature",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Frame_2.png",
               "title": "Earn Points",
               "description": "<p>Join Minimog Rewards to earn gift cards<br\/>and enjoy exclusive member benefits.<\/p>",
               "link": ""
@@ -768,7 +777,6 @@
           "2926f724-418c-4b7f-897b-aec0cdae3418": {
             "type": "feature",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Frame_3.png",
               "title": "Money Back Gurantee",
               "description": "<p>We believe getting dressed should be the <br\/>easiest part of your day.<\/p>",
               "link": ""
@@ -1003,10 +1011,10 @@
     "content_for_index": [
       "16232926423298a4de",
       "1630525862f0153637",
-      "162329352596f1ff1c",
-      "1623293128ea15b64a",
-      "16232932164704bbe7",
       "16302536407167d5f1",
+      "16232932164704bbe7",
+      "1623293128ea15b64a",
+      "162329352596f1ff1c",
       "16232937433dca4bc9"
     ]
   },
