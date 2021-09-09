@@ -58,9 +58,10 @@
     "social_twitter_link": "https:\/\/twitter.com\/home",
     "social_facebook_link": "https:\/\/facebook.com\/",
     "social_pinterest_link": "https:\/\/pinterest.com\/",
-    "social_instagram_link": "https:\/\/instagram.com\/",
+    "social_instagram_link": "https:\/\/instagram.com\/joejoeslimited",
+    "cart_estimate_shipping": false,
     "popular_search_queries": "Coffee Table, Sofas, Solar Lights",
-    "wishlist_page": "wishlist",
+    "wishlist_page": "my-wishlist",
     "product_compare_page": "product-compare",
     "show_cookie_consent": true,
     "gm_api": "AIzaSyD3yeSZBE_RTSx1FE3JtR0uUayaxJ_npRI",
@@ -175,7 +176,7 @@
               "container": "inherit",
               "stretch_width": false,
               "collection": "furniture",
-              "limit": 6,
+              "limit": 12,
               "columns": 2
             }
           }
@@ -553,6 +554,7 @@
       },
       "16232926423298a4de": {
         "type": "custom-content",
+        "disabled": true,
         "blocks": {
           "16232926423298a4de-1": {
             "type": "image",
@@ -582,7 +584,7 @@
       "1623293128ea15b64a": {
         "type": "featured-collection",
         "settings": {
-          "heading": "Some of our lovely sofas",
+          "heading": "Some of our lovely sofas\/chairs",
           "subheading": "",
           "description": "",
           "header_alignment": "center",
@@ -1006,15 +1008,63 @@
           "use_scroll_mobile": false,
           "gap_mobile": 16
         }
+      },
+      "1631209000a6d0f119": {
+        "type": "image-with-text-2",
+        "settings": {
+          "container": "container",
+          "hero_size": "medium",
+          "show_overlay": false,
+          "image": "shopify:\/\/shop_images\/Copy_of_Cosmetics_Discount_Sale_Landscape_Banner.png",
+          "bg_position": "center",
+          "parallax": false,
+          "content_in_container": false,
+          "content_position": "center middle",
+          "text_alignment": "center",
+          "text_size": "medium",
+          "text_color": "white",
+          "title": "",
+          "subtitle": "",
+          "text": "",
+          "button_label": "",
+          "button_link": "",
+          "button_style": "sf__btn-primary",
+          "button_size": ""
+        }
+      },
+      "163120920664ec5fa9": {
+        "type": "image-with-text-2",
+        "settings": {
+          "container": "container",
+          "hero_size": "medium",
+          "show_overlay": false,
+          "image": "shopify:\/\/shop_images\/sofacontent2.png",
+          "bg_position": "center",
+          "parallax": false,
+          "content_in_container": false,
+          "content_position": "center middle",
+          "text_alignment": "center",
+          "text_size": "medium",
+          "text_color": "white",
+          "title": "",
+          "subtitle": "",
+          "text": "",
+          "button_label": "",
+          "button_link": "",
+          "button_style": "sf__btn-primary",
+          "button_size": ""
+        }
       }
     },
     "content_for_index": [
+      "163120920664ec5fa9",
       "16232926423298a4de",
       "1630525862f0153637",
       "16302536407167d5f1",
       "16232932164704bbe7",
       "1623293128ea15b64a",
       "162329352596f1ff1c",
+      "1631209000a6d0f119",
       "16232937433dca4bc9"
     ]
   },
