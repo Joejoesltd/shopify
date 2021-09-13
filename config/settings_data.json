@@ -41,7 +41,7 @@
     "btn_base_size": 15,
     "pcard_layout": "1",
     "pcard_alignment": "center",
-    "pcard_image_ratio": "1\/1",
+    "pcard_image_ratio": "3\/4",
     "show_cart_button": false,
     "show_quickview_button": false,
     "show_compare_button": false,
@@ -512,8 +512,8 @@
         "settings": {
           "container": "container",
           "grid_layout": "grid",
-          "grid_columns": "4",
-          "pagination_limit": "12",
+          "grid_columns": "5",
+          "pagination_limit": "15",
           "collection_paginate": "paginate",
           "show_filter": true,
           "sidebar": "leftColumn"
