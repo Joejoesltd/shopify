@@ -1011,6 +1011,7 @@
       },
       "1631209000a6d0f119": {
         "type": "image-with-text-2",
+        "disabled": true,
         "settings": {
           "container": "container",
           "hero_size": "medium",
