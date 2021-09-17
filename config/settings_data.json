@@ -249,8 +249,8 @@
       "product-template": {
         "type": "product-template",
         "settings": {
-          "container": "container",
-          "layout": "layout-6",
+          "container": "container-fluid",
+          "layout": "layout-4",
           "show_tags": false,
           "show_vendor": false,
           "show_sku": false,
