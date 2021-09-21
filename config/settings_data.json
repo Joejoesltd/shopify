@@ -559,7 +559,7 @@
           "16232926423298a4de-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Copy_of_Black_and_White_Classy_Masculine_Fashion_Twitter_Post_2.png",
+              "image": "shopify:\/\/shop_images\/JoeJoes-Banner-FirstShop.png",
               "width": "100%",
               "alignment": "center",
               "block_custom_class": ""
@@ -863,14 +863,6 @@
               "item_image": "shopify:\/\/shop_images\/8c792e5b-bc7d-4efb-8e5b-051649e39738_7512d62b-f879-4f5c-82fe-61771ce2cb54.jpg"
             }
           },
-          "d03f37f6-2fff-4f99-85f6-2144a396e712": {
-            "type": "collection_block",
-            "settings": {
-              "collection": "garden-decor",
-              "title": "",
-              "item_image": "shopify:\/\/shop_images\/ed6201c9-1126-4e61-b49f-d336d2883d61_900x_348ff371-77cd-41cb-a3a4-d034a13f9f75.jpg"
-            }
-          },
           "09b4067f-c5c3-48be-ab75-a62dad9d3698": {
             "type": "collection_block",
             "settings": {
@@ -893,6 +885,14 @@
               "collection": "lighting",
               "title": "",
               "item_image": "shopify:\/\/shop_images\/RopeChandelierLightFitting5_900x_85acdc60-e041-4368-8875-de145b4f060c.jpg"
+            }
+          },
+          "d03f37f6-2fff-4f99-85f6-2144a396e712": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "garden-decor",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/72579670gmgm_1.jpg"
             }
           },
           "9b5570ca-eb8e-45f3-ac04-b34b93e1a1de": {
@@ -919,15 +919,15 @@
           "ea24a763-f333-4600-8d20-f21452322952",
           "6b40ccd1-3323-49c7-b93f-f1c51dcee33f",
           "bc9e0b76-9772-4bf0-88a0-b1284b3ff435",
-          "d03f37f6-2fff-4f99-85f6-2144a396e712",
           "09b4067f-c5c3-48be-ab75-a62dad9d3698",
           "1d71995f-9d34-43b3-95e0-b4fd6ba2221e",
           "d175678d-631b-4bed-a43d-f2cdd8080405",
+          "d03f37f6-2fff-4f99-85f6-2144a396e712",
           "9b5570ca-eb8e-45f3-ac04-b34b93e1a1de",
           "16302536407167d5f1-2"
         ],
         "settings": {
-          "heading": "Shop by Department",
+          "heading": "",
           "subheading": "",
           "description": "",
           "header_alignment": "center",
@@ -939,7 +939,7 @@
           "hover_effect": "scaling-down",
           "show_product_count": false,
           "count_inline_title": true,
-          "image_rounded": true,
+          "image_rounded": false,
           "items_per_row": 6,
           "item_gap": 0,
           "mobile_gap": 10,
@@ -1037,9 +1037,9 @@
         "type": "image-with-text-2",
         "settings": {
           "container": "container",
-          "hero_size": "medium",
+          "hero_size": "large",
           "show_overlay": false,
-          "image": "shopify:\/\/shop_images\/sofacontent2.png",
+          "image": "shopify:\/\/shop_images\/JoeJoes-Banner-FirstShop.png",
           "bg_position": "center",
           "parallax": false,
           "content_in_container": false,
@@ -1058,8 +1058,8 @@
       }
     },
     "content_for_index": [
-      "163120920664ec5fa9",
       "16232926423298a4de",
+      "163120920664ec5fa9",
       "1630525862f0153637",
       "16302536407167d5f1",
       "16232932164704bbe7",
