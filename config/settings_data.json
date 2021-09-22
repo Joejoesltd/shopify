@@ -512,9 +512,9 @@
         "settings": {
           "container": "container",
           "grid_layout": "grid",
-          "grid_columns": "5",
-          "pagination_limit": "15",
-          "collection_paginate": "paginate",
+          "grid_columns": "4",
+          "pagination_limit": "16",
+          "collection_paginate": "autoscroll",
           "show_filter": true,
           "sidebar": "leftColumn"
         }
