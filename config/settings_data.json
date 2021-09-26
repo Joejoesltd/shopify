@@ -1011,12 +1011,11 @@
       },
       "1631209000a6d0f119": {
         "type": "image-with-text-2",
-        "disabled": true,
         "settings": {
           "container": "container",
           "hero_size": "medium",
           "show_overlay": false,
-          "image": "shopify:\/\/shop_images\/Copy_of_Cosmetics_Discount_Sale_Landscape_Banner.png",
+          "image": "shopify:\/\/shop_images\/New_Project_1.png",
           "bg_position": "center",
           "parallax": false,
           "content_in_container": false,
