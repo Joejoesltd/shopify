@@ -611,6 +611,7 @@
       },
       "16232932164704bbe7": {
         "type": "image-with-text-2",
+        "disabled": true,
         "settings": {
           "container": "container",
           "hero_size": "medium",
@@ -1054,6 +1055,20 @@
           "button_style": "sf__btn-primary",
           "button_size": ""
         }
+      },
+      "163447853943c4ec99": {
+        "type": "custom-content",
+        "settings": {
+          "heading": "",
+          "subheading": "",
+          "description": "",
+          "header_alignment": "center",
+          "container": "container-fluid",
+          "background_color": "",
+          "gap": 30,
+          "use_scroll_mobile": false,
+          "gap_mobile": 16
+        }
       }
     },
     "content_for_index": [
@@ -1062,6 +1077,7 @@
       "1630525862f0153637",
       "16302536407167d5f1",
       "16232932164704bbe7",
+      "163447853943c4ec99",
       "1623293128ea15b64a",
       "162329352596f1ff1c",
       "1631209000a6d0f119",
