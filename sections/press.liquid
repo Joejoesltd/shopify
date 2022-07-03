@@ -14,7 +14,7 @@
 {% assign items = section.blocks.size %}
 <section
     id="sf__press-{{ section.id }}"
-    class="sf-press"
+    class="sf-press {{ section.settings.custom_class }}"
     data-section-type="press"
     data-section-id="{{ section.id }}"
     {% if has_bg %}
@@ -149,6 +149,11 @@
                 "type": "checkbox",
                 "id": "autoplay",
                 "label": "Auto-rotate content"
+            },
+            {
+                "type": "text",
+                "id": "custom_class",
+                "label": "Custom classes"
             }
         ],
         "blocks": [

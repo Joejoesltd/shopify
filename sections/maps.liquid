@@ -2,6 +2,7 @@
     {{ section.settings.container }}
 {% endcapture %}
 {%- assign st = section.settings -%}
+{% if section.settings.show_map %}
 <section data-section-type="google-maps" data-section-id={{ section.id }}>
   <div class="{{ container }}">
     <div class="sf__contact-map">
@@ -9,10 +10,17 @@
     </div>
   </div>
 </section>
+{% endif %}
 {% schema %}
 {
   "name": "Google Maps",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_map",
+      "label": "Show map",
+      "default": true
+    },
     {
       "type": "header", 
       "content": "General"

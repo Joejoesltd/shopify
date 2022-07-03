@@ -2,7 +2,7 @@
     <div class="flex flex-wrap sf-prod__container sf-prod__block">
         <div class="w-full md:w-7/12">
             <div class="sf-prod-media__wrapper">
-                <div class="sf-product-media__desktop hidden md:block grid grid-cols-2 gap-2.5 pt-6">
+                <div class="sf-product-media__desktop hidden md:grid grid grid-cols-2 gap-2.5">
                   {% for media in product.media %}
                     {%- assign remainder = forloop.index0 | modulo: 3 -%}
                     <div class="sf-prod-media-item media-type-{{ media.media_type }} overflow-hidden relative group {% if remainder == 0 or product.media.size < 3 %}col-span-2{% endif %}" data-index={{ forloop.index0 }}>

@@ -1,198 +1,85 @@
 {%- assign st = settings -%}
+{% assign variant = product.selected_or_first_available_variant %}
 
 {% if card_style == nil or card_style == blank %}
-    {%- assign card_style = st.pcard_layout -%}
+  {%- assign card_style = st.pcard_layout -%}
 {% endif %}
 
 {% if image_ratio == nil or image_ratio == blank %}
-    {%- assign image_ratio = st.pcard_image_ratio | default: '1/1' -%}
+  {%- assign image_ratio = st.pcard_image_ratio | default: '1/1' -%}
 {% endif %}
 
+{%- if image_ratio == 'original' -%}
+  {%- assign image_ratio = product.featured_image.aspect_ratio | default: '1/1' -%}
+{%- endif -%}
+
 {% if show_vendor == nil %}
-    {% assign show_vendor = st.show_vendor %}
+  {% assign show_vendor = st.show_vendor %}
 {% endif %}
 
 {%- assign alignment = st.pcard_alignment -%}
 
 {% if uppercase_prd_name == nil %}
-    {% assign uppercase_prd_name = st.uppercase_prd_name %}
+  {% assign uppercase_prd_name = st.uppercase_prd_name %}
+{% endif %}
+
+{% assign on_sale = false %}
+{% assign sold_out = true %}
+{% assign discount = '' %}
+{% if variant.available %}
+  {% assign sold_out = false %}
+{% endif %}
+{%- assign compare_at_price = variant.compare_at_price -%}
+{%- assign price = variant.price -%}
+
+{% for variant in product.variants %}
+  {% if variant.inventory_management == 'shopify' and variant.inventory_policy == 'continue' and variant.inventory_quantity == 0 %}
+    {% assign sold_out = false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if compare_at_price > price %}
+  {% assign on_sale = true %}
+  {% assign discount = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price %}
+{% endif %}
+
+{% assign on_sale_badge = settings.on_sale_badge %}
+{% assign show_on_sale_badge = false %}
+{% if on_sale_badge != 'hide' and on_sale %}
+  {% assign show_on_sale_badge = true %}
+
 {% endif %}
 
 {%- capture form_id -%}product-card-form-{{product.id}}__{{ "now" | date: "%L" }}{%- endcapture -%}
-
 {% if column_wrapper %}<div class="sf-column">{% endif %}
-<div class="sf__pcard{% unless product.available %} sf__pcard--soldout{% endunless %} cursor-pointer sf-prod__block sf__pcard-style-{{card_style}}" data-view="card">
-    {%- form 'product', product, id: form_id, class: 'product-form form', novalidate: 'novalidate', data-product-id: product.id, data-product-handle: product.handle -%}
-    <input hidden name="id" required value="{{ product.selected_or_first_available_variant.id }}">
-    <div class="sf__pcard-image {% unless st.show_second_img %} spc__img-only{% endunless %}">
-        <div class="overflow-hidden cursor-pointer relative sf__image-box">
-            <div class="flex justify-center items-center">
-                <a href="{{ product.url | within: collection }}" class="block w-full">
-                    {% for image in product.images %}
-                      {% assign image_attributes = 'alt="' | append: product.title | append: '"' %}
-                        {% if forloop.index0 < 2 %}
-                            {%- capture image_class -%}
-                                {%- if forloop.index0 == 0 -%}{% if forloop.length == 1 %}spc__img-only {% endif %}spc__main-img{%- else -%}spc__hover-img{%- endif -%}
-                            {%- endcapture -%}
-                            <div class="{{ image_class }}">
-                                {% render 'responsive-image', image: image, aspect_ratio: image_ratio, image_class: 'se-out w-full h-full', image_attributes: image_attributes %}
-                            </div>
-                        {% endif %}
-                    {% else %}
-                        <div style="--aspect-ratio: {{ image_ratio }}">
-                          <img src="https://dummyimage.com/408x535/ddd/aaa" alt="{{ product.title }}" />
-                        </div>
-                    {% endfor %}
-                </a>
-            </div>
-            {%- if st.show_badge_sale -%}
-                <!-- Labels (Hot, new, sale) -->
-                <div class="sf__pcard-tags absolute z-10 flex flex-wrap">
-                    {% render 'product-tags', product: product %}
-                </div>
-            {%- endif -%}
-            <!-- Action (quick-view, compare, wishlist) -->
-            {%- if card_style == '2' -%}
-                {%- if st.show_quickview_button or st.show_cart_button or st.show_compare_button -%}
-                    <div class="sf__pcard-action">
-                        <div class="sf__pcard-group-action">
-                            {%- if st.show_cart_button and product.available -%}
-                                {% render 'tooltip', type: 'add-to-cart', product: product, class_name: 'sf__tooltip-top' %}
-                            {%- endif -%}
-                            {%- if st.show_quickview_button -%}
-                              {% render 'tooltip', type: 'quick-view', product: product, class_name: 'sf__tooltip-top' %}
-                            {%- endif -%}
-                            {%- if st.show_wishlist_button -%}
-                                {% render 'tooltip', type: 'wishlist', product: product, class_name: 'sf__tooltip-top' %}
-                            {%- endif -%}
-                            {%- if st.show_compare_button -%}
-                                {% render 'tooltip', type: 'compare', product: product, class_name: 'sf__tooltip-top' %}
-                            {%- endif -%}
-                        </div>
-                    </div>
-                {%- endif -%}
-            {%- endif -%}
-            {%- if card_style == '1' -%}
-                {%- if st.show_quickview_button or st.show_wishlist_button or st.show_compare_button -%}
-                    <div class="sf__pcard-action hidden md:block z-10">
-                        {%- if st.show_wishlist_button -%}
-                            {% render 'tooltip', type: 'wishlist', product: product, class_name: 'sf__tooltip-left' %}
-                        {%- endif -%}
-                        {%- if st.show_compare_button -%}
-                            {% render 'tooltip', type: 'compare', product: product, class_name: 'sf__tooltip-left' %}
-                        {%- endif -%}
-                        {%- if st.show_quickview_button -%}
-                            {% render 'tooltip', type: 'quick-view', product: product, class_name: 'sf__tooltip-left' %}
-                        {%- endif -%}
-                    </div>
-                {%- endif -%}
-            {%- endif -%}
-            {%- if st.show_countdown -%}
-                {% assign metafields_time = product.metafields.global['minimog__countdown'] %}
-                <!-- Coutdown -->
-                {% if metafields_time != blank %}
-                    <div
-                        class="prod__countdown w-full p-2 xl:p-4"
-                        data-product-id="{{ product.id }}" data-metafields-time="{{ metafields_time }}"
-                    >
-                        {% render 'product-card-countdown', countdown_tag: tag %}
-                    </div>
-                {% endif %}
-            {%- endif -%}
+{%- if card_style == '1' -%}
+  {% render 'product-card-1', product: product, card_style: card_style, image_ratio: image_ratio, show_vendor: show_vendor, st: st, image_ratio: image_ratio, show_vendor: show_vendor,
+  alignment: alignment, uppercase_prd_name: uppercase_prd_name, sold_out: sold_out, on_sale: on_sale, discount: discount, on_sale_badge: on_sale_badge, show_on_sale_badge: show_on_sale_badge,
+  variant: variant, st: st
+  %}
+{%- endif -%}
+{%- if card_style == '2' -%}
+  {% render 'product-card-2', product: product, card_style: card_style, image_ratio: image_ratio, show_vendor: show_vendor, st: st, image_ratio: image_ratio, show_vendor: show_vendor,
+  alignment: alignment, uppercase_prd_name: uppercase_prd_name, sold_out: sold_out, on_sale: on_sale, discount: discount, on_sale_badge: on_sale_badge, show_on_sale_badge: show_on_sale_badge,
+  variant: variant, st: st %}
+{%- endif -%}
 
-            {%- if card_style == '1' -%}
-                {%- if st.show_cart_button -%}
-                    {% assign btnText = 'products.product.quick_add' | t %}
-                    <!-- Product option size -->
-                    <div class="sf__pcard-quick-add hidden md:flex">
-                      {%- if product.has_only_default_variant -%}
-                            {% render 'product-atc', product: product, btn_text: btnText, class: 'sf__btn-white' %}
-                        {% else %}
-                          <button class="sf-pqv__button quick-add sf__btn sf__btn-white flex-grow" data-product-handle="{{ product.handle }}">
-                            <span>{{ btnText }}</span>
-                          </button>
-                      {% endif %}
-                    </div>
-                {%- endif -%}
-            {% endif %}
-        </div>
-    </div>
-    <div class="sf__pcard-content text-{{ alignment }}">
-        <div>
-            <div class="max-w-full w-full">
-                {%- if show_vendor -%}
-                    <span class="sf__pcard-vendor block uppercase text-xs mb-2 pt-4">{{ product.vendor }}</span>
-                {%- endif -%}
-                <a href="{{ product.url | within: collection }}" class="block mb-[5px] leading-normal sf__pcard-name{% if uppercase_prd_name %} uppercase{% endif %} {% if show_vendor %}mt-2{% else %}mt-3 lg:mt-5{% endif %} font-medium hover:text-color-secondary">
-                    {{ product.title | escape }}
-                </a>
-            </div>
-            {% if variant == blank %}
-                {% assign variant = product.selected_or_first_available_variant %}
-            {% endif %}
-            <div class="sf__pcard-price leading-normal{% if variant.compare_at_price > variant.price %} price--on-sale{% endif %}">
-                {% render 'product-prices', product: product %}
-            </div>
-            {%- for option in product.options_with_values -%}
-                {% assign option_name = option.name | downcase %}
-                {% case settings.pcard_alignment %}
-                    {% when 'left' %}
-                        {% assign alignment = 'start' %}
-                    {% when 'right' %}
-                        {% assign alignment = 'end' %}
-                    {% else %}
-                        {% assign alignment = 'center' %}
-                {% endcase %}
-                {% if st.show_swatch_option %}
-                    {% if option_name == "color" or option_name == "colour" %}
-                        <div class="mt-3 sf__pcard-options-color flex flex-wrap items-center justify-{{ alignment }}">
-                            <div class="flex flex-wrap mx-[-5px]">
-                                {% for value in option.values %}
-                                <div class="sf__tooltip-item sf__tooltip-top sf__tooltip-style-2">
-                                    <div class="sf__variant-swatch relative flex justify-center items-center">
-                                        <div
-                                          {% if option.selected_value == value %} data-selected="true" {% endif %}
-                                          class="product-option-item flex items-center justify-center cursor-pointer"
-                                          data-option-position="{{ option.position }}"
-                                          data-option-type="color"
-                                        >
-                                          {{ value }}
-                                        </div>
-                                    </div>
-                                    <span class="sf__tooltip-content capitalize">{{ value }}</span>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endif %}
-            {%- endfor -%}
-        </div>
-        <div class="content-view-list mt-5 hidden">
-            <div class="lding-7 text-color-secondary mb-4">{{ product.description | strip_html | truncatewords: 15, '...' }}</div>
-            <div class="flex items-start">
-                {%- if st.show_cart_button -%}
-                    <button class="sf__btn sf__btn-primary">{{ 'products.product.quick_add' | t }}</button>
-                {%- endif -%}
-                <div class="grid grid-cols-3 gap-2.5 ml-2.5">
-                    {%- if st.show_wishlist_button -%}
-                        {% render 'tooltip', type: 'wishlist', product: product, class_name: 'sf__tooltip-bottom' %}
-                    {%- endif -%}
-                    {%- if st.show_compare_button -%}
-                        {% render 'tooltip', type: 'compare', product: product, class_name: 'sf__tooltip-bottom' %}
-                    {%- endif -%}
-                    {%- if st.show_quickview_button -%}
-                        {% render 'tooltip', type: 'quick-view', product: product, class_name: 'sf__tooltip-bottom' %}
-                    {%- endif -%}
-                </div>
-            </div>
-        </div>
-    </div>
-    {%- endform -%}
-    {% if card_style == '2' %}
-        <div class='background-color-expand'></div>
-    {% endif %}
-</div>
-{% if column_wrapper %}</div>{% endif %}
+{%- if card_style == '3' -%}
+  {% render 'product-card-3', product: product, card_style: card_style, image_ratio: image_ratio, show_vendor: show_vendor, st: st, image_ratio: image_ratio, show_vendor: show_vendor,
+  alignment: alignment, uppercase_prd_name: uppercase_prd_name, sold_out: sold_out, on_sale: on_sale, discount: discount, on_sale_badge: on_sale_badge, show_on_sale_badge: show_on_sale_badge,
+  variant: variant, st: st %}
+{%- endif -%}
+{%- if card_style == '4' -%}
+  {% render 'product-card-4', product: product, card_style: card_style, image_ratio: image_ratio, show_vendor: show_vendor, st: st, image_ratio: image_ratio, show_vendor: show_vendor,
+  alignment: alignment, uppercase_prd_name: uppercase_prd_name, sold_out: sold_out, on_sale: on_sale, discount: discount, on_sale_badge: on_sale_badge, show_on_sale_badge: show_on_sale_badge,
+  variant: variant, st: st %}
+{%- endif -%}
+{%- if card_style == '5' -%}
+  {% render 'product-card-5', product: product, card_style: card_style, image_ratio: image_ratio, show_vendor: show_vendor, st: st, image_ratio: image_ratio, show_vendor: show_vendor,
+  alignment: alignment, uppercase_prd_name: uppercase_prd_name, sold_out: sold_out, on_sale: on_sale, discount: discount, on_sale_badge: on_sale_badge, show_on_sale_badge: show_on_sale_badge,
+  variant: variant, st: st %}
+{%- endif -%}
+{% if column_wrapper %}  {% render 'banana-stand-product-list-container', product: product %}
+</div>{% endif %}
 
-{% render 'banana-stand-product-list-container', product: product %}

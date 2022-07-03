@@ -18,6 +18,13 @@
         {%- capture revert_text -%}{{ 'products.product.remove_from_compare' | t }}{%- endcapture -%}
         {%- assign class = 'sf-prod-compare__button' -%}
         {%- assign contentClass = 'sf-prod-compare__button-content' -%}
+    {% when 'compare-vertical' %}
+        {%- assign icon_name = 'exchange-solid' -%}
+        {%- assign icon_name_active = 'exchange-solid' -%}
+        {%- capture content -%}{{ 'products.product.add_to_compare' | t }}{%- endcapture -%}
+        {%- capture revert_text -%}{{ 'products.product.remove_from_compare' | t }}{%- endcapture -%}
+        {%- assign class = 'sf-prod-compare__button' -%}
+        {%- assign contentClass = 'sf-prod-compare__button-content' -%}
     {% when 'remove-from-compare' %}
         {%- assign icon_name = 'x' -%}
         {%- capture content -%}{{ 'products.product.remove_from_compare' | t }}{%- endcapture -%}
@@ -29,15 +36,20 @@
         {%- assign class = 'sf-prod-media__zoom-in' -%}
         {%- assign contentClass = '' -%}
     {% when 'add-to-cart' %}
-        {%- capture content -%}{{ 'products.product.quick_add' | t }}{%- endcapture -%}
+        {% capture btnText %}{{ 'products.product.select_options' | t }}{% endcapture %}
+        {% if btnText contains 'translation missing' %}
+          {% capture btnText %}Select options{% endcapture %}
+        {% endif %}
         {% if product.has_only_default_variant  %}
           {% assign class = 'add-to-cart' %}
+          {% assign btnText = 'products.product.add_to_cart' | t %}
         {% else %}
           {% assign class = 'sf-pqv__button' %}
         {% endif %}
         {% unless product.available %}
           {% assign class = class | append: 'disabled' %}
         {% endunless %}
+        {%- capture content -%}{{ btnText }}{%- endcapture -%}
     {% else %}
         {%- assign icon_name = 'star' -%}
         {%- assign content = 'Toolip type not found' -%}

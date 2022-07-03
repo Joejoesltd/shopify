@@ -22,36 +22,15 @@
                     {% if section.settings.show_social_links %}
                         {% render 'social-media-links', box_size: 'md:justify-end ml-3 mb-6 lg:mb-0' %}
                     {% endif %}
-                    {% if section.settings.show_payment_icons %}
-                        <div class="flex lg:ml-4 lg:mb-0 mb-6">
-                            <span class="hidden">{{ 'general.payment.options' | t }}: </span>
-                            <ul class="flex">
-                                {%- for type in shop.enabled_payment_types -%}
-                                    <li class="mr-2.5">
-                                        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                                    </li>
-                                {%- endfor -%}
-                            </ul>
-                        </div>
-                    {% endif %}
+                    {% render 'payment-icons', section: section %}
                 </div>
             {% when 'footer-2' %}
                 {% if section.settings.show_payment_icons %}
-                <div class="sf-footer__left w-full flex-1 mb-6 lg:mb-0 lg:w-auto">
-                    {% if section.settings.show_payment_icons %}
-                        <div class="flex">
-                            <span class="hidden">{{ 'general.payment.options' | t }}: </span>
-                            <ul class="flex">
-                                {%- for type in shop.enabled_payment_types -%}
-                                    <li class="mr-2.5">
-                                        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                                    </li>
-                                {%- endfor -%}
-                            </ul>
-                        </div>
-                    {% endif %}
-                </div>
+                  <div class="sf-footer__left w-full flex-1 mb-6 lg:mb-0 lg:w-auto">
+                    {% render 'payment-icons', section: section %}
+                  </div>
                 {% endif %}
+
                 {% if section.settings.copyright != blank %}
                 <div class="sf-footer__center flex-1 text-left lg:text-center mb-6 lg:mb-0 lg:order-none lg:w-auto w-full">
                     <span class="text-sm">{{ section.settings.copyright }}</span>
@@ -94,18 +73,9 @@
                 </div>
                 {% endif %}
                 {% if section.settings.show_payment_icons %}
-                    <div class="sf-footer__right mb-6 lg:mb-0 flex-1 flex justify-start lg:w-auto w-full lg:justify-end">
-                        <div class="flex">
-                            <span class="hidden">{{ 'general.payment.options' | t }}: </span>
-                            <ul class="flex">
-                                {%- for type in shop.enabled_payment_types -%}
-                                    <li class="{% unless forloop.last %}mr-2.5{% endunless %}">
-                                        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                                    </li>
-                                {%- endfor -%}
-                            </ul>
-                        </div>
-                    </div>
+                  <div class="sf-footer__right mb-6 lg:mb-0 flex-1 flex justify-start lg:w-auto w-full lg:justify-end">
+                    {% render 'payment-icons', section: section %}
+                  </div>
                 {% endif %}
             {% else %}
             {% endcase %}

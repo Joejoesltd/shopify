@@ -29,9 +29,9 @@
             {% if product != blank %}
                 {%- assign prod = all_products[product] -%}
                 <div
-                        class="absolute group w-8 h-8 p-1 -translate-x-1/2 -translate-y-1/2 cursor-pointer hover:z-10 sf__hover-lookbook-icon "
-                        style="top: {{ top }}%; left: {{ left }}%;"
-                        data-id="{{ block.id }}-{{ i }}"
+                  class="absolute group w-8 h-8 p-1 -translate-x-1/2 -translate-y-1/2 cursor-pointer hover:z-10 sf__hover-lookbook-icon "
+                  style="top: {{ top }}%; left: {{ left }}%;"
+                  data-id="{{ block.id }}-{{ i }}"
                 >
                     <span class="flex">
                         <span class="top-1.5 left-1.5 animate-ping absolute h-5 w-5 rounded-full opacity-75 {{ btn_wrap }}"></span>

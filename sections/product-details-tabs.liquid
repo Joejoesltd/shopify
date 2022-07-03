@@ -1,58 +1,38 @@
 {% assign bg_color = section.settings.bg_color %}
-
 {% if section.settings.show_product_tabs and section.blocks.size > 0 %}
-    <section
-        class="sf-product__section sf-product__section-tabs"
-        data-section-type="tabs" data-section-id="{{ section.id }}"
-        style="background-color: {{ bg_color }}"
-    >
-      <div class="{{ section.settings.container }}">
-        <div class="hidden md:block">
-          <div class="sf-tabs">
-            <div class="flex border-b border-color-border justify-center">
-              {% for block in section.blocks %}
-                <div class="sf-tab-header text-lg cursor-pointer" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-                  {{ block.settings.header }}
-                </div>
-              {% endfor %}
-            </div>
-            <div class="py-8 md:py-10">
-              {% for block in section.blocks %}
-                <div class="sf-tab-content opacity-0">
-                  <div class="{% if block.type != 'reviews' %} prose{% endif %}">
-                    {% case block.type %}
-                      {% when 'description' %}
-                        {{ product.description }}
-                      {% when 'reviews' %}
-                        <div class="container-narrow">
-                          {% render 'product-reviews-app__snippet' %}
-                        </div>
-                      {% when 'tab' %}
-                        {{ block.settings.content }}
-                        {{ block.settings.content_page.content }}
-                      {% else %}
-                    {% endcase %}
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-
-        <div class="block md:hidden sf-pdt__accordion">
+  <section
+      class="sf-product__section sf-product__section-tabs"
+      data-section-type="tabs"
+      data-section-id="{{ section.id }}"
+      style="background-color: {{ bg_color }}"
+  >
+    <div class="{{ section.settings.container }}">
+      <div class="sf-tabs sf-tabs--responsive sf-pdt__accordion">
+        <div class="hidden md:flex border-b border-color-border justify-center">
           {% for block in section.blocks %}
-            <div class="sf__accordion-item mb-6 border-b border-color-border" {{ block.shopify_attributes }} style="--content-max-height:0px;">
+            <div class="sf-tab-header text-lg cursor-pointer" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              {{ block.settings.header }}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="md:py-10">
+          {% for block in section.blocks %}
+            <div class="sf__accordion-item sf-tab-content md:opacity-0{% if forloop.first %} open{% endif %}" data-block-type={{ block.type }}{% if forloop.first == false %} style="--content-max-height:0px;"{% endif %}>
               <div class="sf__accordion-button pb-3 pr-4">{{ block.settings.header }}</div>
-              <div class="sf__accordion-content text-color-secondary">
-                <div class="pb-8{% if block.type != 'reviews' %} prose{% endif %}">
+              <div class="sf__accordion-content">
+                <div class="pb-8 {% if block.type != 'reviews' %}prose{% endif %}">
                   {% case block.type %}
                     {% when 'description' %}
                       {{ product.description }}
                     {% when 'reviews' %}
-                      {% render 'product-reviews-app__snippet' %}
+                      <div class="{% if block.settings.container %}container-narrow{% else %}w-full{% endif %}">
+                        {% render 'product-reviews-app__snippet', custom_liquid: block.settings.custom_liquid %}
+                      </div>
                     {% when 'tab' %}
                       {{ block.settings.content }}
                       {{ block.settings.content_page.content }}
+                    {% when 'liquid' %}
+                      {{ block.settings.custom_liquid }}
                     {% else %}
                   {% endcase %}
                 </div>
@@ -61,8 +41,9 @@
           {% endfor %}
         </div>
       </div>
+    </div>
 
-    </section>
+  </section>
     <script>
         window.themeScriptURLs.tabs.required = true
     </script>
@@ -142,6 +123,22 @@
                         "id": "header",
                         "label": "Tab header",
                         "default": "Product reviews"
+                    },
+                    {
+                        "type": "checkbox",
+                        "id": "container",
+                        "label": "Narrow content",
+                        "default": true
+                    },
+                    {
+                      "type": "header",
+                      "content": "Other review app"
+                    },
+                    {
+                      "type": "liquid",
+                      "id": "custom_liquid",
+                      "label": "Custom liquid",
+                      "info": "Paste the liquid code of the app review here"
                     }
                 ]
             },
@@ -166,6 +163,23 @@
                         "type": "page",
                         "id": "content_page",
                         "label": "Tab content from page"
+                    }
+                ]
+            },
+            {
+                "type": "liquid",
+                "name": "Custom liquid",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "header",
+                        "label": "Tab heading",
+                        "default": "Tab heading"
+                    },
+                    {
+                      "type": "liquid",
+                      "id": "custom_liquid",
+                      "label": "Custom liquid"
                     }
                 ]
             }

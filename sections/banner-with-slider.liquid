@@ -12,7 +12,7 @@
 
 <section
     id="sf__img-width-slider-{{ section.id }}"
-    class="slider-{{ section.id }} sf__banner-with-slider"
+    class="slider-{{ section.id }} sf__banner-with-slider {{ section.settings.custom_class }}"
     data-section-type="banner-with-slider"
     data-section-id="{{ section.id }}"
 b    data-autoplay="{% if request.design_mode %}false{% else %}{{ section.settings.slide_autoplay }}{% endif %}"
@@ -446,6 +446,11 @@ b    data-autoplay="{% if request.design_mode %}false{% else %}{{ section.settin
                 }
                 ],
                 "default": ""
+            },
+            {
+                "type": "text",
+                "id": "custom_class",
+                "label": "Custom classes"
             }
         ],
         "blocks": [

@@ -29,7 +29,7 @@
                   md:grid-cols-{{ section.settings.columns | minus: 1 }} xl:grid-cols-{{ section.settings.columns }}
                 {%- endcapture -%}
                 <div class="sf-grid md:grid {{ grid_class | strip_newlines }}" data-grid-container>
-                  <div class="swiper-wrapper" data-product-list></div>  
+                  <div class="swiper-wrapper" data-product-list></div>
                 </div>
                 {% if enable_slider %}
                   {% render 'slider-controls', absolute: true, show_nav: true, container: section.settings.container, custom_class: 'hidden' %}

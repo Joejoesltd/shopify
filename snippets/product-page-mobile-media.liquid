@@ -10,13 +10,22 @@
                 {% for media in product.media %}
                     <div data-index="{{ forloop.index0 }}" class="swiper-slide sf-prod-media-item" data-media-type="{{ media.media_type }}">
                         {% render 'media', media: media, aspect_ratio: product.featured_image.aspect_ratio %}
+                        <div class="zoom-in transition-all opacity-100 md:opacity-0 absolute z-10 right-5 md:-right-14 bottom-2.5">
+                            {% render 'tooltip', type: 'zoom-in', class_name: 'sf__tooltip-left' %}
+                        </div>
                     </div>
                 {% endfor %}
             </div>
-            <div class="swiper-pagination"></div>
         </div>
+        {% if section.settings.show_nav_media_mobile %}
+            {% render 'product-nav-media-mobile' %}
+        {% endif %} 
+        {% if section.settings.show_pagination_mobile %}
+        <div class="swiper-pagination"></div>
+        {% endif %}
     {% endif %}
   {% if section.settings.show_atwl %}
     {% render 'tooltip', type: 'wishlist', class_name: 'sf__tooltip-top product-mb__atwl' %}
   {% endif %}
 </div>
+ 

@@ -18,9 +18,9 @@
 {% assign image_ratio = section.settings.pcard_image_ratio %}
 {% assign show_vendor = section.settings.show_vendor %}
 {% assign pcard_alignment = section.settings.pcard_alignment %}
-
+{% assign card_style = section.settings.pcard_layout %}
 <section
-    class="featured-slider"
+    class="featured-slider {{ section.settings.custom_class }}"
     data-section-type="featured-slider"
     data-section-id="{{ section.id }}"
     data-autoplay="{{ section.settings.slide_autoplay }}"
@@ -41,8 +41,8 @@
                     <div class="swiper-wrapper">
                         {% for block in section.blocks %}
                             {%- assign product = all_products[block.settings.product] -%}
-                            <div class="swiper-slide {% if section.settings.container == 'container' %}md:px-6{% else %}md:px-20{% endif %}">
-                                <div class="featured-slider__product">
+                            <div class="swiper-slide {% if section.settings.container == 'container' %}xl:px-6{% else %}xl:px-12{% endif %}">
+                                <div class="featured-slider__product pb-2">
                                     {% if block.settings.heading != blank or block.settings.description != blank %}
                                         <div class="featured-slider__product-content text-center mb-6">
                                             {% if block.settings.heading != blank %}
@@ -55,7 +55,7 @@
                                     {% endif %}
                                     {% if product != blank %}
                                         <div class="lg:px-5">
-                                            {% render 'product-card', product: product, card_style: "1", image_ratio: image_ratio, show_vendor: show_vendor, alignment: pcard_alignment %}
+                                            {% render 'product-card', product: product, card_style: card_style, image_ratio: image_ratio, show_vendor: show_vendor, alignment: pcard_alignment %}
                                         </div>
                                     {% else %}
                                         <div class="text-{{ settings.pcard_alignment }}">
@@ -233,6 +233,34 @@
             },
             {
                 "type": "select",
+                "id": "pcard_layout",
+                "label": "Design layout",
+                "default": "",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Use global settings"
+                    },
+                    {
+                        "value": "1",
+                        "label": "Style 1"
+                    },
+                    {
+                        "value": "2",
+                        "label": "Style 2"
+                    },
+                    {
+                        "value": "3",
+                        "label": "Style 3"
+                    },
+                    {
+                        "value": "4",
+                        "label": "Style 4"
+                    }
+                ]
+            },
+            {
+                "type": "select",
                 "id": "pcard_alignment",
                 "label": "Content alignment",
                 "default": "left",
@@ -288,6 +316,11 @@
                 "id": "show_vendor",
                 "label": "Show product vendors",
                 "default": false
+            },
+            {
+                "type": "text",
+                "id": "custom_class",
+                "label": "Custom classes"
             }
         ],
         "blocks": [

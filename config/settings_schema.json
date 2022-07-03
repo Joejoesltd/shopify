@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Minimog",
-    "theme_version": "1.0.3",
+    "theme_version": "1.1.1",
     "theme_author": "ThemeMove",
     "theme_documentation_url": "https:\/\/docs.minimog.co\/",
     "theme_support_url": "https:\/\/minimog.co"
@@ -127,6 +127,24 @@
       {
         "type": "header",
         "content": {
+          "en": "Background Colors"
+        }
+      },
+      {
+        "type": "color",
+        "id": "color_main_bg",
+        "label": "Main background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_field_bg",
+        "label": "Form field background",
+        "default": "#f8f8f8"
+      },
+      {
+        "type": "header",
+        "content": {
           "en": "Text Colors"
         }
       },
@@ -193,14 +211,26 @@
       {
         "type": "header",
         "content": {
-          "en": "Product Colors"
+          "en": "Product colors"
         }
+      },
+      {
+        "type": "color",
+        "id": "product_title_color",
+        "label": "Product title",
+        "default": "#000000"
       },
       {
         "type": "color",
         "id": "prod_sale_price_color",
         "label": "Sale price",
         "default": "#9b9b9b"
+      },
+      {
+        "type": "color",
+        "id": "prod_regular_price_color",
+        "label": "Regular price",
+        "default": "#000000"
       },
       {
         "type": "color",
@@ -217,24 +247,7 @@
       {
         "type": "header",
         "content": {
-          "en": "Background Colors"
-        }
-      },
-      {
-        "type": "color",
-        "id": "color_main_bg",
-        "label": "Main background"
-      },
-      {
-        "type": "color",
-        "id": "color_field_bg",
-        "label": "Form field background",
-        "default": "#f8f8f8"
-      },
-      {
-        "type": "header",
-        "content": {
-          "en": "Annoucement bar colors"
+          "en": "Announcement bar colors"
         }
       },
       {
@@ -924,6 +937,14 @@
           {
             "value": "2",
             "label": "Style 2"
+          },
+          {
+            "value": "3",
+            "label": "Style 3"
+          },
+          {
+            "value": "4",
+            "label": "Style 4"
           }
         ]
       },
@@ -986,13 +1007,33 @@
       {
         "type": "checkbox",
         "id": "show_badge_sale",
-        "label": "Show badges",
+        "label": "Show custom badges",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "on_sale_badge",
+        "label": "On sale badge",
+        "default": "hide",
+        "options": [
+          {
+            "value": "hide",
+            "label": "Hide"
+          },
+          {
+            "value": "show_text",
+            "label": "Show text"
+          },
+          {
+            "value": "show_percentage",
+            "label": "Show % discounted"
+          }
+        ]
       },
       {
         "type": "checkbox",
         "id": "show_cart_button",
-        "label": "Show cart button",
+        "label": "Show add to cart button",
         "default": true
       },
       {
@@ -1015,18 +1056,6 @@
       },
       {
         "type": "checkbox",
-        "id": "show_countdown",
-        "label": "Show countdown",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "show_vendor",
-        "label": "Show vendor",
-        "default": true
-      },
-      {
-        "type": "checkbox",
         "id": "show_second_img",
         "label": "Show second image when hover",
         "default": true
@@ -1039,6 +1068,24 @@
       },
       {
         "type": "checkbox",
+        "id": "show_countdown",
+        "label": "Show countdown",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show vendor",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_review_badge",
+        "label": "Show reviews badge",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "uppercase_prd_name",
         "label": "Uppercase product name",
         "default": false
@@ -1048,6 +1095,39 @@
   {
     "name": "Product Variation Swatches",
     "settings": [
+      {
+        "type": "header",
+        "content": "Default Variant Option Design"
+      },
+      {
+        "type": "select",
+        "id": "variant_option_design_default",
+        "label": "Design",
+        "options": [
+          {
+            "value": "default",
+            "label": "Image \/ Color"
+          },
+          {
+            "value": "color",
+            "label": "Color"
+          },
+          {
+            "value": "image",
+            "label": "Image"
+          },
+          {
+            "value": "button",
+            "label": "Button"
+          },
+          {
+            "value": "dropdown",
+            "label": "Dropdown"
+          }
+        ],
+        "default": "button",
+        "info": "Default design if option's title doesn't match any of 5 titles in the settings below"
+      },
       {
         "type": "header",
         "content": "Variant Option Design 1"
@@ -1914,7 +1994,7 @@
         "options": [
           {
             "value": "original",
-            "label": "Original aspect ratio"
+            "label": "Adapt to image"
           },
           {
             "value": "1\/1",
@@ -2027,10 +2107,6 @@
     "name": "Store contact",
     "settings": [
       {
-        "type": "header",
-        "content": "Phone and Email"
-      },
-      {
         "type": "text",
         "id": "contact_phone_number",
         "label": "Phone number",
@@ -2041,6 +2117,11 @@
         "id": "contact_email",
         "label": "Email",
         "default": "hello@domain.com"
+      },
+      {
+        "type": "page",
+        "id": "find_store",
+        "label": "Find store page"
       },
       {
         "type": "header",
@@ -2125,6 +2206,36 @@
         "type": "text",
         "id": "social_vimeo_label",
         "label": "Vimeo label"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "Tiktok link"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_label",
+        "label": "Tiktok label"
+      },
+      {
+        "type": "text",
+        "id": "social_discord_link",
+        "label": "Discord link"
+      },
+      {
+        "type": "text",
+        "id": "social_discord_label",
+        "label": "Discord label"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp_link",
+        "label": "Whatsapp link"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp_label",
+        "label": "Whatsapp label"
       }
     ]
   },

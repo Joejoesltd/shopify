@@ -23,20 +23,8 @@ we'll be able to generate these critical styles automatically.
 {% assign container_width = settings.container_width %}
 {% assign container_fluid_offset = settings.container_fluid_offset %}
 {% assign container_fluid_width = settings.container_fluid_width %}
-{% assign color_primary_hsl = settings.color_primary | color_to_hsl | split: ',' | last %}
-{% assign lightness = topbar_bg_hsl | split: '%' | first | strip | plus: 0 %}
-
-{% capture slideNavigation %}
-    @media(min-width: 1280px) {
-        .sf-slider__controls button:hover {
-            color: {% if lightness > 50 %}var(--color-body-text){% else %}#fff{% endif %};
-        }
-    }
-{% endcapture %}
 
 {% style %}
-    {{ slideNavigation }}
-
     html {
         font-size: calc(var(--font-base-size, 16) * 1px);
     }
@@ -141,19 +129,83 @@ we'll be able to generate these critical styles automatically.
     .opacity-100 {
       opacity: 1;
     }
+    .placeholder-background {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .placeholder-background--animation {
+      background-color: #000;
+      animation: placeholder-background-loading 1.5s infinite linear;
+    }
+    [data-image-loading] {
+      position: relative;
+    }
+    [data-image-loading]:after {
+      content: '';
+      background-color: #000;
+      animation: placeholder-background-loading 1.5s infinite linear;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    [data-image-loading] img.lazyload {
+      opacity: 0;
+    }
+    [data-image-loading] img.lazyloaded {
+      opacity: 1;
+    }
+    .no-js [data-image-loading] {
+      animation-name: none;
+    }
+
+    .lazyload--fade-in {
+      opacity: 0;
+      transition: .25s all;
+    }
+
+    .lazyload--fade-in.lazyloaded {
+      opacity: 1;
+    }
+
     @media (min-width: 768px) {
-      .md\:block {
+      .hidden.md\:block {
         display: block !important;
+      }
+      .hidden.md\:flex {
+        display: flex !important;
+      }
+      .hidden.md\:grid {
+        display: grid !important;
       }
     }
     @media (min-width: 1024px) {
-      .lg\:block {
+      .hidden.lg\:block {
         display: block !important;
       }
+      .hidden.lg\:flex {
+        display: flex !important;
+      }
+      .hidden.lg\:grid {
+        display: grid !important;
+      }
     }
-    @media (min-width: 1280px)
-      .xl\:block {
+    @media (min-width: 1280px) {
+      .hidden.xl\:block {
         display: block !important;
+      }
+      .hidden.xl\:flex {
+        display: flex !important;
+      }
+      .hidden.xl\:grid {
+        display: grid !important;
       }
     }
     {% if custom_css != blank %}

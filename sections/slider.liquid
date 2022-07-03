@@ -1,17 +1,37 @@
 {%- assign st = section.settings -%}
+{%- if section.settings.slideshow_height == 'adapt' -%}
+  {%- assign first_block = section.blocks[0] -%}
+  {%- if first_block.settings.background.aspect_ratio == blank -%}
+    {%- assign min_aspect_ratio = 2.333 -%}
+  {%- else -%}
+    {%- assign min_aspect_ratio = first_block.settings.background.aspect_ratio -%}
+  {%- endif -%}
+  {% assign wrapper_height = 100 | divided_by: min_aspect_ratio %}
+{%- endif -%}
+
 <section
     id="sf__slideshow-{{ section.id }}"
-    class="relative slider-{{ section.id }} home-banner__slideshow {% if section.settings.dots_position != 'bottom' %}sf-slider__pagination--{{ section.settings.dots_position }}{% endif %}"
+    class="relative {{ section.settings.custom_class }} slider-{{ section.id }} home-banner__slideshow {% if section.settings.dots_position != 'bottom' %}sf-slider__pagination--{{ section.settings.dots_position }}{% endif %}"
     data-section-type="slider" data-section-id="{{ section.id }}"
     data-autoplay="{% if request.design_mode %}false{% else %}{{ st.autorotate }}{% endif %}"
     data-autoplay-speed="{{ st.autorotate_speed }}"
     data-enable-arrows="{{ st.show_arrows }}"
     data-enable-dots="{{ st.show_dots }}"
+    data-slide-height="{{ section.settings.slideshow_height }}"
+    {% if section.settings.slideshow_height == 'adapt' %}
+    data-min-aspect-ratio="{{ min_aspect_ratio }}"
+    {% endif %}
     style="--data-autoplay-speed: {{ st.autorotate_speed }}s;"
 >
     <div class="{{ section.settings.container }}">
         <div id="sf-slider-{{ section.id }}" class="swiper-container">
-            <div class="swiper-wrapper sf__slider">
+            <div
+                class="swiper-wrapper sf__slider sf__slider--{{ st.slideshow_height }}"
+               {% if section.settings.slideshow_height == 'adapt' %}
+               data-min-aspect-ratio="{{ min_aspect_ratio }}"
+               style="--slide-height: {{- wrapper_height -}}vw"
+               {% endif %}
+            >
                 {% for block in section.blocks %}
                     {% assign bs = block.settings %}
                     {% assign image_position = bs.image_alignment %}
@@ -20,6 +40,8 @@
                     {%- assign text_horizontal_alignment = content_positions.first -%}
                     {%- assign text_vertical_alignment = content_positions.last | strip -%}
                     {%- assign footer_alignment = bs.footer_alignment -%}
+                    {%- assign image_link = bs.image_link -%}
+
                     {% assign content_container = 'container-fluid' %}
                     {% if bs.content_in_container == true %}
                         {% assign content_container = 'container' %}
@@ -33,7 +55,7 @@
                     {% assign video_urls = bs.video | newline_to_br | split: '<br />' %}
                     {% capture video_bg %}
                         <div class="sf__slide-bg">
-                            <video loop playsinline muted>
+                            <video loop playsinline muted autoplay preload="auto">
                                 {% for video in video_urls %}
                                     {% assign video_url = video | split: '?v=' %}
                                     {% assign video_url = video_url | first | strip_newlines %}
@@ -56,11 +78,14 @@
                     <div
                         {{ block.shopify_attributes }}
                         data-slide="{{ forloop.index0 }}"
-                        class="swiper-slide relative sf__slider--{{ st.slideshow_height }}{% if forloop.first %} sf-slider--first{% endif %}"
+                        class="swiper-slide relative {% if forloop.first %} sf-slider--first{% endif %}{% if image_link != blank %} sf-slider--has-link{% endif %}"
                         data-slide-type="{{ block.type }}"
                     >
-                        <div class="hidden md:block md:h-full bg-cover bg-center{% if forloop.first == false %} sf-bg-lazy{% endif %}"
+                        <div class="hidden position md:block md:h-full bg-cover bg-center"
                         >
+                            {% if image_link != blank %}
+                              <a href="{{ image_link }}" class="sf-slider__link"></a>
+                            {% endif %}
                             {% if bs.background == blank and bs.video == blank %}
                                 <div class="sf__slide-image sf__slideshow-placeholder absolute inset-0 overflow-hidden">
                                     {% capture current %}{% cycle 1, 2 %}{% endcapture %}
@@ -70,7 +95,15 @@
                                 {% if block.type == 'video_slide' %}
                                     {{ video_bg }}
                                 {% else %}
-                                    <div class="sf__slide-bg bg-cover bg-no-repeat bg-center" style="background-image: url({{ bs.background | img_url: 'master' }}); background-position: {{ image_position | default: 'center' }};">
+                                    <div
+                                        class="sf__slide-bg bg-cover bg-no-repeat bg-center lazyload{% unless forloop.first %} lazypreload{% endunless %} js"
+                                        data-bg="{{ bs.background | img_url: '300x300' }}"
+                                        data-bgset="{% render 'bgset', image: bs.background %}"
+                                        data-parent-fit="contain"
+                                        data-sizes="auto"
+                                        style="background-position: {{ image_position | default: 'center' }};"
+                                        data-image-loading
+                                    >
                                     </div>
                                 {% endif %}
                             {% endif %}
@@ -85,7 +118,7 @@
                                 {%- assign colorBtn = '#FFF' -%}
                                 {%- assign colorBtnHover = '#000' -%}
                             {%- endif -%}
-                            <div class="sf__slide-block slide__block-desktop flex sf__slide-block--{{ text_vertical_alignment }}-{{ text_horizontal_alignment }} {{ content_container }} w-full h-full py-24 relative z-10" style="--btn-color: {{ colorBtn }};--btn-color-hover: {{ colorBtnHover }};">
+                            <div class="sf__slide-block slide__block-desktop flex sf__slide-block--{{ text_vertical_alignment }}-{{ text_horizontal_alignment }} {{ content_container }} w-full h-full py-24 relative" style="--btn-color: {{ colorBtn }};--btn-color-hover: {{ colorBtnHover }};">
                                 <div class="sf__slide-content max-w-4xl w-max text-{{ text_alignment }}">
                                     {% if bs.subheading != blank %}
                                         <div class="slide__block-subtitle {% if bs.text_size == 'medium' %}text-base{% else %}text-xl{% endif %} mb-[14px] text-{{ bs.text_color }}">{{ bs.subheading }}</div>
@@ -94,7 +127,7 @@
                                         <h2 class="slide__block-title {% if bs.text_size == 'medium' %}text-5xl{% else %}lg:text-5xl xl:text-6xl 2xl:text-7xl{% endif %} mb-5 text-{{ bs.text_color }} lg:leading-tight xl:leading-tight 2xl:leading-tight">{{ bs.title }}</h2>
                                     {% endif %}
                                     {% if bs.description != blank %}
-                                        <div class="slide__block-description {% if bs.text_size == 'medium' %}text-base{% else %}text-xl{% endif %} mb-7 text-color-subtext">{{ bs.description }}</div>
+                                        <div class="slide__block-description {% if bs.text_size == 'medium' %}text-base{% else %}text-xl{% endif %} mb-7 {% if bs.text_color == 'white' %}text-white{% else %}text-color-subtext{% endif %}">{{ bs.description }}</div>
                                     {% endif %}
                                     {% if bs.button_text != blank %}
                                         <a href="{{ bs.button_link | default: "#" }}" class="slide__block-link inline-block sf__btn {{ bs.button_style }} {{ bs.button_size }}">
@@ -109,8 +142,8 @@
                                     {% if bs.footer_link != blank %}
                                         <span>|</span>
                                         <a
-                                                href="{{ bs.footer_link | default: "#" }}"
-                                                class="ml-2 sf__btn sf__btn-link"
+                                          href="{{ bs.footer_link | default: "#" }}"
+                                          class="ml-2 sf__btn sf__btn-link"
                                         >
                                             {{ bs.footer_button }}
                                         </a>
@@ -130,7 +163,10 @@
                                     </div>
                                 {% else %}
                                     <div class="sf__slide-image relative">
-                                        {% render 'native-responsive-image', image: bg_image, image_class: 'object-cover absolute inset-0 h-full' %}
+                                        {% if image_link != blank %}
+                                          <a href="{{ image_link }}" class="sf-slider__link"></a>
+                                        {% endif %}
+                                        {% render 'responsive-image', image: bg_image, image_class: '' %}
                                     </div>
                                 {% endif %}
                             {% endif %}
@@ -141,7 +177,7 @@
                                         <div class="sf__mobile-subheading font-medium mb-[4px]">{{ bs.subheading }}</div>
                                     {% endif %}
                                     {% if bs.title != blank %}
-                                        <h2 class="sf__mobile-heading text-4xl leading-snug mb-3">{{ bs.title | strip_html }}</h2>
+                                        <h2 class="sf__mobile-heading text-4xl leading-snug mb-3">{{ bs.title }}</h2>
                                     {% endif %}
                                     {% if bs.description != blank %}
                                         <div class="sf__mobile-description text-color-subtext rte mb-5">{{ bs.description }}</div>
@@ -157,16 +193,16 @@
                                 {% if bs.show_footer %}
                                 <div class="sf__slide-footer px-3 mt-2 flex justify-center opacity-70">
                                     <div class="px-3">
-                                                <span class="mx-2 pb-1">
-                                                    {{ bs.footer_text }}
-                                                </span>
-                                        <span>|</span>
-                                        <a
-                                                href="{{ bs.footer_link | default: "#" }}"
-                                                class="mx-2 sf__btn sf__btn-link -mt-1"
-                                        >
-                                            {{ bs.footer_button }}
-                                        </a>
+                                      <span class="mx-2 pb-1">
+                                          {{ bs.footer_text }}
+                                      </span>
+                                      <span>|</span>
+                                      <a
+                                        href="{{ bs.footer_link | default: "#" }}"
+                                        class="mx-2 sf__btn sf__btn-link -mt-1"
+                                      >
+                                        {{ bs.footer_button }}
+                                      </a>
                                     </div>
                                 </div>
                                 {% endif %}
@@ -213,8 +249,9 @@
             "type": "select",
             "id": "slideshow_height",
             "label": {"en": "Slide height"},
-            "default": "medium",
+            "default": "adapt",
             "options": [
+                {"label": {"en": "Adapt to first slide image"},"value": "adapt"},
                 {"label": {"en": "Small"},"value": "small"},
                 {"label": {"en": "Medium"},"value": "medium"},
                 {"label": {"en": "Large"},"value": "large"},
@@ -291,6 +328,11 @@
             "step": 1,
             "unit": "s",
             "default": 5
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom classes"
         }
     ],
     "blocks": [
@@ -522,6 +564,16 @@
                         "id": "description",
                         "label": "Description",
                         "default": "<p>Tell your campaign through images</p>"
+                    },
+                    {
+                        "type": "url",
+                        "id": "image_link",
+                        "label": "Image link",
+                        "info":"Link to image"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Button"
                     },
                     {
                         "type": "text",

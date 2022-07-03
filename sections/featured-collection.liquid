@@ -49,6 +49,7 @@
 {% assign card_style = section.settings.pcard_layout %}
 {% assign image_ratio = section.settings.pcard_image_ratio %}
 {% assign show_vendor = section.settings.show_vendor %}
+{% assign use_scroll_mobile = section.settings.use_scroll_mobile %}
 
 <section
     id="sf__featured-collection-{{ section.id }}"
@@ -70,18 +71,17 @@
         data-infinite-load="{{ infinite_load }}"
         data-max-pages="{{ max_pages }}"
     {% endif %}
-    class="sf__featured-collection{% if section.settings.button_text == blank %} show__more-disabed{% endif %}"
+    class="sf__featured-collection {{ section.settings.custom_class }}{% if section.settings.button_text == blank %} show__more-disabed{% endif %}"
     style="background-color: {{ bg_color }}; --column-gap: {{ section.settings.item_gap }}px; --column-gap-mobile: {{ section.settings.item_gap_mobile }}px; --row-gap: {{ section.settings.item_gap | plus: 10 }}px; --items: {{ section.settings.items_per_row }}"
 >
 
     <div class="{{ container }}">
         {% render 'index-section-header', section_settings: section.settings %}
-        <div class="{% if infinite_load == false and can_load == false %}sf__ms{% endif %}{% if enable_slider %} sf__ms--slider{% endif %}">
+        <div class="{% if infinite_load == false and can_load == false %}sf__ms{% endif %}{% if enable_slider %} sf__ms--slider{% endif %}{% unless use_scroll_mobile %} sf__ms--mb-grid{% endunless %}">
             <div
                 class="sf-grid {% if infinite_load == false and can_load == false %} sf__ms-wrapper{% endif %} grid grid-cols-2 sf__col-{{ section.settings.items_per_row }} md:grid-cols-{{ section.settings.items_per_row | divided_by: 2.0 | ceil }} xl:grid-cols-{{ section.settings.items_per_row }} {% if enable_slider %}swiper-container{% endif %}"
                 data-products-container
             >
-
                 {% if enable_slider == true %}<!-- Start .swiper-wrapper --><div class="swiper-wrapper">{% endif %}
                 {% if collection != blank %}
                     {% for product in collection.products limit: product_to_show %}
@@ -250,16 +250,6 @@
         "unit": "px"
     },
     {
-        "type": "range",
-        "id": "item_gap_mobile",
-        "label": "Column gap on mobile",
-        "min": 0,
-        "max": 30,
-        "step": 2,
-        "default": 16,
-        "unit": "px"
-    },
-    {
       "type": "header",
       "content": "Product card settings"
     },
@@ -280,6 +270,14 @@
             {
                 "value": "2",
                 "label": "Style 2"
+            },
+            {
+                "value": "3",
+                "label": "Style 3"
+            },
+            {
+                "value": "4",
+                "label": "Style 4"
             }
         ]
     },
@@ -361,7 +359,8 @@
                 "label": "Load more products"
             }
         ],
-        "default": "link"
+        "default": "link",
+        "info": "Load more options only work when slider is disabled"
     },
     {
         "type": "text",
@@ -432,6 +431,32 @@
         "default": 3,
         "min": 2,
         "max": 5
+    },
+    {
+      "type": "header",
+      "content": "Mobile settings"
+    },
+    {
+        "type": "checkbox",
+        "label": "Use horizontal scrollbar",
+        "id": "use_scroll_mobile",
+        "default": true,
+        "info": "Uncheck to display as grid"
+    },
+    {
+        "type": "range",
+        "id": "item_gap_mobile",
+        "label": "Column gap",
+        "min": 0,
+        "max": 30,
+        "step": 2,
+        "default": 16,
+        "unit": "px"
+    },
+    {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Custom classes"
     }
   ],
   "presets": [

@@ -56,13 +56,13 @@
 {% endstyle %} 
 
 <section
-    id="sf__countdown-timer-{{ section.id }}"
+  id="sf__countdown-timer-{{ section.id }}"
 	data-section-type="countdown-timer"
 	data-section-id="{{ section.id }}"
-    {% if has_bg %}
-        data-bg="{{ bg_color | color_to_hsl }}"
-    {% endif %}
-    class="bg-cover bg-center bg-no-repeat"
+  {% if has_bg %}
+      data-bg="{{ bg_color | color_to_hsl }}"
+  {% endif %}
+  class="bg-cover bg-center bg-no-repeat {{ section.settings.custom_class }}"
 >
     <div
         id="countdown-timer-{{ section.id }}"
@@ -243,6 +243,11 @@
             "type": "image_picker",
             "id": "mb_image",
             "label": "Image on mobile"
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom classes"
         }
     ],
     "presets": [

@@ -12,7 +12,7 @@
 {% endcapture %}
 <section
     id="st__testimonial-{{section.id}}"
-    class="sf-testimonials relative {{ settings.design }}"
+    class="sf-testimonials relative {{ section.settings.custom_class }} {{ settings.design }}"
     data-section-type="testimonials"
     data-section-id="{{ section.id }}"
     data-design="{{ settings.design }}"
@@ -180,6 +180,11 @@
                 "id": "star_color",
                 "label": "Stars color",
                 "default": "#000"
+            },
+            {
+                "type": "text",
+                "id": "custom_class",
+                "label": "Custom classes"
             }
         ],
         "blocks": [

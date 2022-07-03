@@ -26,7 +26,7 @@
 
 {% assign image_placement = section.settings.image_placement %}
 
-<section id="sf__featured-product-{{ section.id }}" class="sf-featured-product {{ class }}">
+<section id="sf__featured-product-{{ section.id }}" class="sf-featured-product {{ section.settings.custom_class }} {{ class }}">
     <div class="section-my {{ section.settings.container }}" style="--column-gap: {{ section.settings.column_gap }}px; --column-gap-mobile: {{ section.settings.column_gap_mobile }}px;">
         <div class="sf-grid flex flex-wrap md:flex-nowrap sf-prod__block{% if image_placement == 'right' %} flex-row-reverse{% endif %}" data-view="featured-product">
             <div class="sf-column w-full md:w-1/2">
@@ -375,6 +375,11 @@
         "zh-TW": "顯示社群分享按鈕"
       },
       "default": true
+    },
+    {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Custom classes"
     }
   ],
   "presets": [

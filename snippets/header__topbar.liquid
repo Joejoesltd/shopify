@@ -10,8 +10,14 @@
         {% assign message = block.settings.alert_message %}
 
         {% assign container = section.settings.container %}
-
-        <div class="sf-topbar py-3.5 relative bg-color-topbar-background text-color-topbar hidden lg:block{% if show_divider %} border-b border-color-border{% endif %}">
+      <style>
+        @media (max-width: 1024px) {
+          .sf-topbar {
+            display: none;
+          }
+        }
+      </style>
+        <div class="sf-topbar py-3.5 relative bg-color-topbar-background text-color-topbar{% if show_divider %} border-b border-color-border{% endif %}">
             <div class="{{ container }}">
                 <div class="sf__topbar-inner -mx-4 cursor-pointer flex justify-between items-center text-[15px]">
                     <div class="flex items-center w-1/3">

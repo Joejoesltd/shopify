@@ -42,6 +42,8 @@
                                     {% render 'footer-block__newsletter', block: block %}
                                 {% when 'custom_text' %}
                                     {% render 'footer-block__text', block: block %}
+                                {% when 'custom_html' %}
+                                    {% render 'footer-block__html', block: block %}
                                 {% else %}
                             {% endcase %}
                         </div>
@@ -52,12 +54,12 @@
 
         <div class="sf-footer__accordion px-4 pt-8 md:pt-10 flex md:hidden flex-col">
             {% for block in section.blocks %}
+              {%- assign block_title = block.settings.title -%}
+              {% if block.type == 'menu' and block_title == blank %}
+                {% assign block_title = linklists[block.settings.menu].title %}
+              {% endif %}
                 {% if block.type != 'spacing' %}
-                    <div class="sf__accordion-item mb-2 overflow-hidden {% if block.type == 'newsletter' %} order-first {% endif %}">
-                        {%- assign block_title = block.settings.title -%}
-                        {% if block.type == 'menu' and block_title == blank %}
-                            {% assign block_title = linklists[block.settings.menu].title %}
-                        {% endif %}
+                    <div class="{% if block_title != blank %}sf__accordion-item {% else %}pt-4 {% endif %}mb-2 overflow-hidden {% if block.type == 'newsletter' %} order-first {% endif %}">
                         {% if block_title != blank %}
                             <h3 class="sf__accordion-button font-medium md:mb-4 text-base sf__footer-block-title">{{ block_title }}</h3>
                         {% endif %}

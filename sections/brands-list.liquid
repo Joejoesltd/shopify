@@ -34,7 +34,7 @@
 
 <section
     id="sf__brand-list-{{ section.id }}"
-    class="brands-list"
+    class="brands-list {{ section.settings.custom_class }}"
     data-section-type="brand-list"
     data-section-id="{{ section.id }}"
     data-enable-slider="{{ enable_slider }}"
@@ -185,6 +185,11 @@
             "step": 1,
             "unit": "s",
             "default": 3
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom classes"
         }
     ],
     "blocks": [

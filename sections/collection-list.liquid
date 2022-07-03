@@ -37,6 +37,7 @@
 {% assign fluid_container_width = settings.container_fluid_width %}
 {% assign container_width = settings.container_width %}
 {% assign container_fluid_offset = settings.container_fluid_offset | times: 2 %}
+{% assign use_scroll_mobile = section.settings.use_scroll_mobile %}
 
 {% style %}
 {% if enable_slider and section.settings.container == 'container' %}
@@ -120,7 +121,7 @@
         {% if enable_slider and section.settings.layout != 'left-side' %}</div>{% endif %}
     {% endif %}
 
-    <div class="sf__ms{% if enable_slider == true %} sf-grid sf__ms--slider collection-list__inner--overflow{% endif %}">
+    <div class="sf__ms{% if enable_slider == true %} sf-grid sf__ms--slider collection-list__inner--overflow{% endif %}{% unless use_scroll_mobile %} sf__ms--mb-grid{% endunless %}">
         <div class="sf__ms-wrapper {% if enable_slider == false %}sf-grid grid sf__ms-wrapper--max {% else %}flex flex-nowrap {% endif %} md:grid-cols-{{ items_per_row | divided_by: 2 | ceil }} xl:grid-cols-{{ items_per_row }}{% if enable_slider %} sf-slider-{{ section.id }} swiper-container swiper--equal-height{% endif %}">
             {% if enable_slider == true %}<!-- Start .swiper-wrapper --><div class="swiper-wrapper">{% endif %}
             {% for block in section.blocks %}
@@ -178,7 +179,7 @@
     id="sf__collection-list-{{ section.id }}"
     data-section-type="collection-list"
     data-section-id="{{ section.id }}"
-    class="collection-list collection-list--{{ layout }}{% if enable_slider %} collection-list--slider-initialized{% endif %}"
+    class="collection-list collection-list--{{ layout }}{% if enable_slider %} collection-list--slider-initialized{% endif %} {{ section.settings.custom_class }}"
     data-enable-slider="{{ enable_slider }}"
     {% if enable_slider %}
     data-gutter="{{ section.settings.item_gap }}"
@@ -390,15 +391,6 @@
                 "unit": "px"
             },
             {
-                "type": "range",
-                "id": "mobile_gap",
-                "label": "Column gap on mobile",
-                "min": 0,
-                "max": 30,
-                "default": 10,
-                "unit": "px"
-            },
-            {
                 "type": "header",
                 "content": "Slider settings"
             },
@@ -437,10 +429,35 @@
                 "default": 5
             },
             {
+                "type": "header",
+                "content": "Mobile settings"
+            },
+            {
+                "type": "checkbox",
+                "label": "Use horizontal scrollbar",
+                "id": "use_scroll_mobile",
+                "default": true,
+                "info": "Uncheck to display as grid"
+            },
+            {
+                "type": "range",
+                "id": "mobile_gap",
+                "label": "Column gap",
+                "min": 0,
+                "max": 30,
+                "default": 10,
+                "unit": "px"
+            },
+            {
                 "type": "checkbox",
                 "id": "hidden_slide_control_mobile",
-                "label": "Hide control on mobile",
+                "label": "Hide slider controls",
                 "default": false
+            },
+            {
+                "type": "text",
+                "id": "custom_class",
+                "label": "Custom classes"
             }
         ],
         "blocks": [

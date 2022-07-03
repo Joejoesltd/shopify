@@ -1,13 +1,3 @@
-{% unless request.design_mode %}
-	<style>
-		.sf-bg-lazy {
-			background-image: none !important;
-		}
-	</style>
-{% endunless %}
-
-{% assign topbar_bg_hsl = settings.color_topbar_bg | color_to_hsl | split: ',' | last %}
-{% assign lightness = topbar_bg_hsl | split: '%' | first | strip | plus: 0 %}
 {%- assign color_primary = settings.color_primary | color_to_hex -%}
 {%- assign color_primary_darker = '' -%}
 {%- if color_primary == '#000000'  -%}
@@ -20,12 +10,6 @@
 {%- assign font_header_base = settings.type_header_base_size -%}
 
 <style>
-	::after {
-		--arrow-down-url: url({{ 'arrow-down.svg' | asset_url }});
-	}
-	::before {
-		--arrow-down-url: url({{ 'arrow-down.svg' | asset_url }});
-	}
 	:root {
 		/* BODY */
 		--base-line-height: {{ settings.type_base_line_height }};
@@ -43,7 +27,7 @@
 		--color-text-link-hover: {{ settings.color_text_link_hover }};
 
 		/* BUTTON COLORS */
-		--color-btn-bg:  {{ settings.color_btn_bg }};
+		--color-btn-bg: {{ settings.color_btn_bg }};
 		--color-btn-bg-hover: {{ settings.color_btn_bg_hover }};
 		--color-btn-text: {{ settings.color_btn_text }};
 		--color-btn-text-hover: {{ settings.color_btn_text_hover }};
@@ -56,7 +40,9 @@
 		{% endif %}
 
 		/* PRODUCT COLORS */
+		--product-title-color: {{ settings.product_title_color }};
 		--product-sale-price-color: {{ settings.prod_sale_price_color }};
+		--product-regular-price-color: {{ settings.prod_regular_price_color }};
 		--product-type-color: {{ settings.prod_type_color }};
 		--product-desc-color: {{ settings.prod_desc_color }};
 
@@ -141,6 +127,9 @@
 		--font-h5-mobile: {{ font_header_base | times: 0.58 | times: 0.9 | floor }};
 		--font-h6-desktop: {{ font_header_base | times: 0.54 | floor }};
 		--font-h6-mobile: {{ font_header_base | times: 0.54 | times: 0.9 | floor }};
+
+    --arrow-down-url: url({{ 'arrow-down.svg' | asset_url }});
+    --arrow-down-white-url: url({{ 'arrow-down-white.svg' | asset_url }});
 	}
 </style>
 
@@ -149,6 +138,9 @@
 {% endif %}
 {% if template.name == "collection" or template.name == 'list-collections' %}
 	<link media="print" onload="this.media = 'all'" rel="stylesheet" href="{{ 'collection.css' | asset_url }}">
+{% endif %}
+{% if template.name == "gift_card" %}
+	<link media="print" onload="this.media = 'all'" rel="stylesheet" href="{{ 'template-giftcard.css' | asset_url }}">
 {% endif %}
 <link media="print" onload="this.media = 'all';__onThemeStyleLoad();" rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 <link type="text/css" href="{{ 'custom.css' | asset_url }}" rel="stylesheet">

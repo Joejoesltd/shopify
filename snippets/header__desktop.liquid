@@ -13,11 +13,13 @@
   {% assign container = container | append: ' px-4' %}
 {% endif %}
 <header
-    class="hidden xl:block bg-white sf-header__desktop {{ design }}"
+    class="hidden lg:block bg-white sf-header__desktop {{ design }}"
     data-screen="sf-header__desktop"
     data-transparent="{{ transparent_on_top }}"
 >
+    {% comment %}
     <div class="sf-header__bg pointer-events-none"></div>
+    {% endcomment %}
     <div class="sf-header__dropdown-bg absolute top-full left-0 right-0 pointer-events-none"></div>
     {% case design %}
         {% when 'logo-center-menu-left' %}

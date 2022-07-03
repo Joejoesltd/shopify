@@ -26,7 +26,7 @@
 
 <section
   id="sf-video-{{ section.id }}"
-  class="sf-video -mx-4 lg:mx-0"
+  class="sf-video {{ section.settings.custom_class }} -mx-4 lg:mx-0"
   data-section-id="{{ section.id }}"
   data-section-type="video-section"
   {% if has_bg %}
@@ -380,6 +380,11 @@
         "id": "loop",
         "label": "Loop",
         "default": false
+    },
+    {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Custom classes"
     }
   ],
   "presets": [

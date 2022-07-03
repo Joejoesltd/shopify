@@ -11,7 +11,7 @@
     {% if has_bg == false %} section-my {% else %} section-py {% endif %}
 {% endcapture %}
 <section
-    class="sf-lookbook"
+    class="sf-lookbook {{ section.settings.custom_class }}"
     data-section-type="lookbook"
     data-section-id="{{ section.id }}"
     {% if has_bg %}
@@ -19,7 +19,7 @@
     {% endif %}
     style="background-color: {{ settings.background_color }};"
 >
-    <div class="{{ container }}" style="--column-gap: 30px; --row-gap: 30px; --column-gap-mobile: 16px;"> 
+    <div class="{{ container }}" style="--column-gap: 30px; --row-gap: 30px; --column-gap-mobile: 16px;">
         {% render 'index-section-header', section_settings: section.settings %}
         {% if section.blocks.size > 0 %}
             <div class="md:grid sf-grid md:grid-cols-2 lg:grid-cols-{{ section.blocks | size }}">
@@ -115,7 +115,7 @@
             "options": [
                 {
                     "value": "original",
-                    "label": "Original aspect ratio"
+                    "label": "Adapt to image"
                 },
                 {
                     "value": "1/1",
@@ -134,6 +134,11 @@
                     "label": "16:9"
                 }
             ]
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom classes"
         }
     ],
     "max_blocks": 3,

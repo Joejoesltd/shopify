@@ -7,7 +7,7 @@
     {% if settings.background_color == "rgba(0,0,0,0)" or settings.background_color == blank %} section-my {% else %} section-py {% endif %}
 {% endcapture %}
 
-<section id="sf__blog-post-{{ section.id }}" class="sf__blog-post" style="background-color: {{ bg_color }};" data-section-id="{{section.id}}">
+<section id="sf__blog-post-{{ section.id }}" class="sf__blog-post {{ section.settings.custom_class }}" style="background-color: {{ bg_color }};" data-section-id="{{section.id}}">
     <div class="{{ container }}" style="--column-gap: {{ section.settings.column_gap }}px; --column-gap-mobile: {{ section.settings.mobile_gap }}px; --row-gap: {{ section.settings.column_gap | plus: 10 }}px;">
         {% render 'index-section-header', section_settings: section.settings %}
 
@@ -309,8 +309,13 @@
         {
             "type": "checkbox",
             "id": "use_scroll_mobile",
-            "label": "Use horizontal scrollbar",
+            "label": "Enable horizontal scroll",
             "default": true
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom classes"
         }
     ],
     "presets":[

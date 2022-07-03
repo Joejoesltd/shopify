@@ -14,8 +14,10 @@
                 {% render 'responsive-image', image: media %}
             </div>
         {% when 'external_video' %}
-            <div class="sf-prod-media media-video" data-media-id="{{ media.id }}">
+            <div style="--aspect-ratio: {{ media.aspect_ratio }}">
+              <div class="sf-prod-media media-video" data-media-id="{{ media.id }}">
                 {{ media | external_video_tag }}
+              </div>
             </div>
         {% when 'video' %}
             <div class="sf-prod-media media-video local-video" data-media-id="{{ media.id }}">

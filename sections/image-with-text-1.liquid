@@ -18,7 +18,7 @@
 
 <section
     style="background-color: {{ bg_color }};"
-    class="sf__img-with-text {% unless st.use_scroll_mobile %} px-4{% endunless %}"
+    class="sf__img-with-text {{ section.settings.custom_class }} {% unless st.use_scroll_mobile %} px-4{% endunless %}"
     {% if has_bg %}
     data-bg="{{ bg_color | color_to_hsl }}"
     {% endif %}
@@ -215,7 +215,7 @@
       {
         "type": "checkbox",
         "id": "use_scroll_mobile",
-        "label": "Use horizontal scrollbar",
+        "label": "Enable horizontal scroll",
         "default": true
       },
       {
@@ -227,6 +227,11 @@
         "max": 30,
         "step": 2,
         "unit": "px"
+      },
+      {
+          "type": "text",
+          "id": "custom_class",
+          "label": "Custom classes"
       }
     ],
     "blocks": [

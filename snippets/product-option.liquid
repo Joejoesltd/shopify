@@ -7,133 +7,142 @@
     {% else %}
         {% assign is_size = false %}
     {% endif %}
+
     <div
       data-index="option-{{ option.position }}-{{ forloop.index0 }}"
       data-product-option="{{ option.name }}"
       class="product-options__option product-options__option--"
     >
-      {% assign foundOption = false %}
-      {% assign optionDesign = '' %}
-      {% assign optionLabel = option.name %}
-      {%- for i in (1..100) -%}
-        {% unless foundOption == true %}
-          {%- assign key = 'variant_option_title' | append: i -%}
-          {%- assign key2 = 'variant_option_display_name' | append: i -%}
-          {%- assign key3 = 'variant_option_design' | append: i -%}
-          {%- assign vData = settings[key] -%}
-          {%- if vData == option.name -%}
-              {% assign foundOption = true %}
-              {% assign optionDesign = settings[key3] %}
-              {% assign optionLabel = settings[key2] | default: option.name %}
+      {% assign found_option = false %}
+      {% assign option_design = '' %}
+      {% assign option_label = option.name %}
+
+      {%- for i in (1..5) -%}
+        {% unless found_option == true %}
+          {%- assign option_name_key = 'variant_option_title' | append: i -%}
+          {%- assign option_display_name_key = 'variant_option_display_name' | append: i -%}
+          {%- assign option_design_key = 'variant_option_design' | append: i -%}
+
+          {%- assign option_name = settings[option_name_key] -%}
+          {%- if option_name == option.name -%}
+              {% assign found_option = true %}
+              {% assign option_design = settings[option_design_key] %}
+              {% assign option_label = settings[option_display_name_key] | default: option.name %}
           {%- endif -%}
         {% endunless %}
       {%- endfor -%}
 
-      <div class="prod__option-label font-medium flex items-center justify-between prod__option-label--{{ optionDesign }}">
+      {% assign design = option_design %}
+      {%- if found_option == false or option_design == '' -%}
+        {% assign design = settings['variant_option_design_default'] %}
+      {%- endif -%}
+
+      <div class="prod__option-label font-medium flex items-center justify-between prod__option-label--{{ option_design }}">
         <div>
-          <span>{{ optionLabel }}:</span>
-          <span 
+          <span>{{ option_label }}:</span>
+          <span
             data-option-label data-label-position="{{ option.position }}"
             class="option-label">{{ option.selected_value }}</span>
         </div>
+
         {% if is_size %}
-        <button data-open-sizeguide class="inline-flex items-center hidden">
-          {% render 'icon', name: 'ruler-horizontal' %}
-          <span class="ml-2 ">{{ 'products.product.size_guide' | t }}</span>
-        </button>
+          <button data-open-sizeguide class="inline-flex items-center hidden">
+            {% render 'icon', name: 'ruler-horizontal' %}
+            <span class="ml-2 ">{{ 'products.product.size_guide' | t }}</span>
+          </button>
         {% endif %}
       </div>
-        <div class="prod__option prod__option--{{ optionDesign }} flex items-center flex-wrap justify-between">
-            {% if optionDesign == 'dropdown' %}
-                <div class="inline-flex w-full flex-wrap">
-                    <label for="{{ option.name }} {{ option.position }}"></label>
-                    <div class="sf__select-bordered w-full">
-                        <select
-                          {% comment %}id="{{ option.name }} {{ option.position }}"{% endcomment %}
-                          class="sf-product-variant-option-dropdown h-11 border border-color-border rounded w-full pl-4 cursor-pointer"
-                        >
-                          {% for value in option.values %}
-                              <option
-                                {% if option.selected_value == value %}selected{% endif %}
-                                class="product-option-item border-2 border-color-border rounded-full w-6 h-6 flex items-center justify-center"
-                                data-option-position="{{ option.position }}"
-                              >
-                                  {{ value }}
-                              </option>
-                          {% endfor %}
-                         </select>
-                    </div>
 
+      <div class="prod__option prod__option--{{ design }} flex items-center flex-wrap justify-between">
+        {% if design == 'dropdown' %}
+          <div class="inline-flex w-full flex-wrap">
+            <label for="{{ option.name }} {{ option.position }}"></label>
+            <div class="sf__select-bordered">
+                <select
+                  {% comment %}id="{{ option.name }} {{ option.position }}"{% endcomment %}
+                  class="sf-product-variant-option-dropdown h-11 border border-color-border rounded w-full pl-4 cursor-pointer"
+                >
+                  {% for value in option.values %}
+                      <option
+                        {% if option.selected_value == value %}selected{% endif %}
+                        class="product-option-item border-2 border-color-border rounded-full w-6 h-6 flex items-center justify-center"
+                        data-option-position="{{ option.position }}"
+                      >
+                        {{ value }}
+                      </option>
+                  {% endfor %}
+                  </select>
+            </div>
+          </div>
+        {% elsif design == 'checkbox' %}
+          <div class="inline-flex flex-wrap">
+            {% for value in option.values %}
+              <div>
+                  <label for="{{ option.name }}{{ value }}">{{ value }}</label>
+                  <input type="checkbox" name="{{ option.name }}" value="{{ value }}"
+                          {% comment %}id="{{ option.name }}{{ value }}"{% endcomment %}
+                          data-option-position="{{ option.position }}"
+                          class="product-option-item border-2 border-color-border rounded-full w-6 h-6 flex items-center justify-center"
+                  >
+              </div>
+            {% endfor %}
+          </div>
+        {% elsif design == 'image' %}
+          <div class="inline-flex flex-wrap">
+            {% for value in option.values %}
+                <div
+                  {% if option.selected_value == value %}data-selected="true"{% endif %}
+                  class="product-option-item border border-color-border w-16 h-16 flex items-center justify-center mr-2 mb-2 cursor-pointer"
+                  data-option-position="{{ option.position }}"
+                  data-option-type="image"
+                >
+                    {{ value }}
                 </div>
-            {% elsif optionDesign == 'checkbox' %}
-                <div class="inline-flex flex-wrap">
-                    {% for value in option.values %}
-                        <div>
-                            <label for="{{ option.name }}{{ value }}">{{ value }}</label>
-                            <input type="checkbox" name="{{ option.name }}" value="{{ value }}"
-                                   {% comment %}id="{{ option.name }}{{ value }}"{% endcomment %}
-                                   data-option-position="{{ option.position }}"
-                                   class="product-option-item border-2 border-color-border rounded-full w-6 h-6 flex items-center justify-center"
-                            >
-                        </div>
-                    {% endfor %}
-                </div>
-            {% elsif optionDesign == 'image' %}
-                <div class="inline-flex flex-wrap">
-                    {% for value in option.values %}
+            {% endfor %}
+          </div>
+        {% elsif design == 'color' %}
+          <div class="inline-flex flex-wrap">
+            {% for value in option.values %}
+                <div class="sf__tooltip-item sf__tooltip-top">
+                    <div class="sf__variant-swatch flex justify-center items-center">
                         <div
                           {% if option.selected_value == value %}data-selected="true"{% endif %}
-                          class="product-option-item border border-color-border w-16 h-16 flex items-center justify-center mr-2 mb-2 cursor-pointer"
+                          class="product-option-item flex items-center justify-center cursor-pointer text-white"
                           data-option-position="{{ option.position }}"
-                          data-option-type="image"
-                        >
-                            {{ value }}
-                        </div>
-                    {% endfor %}
+                          data-option-type="color"
+                        >{{ value }}</div>
+                    </div>
+                    <span class="sf__tooltip-content capitalize">{{ value }}</span>
                 </div>
-            {% elsif optionDesign == 'color' %}
-                <div class="inline-flex flex-wrap">
-                    {% for value in option.values %}
-                        <div class="sf__tooltip-item sf__tooltip-top">
-                            <div class="sf__variant-swatch border border-white flex justify-center items-center">
-                                <div
-                                  {% if option.selected_value == value %}data-selected="true"{% endif %}
-                                  class="product-option-item flex items-center justify-center cursor-pointer text-white"
-                                  data-option-position="{{ option.position }}"
-                                  data-option-type="color"
-                                >{{ value }}</div>
-                            </div>
-                            <span class="sf__tooltip-content capitalize">{{ value }}</span>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% elsif optionDesign == 'button' %}
-                <div class="inline-flex flex-wrap{% if is_size %} mr-4{% endif %}">
-                    {% for value in option.values %}
-                        <div
-                          {% if option.selected_value == value %}data-selected="true"{% endif %}
-                          class="product-option-item sf-po__option-button"
-                          data-option-position="{{ option.position }}"
-                          data-option-type="{{optionDesign}}"
-                        >
-                            {{ value }}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="inline-flex flex-wrap{% if is_size %} mr-4{% endif %}">
-                    {% for value in option.values %}
-                        <div
-                          {% if option.selected_value == value %}data-selected="true"{% endif %}
-                          class="product-option-item sf-po__option-button rounded"
-                          data-option-position="{{ option.position }}"
-                          data-option-type="default"
-                        >
-                            {{ value }}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+            {% endfor %}
+          </div>
+        {% elsif design == 'button' %}
+          <div class="inline-flex flex-wrap{% if is_size %} mr-4{% endif %}">
+            {% for value in option.values %}
+              <div
+                {% if option.selected_value == value %}data-selected="true"{% endif %}
+                class="product-option-item sf-po__option-button"
+                data-option-position="{{ option.position }}"
+                data-option-type="{{design}}"
+              >
+                {{ value }}
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="inline-flex flex-wrap{% if is_size %} mr-4{% endif %}">
+            {% for value in option.values %}
+              <div
+                {% if option.selected_value == value %}data-selected="true"{% endif %}
+                class="product-option-item sf-po__option-button rounded"
+                data-option-position="{{ option.position }}"
+                data-option-type="default"
+              >
+                {{ value }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
     </div>
 {%- endfor -%}

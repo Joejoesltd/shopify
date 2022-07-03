@@ -15,4 +15,7 @@
     images: {{ product.images | json }},
     price: {{ product.price }},
   };
+  {%- for variant in product.variants -%}
+    window._themeProducts[{{ product.id }}].variants[{{forloop.index0}}].inventory_quantity = {{variant.inventory_quantity}};
+  {%- endfor -%}
 </script>

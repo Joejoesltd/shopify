@@ -28,33 +28,28 @@
 {% style %}
     {% if use_custom_font_heading == true and custom_heading_font != blank %}
         {% assign heading_fonts = custom_heading_font | newline_to_br | split: '<br />' %}
-
         {% for link in heading_fonts %}
             {% assign link_data = link | split: '@' %}
             {% assign font_url = link_data | first | strip_newlines %}
             {% assign weight = link_data | last %}
-            {% assign font_name = font_url | split: 'files/' | last %}
-
-            {% assign font_name = font_name | replace: '.woff2', weight | replace: '.ttf', weight | replace: '.otf', weight | replace: '.woff', weight  %}
-
-            {% if font_name contains '?v=' %}
-                {% assign font_name = font_name | split: '?v=' | first %}
+            {% assign font_type = font_url | split: '.' | last %}
+            {% if font_type contains '?v=' %}
+                {% assign font_type = font_type | split: '?v=' | first %}
             {% endif %}
-
+            {% comment %}<link rel="preload" as="font" href="{{ font_url }}" type="font/{{ font_type }}" crossorigin>{% endcomment %}
             @font-face {
-            font-family: SF-Heading-font;
-            font-weight: {{- weight -}};
-            src: url({{- font_url -}});
+                font-family: SF-Heading-font;
+                font-weight: {{- weight -}};
+                src: url({{- font_url -}});
+                font-display: swap;
             }
         {% endfor %}
-
         {% if heading_fonts != blank %}
             :root {
             --font-stack-header: SF-Heading-font;
             --font-weight-header: {{ settings.custom_heading_weight | default: 400 }};
             }
         {% endif %}
-
     {% else %}
         {{ header_font | font_face: font_display: 'swap' }}
         {{ header_font_bolder | font_face: font_display: 'swap' }}
@@ -75,18 +70,17 @@
             {% assign link_data = link | split: '@' %}
             {% assign font_url = link_data | first | strip_newlines %}
             {% assign weight = link_data | last %}
-            {% assign font_name = font_url | split: 'files/' | last %}
-
-            {% assign font_name = font_name | replace: '.woff2', weight | replace: '.ttf', weight | replace: '.otf', weight | replace: '.woff', weight  %}
-
-            {% if font_name contains '?v=' %}
-                {% assign font_name = font_name | split: '?v=' | first %}
+            {% assign font_type = font_url | split: '.' | last %}
+            {% if font_type contains '?v=' %}
+              {% assign font_type = font_type | split: '?v=' | first %}
             {% endif %}
+            {% comment %}<link rel="preload" as="font" href="{{ font_url }}" type="font/{{ font_type }}" crossorigin>{% endcomment %}
 
             @font-face {
                 font-family: SF-Body-font;
                 font-weight: {{- weight -}};
                 src: url({{- font_url -}});
+                font-display: swap;
             }
         {% endfor %}
 

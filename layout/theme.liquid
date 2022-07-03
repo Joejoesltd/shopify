@@ -4,7 +4,7 @@
     lang="{{ shop.locale }}" style="--sf-page-opacity: 0;"
 >
 
-<head>
+<head>{% render 'pagefly-head' %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
@@ -23,7 +23,9 @@
     {% endif %}
     <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'custom.css' | asset_url }}">
-    <link rel="preload" as="script" href="{{ 'app.js' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'app.min.js' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'foxkit-app.min.js' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'lazysizes.min.js' | asset_url }}">
 
 	{%- if settings.use_favicon == true and settings.favicon != blank -%}
 	    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
@@ -59,7 +61,6 @@
     {% render 'custom-code-head' %}
 
     {{ content_for_header }}
-{{ 'storeifyapps-formbuilder-styles.css' | asset_url | stylesheet_tag }}
 </head>
 
 <body
@@ -77,6 +78,7 @@
         {% if settings.show_scroll_top_button %}
             {% render 'scroll-top-button' %}
         {% endif %}
+        <div id="cart-drawer-container"></div>
     </main>
     {% section 'footer' %}
     {% section 'mobile-sticky-bar' %}
@@ -86,12 +88,10 @@
     {% endif %}
     {% render 'custom-code-body' %}
     {% render 'foxkit-messenger' %}
-    <script src="//instant.page/5.1.0" type="module" async></script>
     {% render 'script-tags' %}
-    <script src="{{ 'app.js' | asset_url }}" async onload="console.log('%c app.js loaded', 'color: #f7a046; font-size: 24px;')"></script>
-    <script src="{{ 'foxkit-app.js' | asset_url }}" async></script>
+    <script src="{{ 'app.min.js' | asset_url }}" async onload="console.log('%c app.js loaded', 'color: #f7a046; font-size: 24px;')"></script>
+    <script src="{{ 'lazysizes.min.js' | asset_url }}" async="async"></script>
+    <script src="{{ 'foxkit-app.min.js' | asset_url }}" async></script>
 {% render 'banana-stand-footer' %}
-{{ 'storeifyapps-formbuilder-script.js' | asset_url | script_tag }}
-<script>window.KlarnaThemeGlobals={};{%case template.name%} {%when"product"%} window.KlarnaThemeGlobals.data_purchase_amount={{product.first_available_variant.price}};window.KlarnaThemeGlobals.productVariants={{product.variants|json}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%when"cart"%} window.KlarnaThemeGlobals.data_purchase_amount={{cart.total_price}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%endcase%}</script>
 </body>
 </html>

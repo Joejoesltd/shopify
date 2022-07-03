@@ -25,7 +25,7 @@
 {% endif %}
 <section
     id="sf__instagram-{{ section.id }}"
-    class="sf-instagram"
+    class="sf-instagram {{ section.settings.custom_class }}"
     data-section-type="instagram"
     data-section-id="{{ section.id }}"
     data-access-token="{{ settings.instagram_token }}"
@@ -241,6 +241,11 @@
             "type": "text",
             "id": "button_label",
             "label": "Button label"
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom classes"
         }
     ],
     "presets": [

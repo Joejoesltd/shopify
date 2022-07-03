@@ -13,7 +13,9 @@
         background-color: {{ settings.color_header_bg }};
         color: {{ settings.color_header_link }};
     }
-    .sf-header.sf-mega-active header .text-color-menubar,
+    .sf-header.sf-mega-active header {
+        color: #000;
+    }
     .sf-header.sf-mega-active .transparent-on-top header {
       color: {{ settings.color_header_link }};
     }
@@ -86,11 +88,7 @@
         {% render 'header__mobile', section: section, transparent_on_top: transparent_on_top %}
         {% render 'header__desktop', section: section, transparent_on_top: transparent_on_top %}
     </div>
-    {% render 'mega-menu', menu: section.settings.main_menu %}
-
-    {% if request.path != '/cart' %}
-        {% render 'cart-drawer' %}
-    {% endif %}
+    {% render 'mega-menu', menu: section.settings.main_menu, secondary_menu: section.settings.secondary_menu, section: section %}
 
     <div class="sf-header__overlay hidden md:block pointer-events-none fixed bg-black -inset-0" style="--tw-bg-opacity: 0.6;" ></div>
     {% render 'search-popup', header_settings: section.settings %}
@@ -232,6 +230,12 @@
                 "info": "For header with 2 menus"
             },
             {
+              "type": "link_list",
+              "id": "mobile_menu",
+              "label": "Mobile menu",
+              "info": "Leave blank to use Main menu"
+            },
+            {
                 "type": "checkbox",
                 "id": "uppercase_parent_level",
                 "label": "Uppercase first level",
@@ -347,7 +351,7 @@
                     {
                         "type": "checkbox",
                         "id": "show_stores_page",
-                        "label": "Show stores page",
+                        "label": "Show find store page",
                         "default": true
                     },
                     {
@@ -507,10 +511,10 @@
                     {
                         "type": "range",
                         "id": "columns",
-                        "max": 4,
+                        "max": 6,
                         "min": 1,
                         "default": 2,
-                        "label": "Column(s)"
+                        "label": "Number of columns"
                     }
                 ]
             },

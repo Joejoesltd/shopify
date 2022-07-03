@@ -6,24 +6,6 @@
 </script>
 
 <script>
-    // Calculate image sizes
-    __calculateImageSize = function (container = document.body) {
-        try {
-            var _images = container.querySelectorAll('[data-image-wrapper]');
-            for (let i = 0; i < _images.length; i++) {
-                var _imgWrapper = _images[i]
-                var _img = _imgWrapper.querySelector('img')
-                var _srcset = _img.dataset.srcset
-                _img.setAttribute('srcset', _srcset)
-                if (_imgWrapper.offsetParent) {
-                    _img.setAttribute('sizes', _imgWrapper.clientWidth + 'px')
-                }
-            }
-        } catch (error) {
-            console.error("Failed to __calculateImageSize.", error)
-        }
-    }
-    __calculateImageSize()
 
     // Check section background
     {% if template.name == 'index' %}
@@ -48,7 +30,6 @@
 
     {% if request.design_mode %}
     window.addEventListener('shopify:section:load', function (e) {
-        __calculateImageSize(e.target)
         {% if template.name == 'index' %}
         __detectBgSections()
         {% endif %}

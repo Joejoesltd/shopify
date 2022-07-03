@@ -33,7 +33,7 @@
 
 <section
     id="sf__product-tab-{{ section.id }}"
-    class="sf__product-tab tab__header-{{ tab_header }}"
+    class="sf__product-tab tab__header-{{ tab_header }} {{ section.settings.custom_class }}"
     data-section-type="product-tabs"
     data-section-id="{{ section.id }}"
     {% if has_bg %}
@@ -142,23 +142,27 @@
                                 {% if enable_slider == true %}</div> <!-- End .swiper-wrapper -->{% endif %}
                             </div>
                             {% if enable_slider %}
-                                {% render 'slider-controls', custom_class: 'hidden', absolute: true, container: section.settings.container, show_nav: section.settings.show_navigation, show_pagination: section.settings.show_pagination %}
+                                {% if section.settings.show_navigation or section.settings.show_pagination  %}
+                                  {% render 'slider-controls', custom_class: 'hidden', absolute: true, container: section.settings.container, show_nav: section.settings.show_navigation, show_pagination: section.settings.show_pagination %}
+                                {% endif %}
                             {% endif %}
                         </div>
                         {% if section.settings.button_label != blank and section.settings.show_button == true %}
                             {% capture btn_class %}sf__btn {{ section.settings.button_style }} {{ section.settings.button_size }}{% endcapture %}
+                          {% if can_load %}
                             <div class="mt-8 md:mt-10 xl:mt-15 flex justify-center">
-                                {% if can_load %}
-                                    <button class="{{ btn_class }}" data-load-more>
-                                        <span>{{ section.settings.button_label }}</span>
-                                    </button>
-                                {% endif %}
-                                {% if button_type == 'link' %}
-                                    <a class="{{ btn_class }}" href="{{ collection.url }}" data-load-more>
-                                        <span>{{ section.settings.button_label }}</span>
-                                    </a>
-                                {% endif %}
+                                <button class="{{ btn_class }}" data-load-more>
+                                    <span>{{ section.settings.button_label }}</span>
+                                </button>
                             </div>
+                          {% endif %}
+                          {% if button_type == 'link' %}
+                            <div class="mt-8 md:mt-10 xl:mt-15 flex justify-center">
+                                <a class="{{ btn_class }}" href="{{ collection.url }}" data-load-more>
+                                  <span>{{ section.settings.button_label }}</span>
+                                </a>
+                            </div>
+                          {% endif %}
                         {% endif %}
                     </div>
                     {%- endpaginate -%}
@@ -363,6 +367,14 @@
                 {
                     "value": "2",
                     "label": "Style 2"
+                },
+                {
+                    "value": "3",
+                    "label": "Style 3"
+                },
+                {
+                    "value": "4",
+                    "label": "Style 4"
                 }
             ]
         },
@@ -480,6 +492,11 @@
             "id": "show_navigation",
             "label": "Show navigation",
             "default": false
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom classes"
         }
     ],
     "blocks":[
