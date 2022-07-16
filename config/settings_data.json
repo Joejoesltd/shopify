@@ -1131,9 +1131,9 @@
           "165744644529915948-0": {
             "type": "collection_block",
             "settings": {
-              "collection": "garden",
-              "title": "Pools & Water",
-              "item_image": "shopify:\/\/shop_images\/1578bde4-ad38-45aa-b491-3bb06f624a72_800x_f19ea178-b83c-4966-9a9d-7b7bb431e077.webp"
+              "collection": "hammocks-and-swing-seats",
+              "title": "Hammocks & Swing Seats",
+              "item_image": "shopify:\/\/shop_images\/202202191550065402_1000x_0feddd1b-bc8f-4d08-a7d0-d1008bfb82f2.webp"
             }
           },
           "165744644529915948-1": {
@@ -1141,23 +1141,23 @@
             "settings": {
               "collection": "garden-table-chairs",
               "title": "Table & Chairs",
-              "item_image": "shopify:\/\/shop_images\/028a0e82-cd3f-44e7-bcb6-37ac57d9ed38.webp"
+              "item_image": "shopify:\/\/shop_images\/202103121135321551_1000x_91aa588f-2fd4-4cab-98ee-84ff9c858ef0.webp"
             }
           },
           "165744644529915948-2": {
             "type": "collection_block",
             "settings": {
-              "collection": "garden-fun",
-              "title": "Games",
-              "item_image": "shopify:\/\/shop_images\/59591e45-9006-4c0a-bbcb-acb7e012c231_361x_219ce538-d039-40d9-a06a-c7249d57ca57.webp"
+              "collection": "parasols",
+              "title": "Parasols",
+              "item_image": "shopify:\/\/shop_images\/202205071426590826_1080x_30ceb1a9-e586-4b6c-bedb-80b98f75b8f2.webp"
             }
           },
           "618bd529-c6e8-424b-bcf5-8f0c43bcd435": {
             "type": "collection_block",
             "settings": {
-              "collection": "garden-furniture",
-              "title": "Kids",
-              "item_image": "shopify:\/\/shop_images\/d414cf9a-c41c-4a13-b47b-37af17b62011.webp"
+              "collection": "garden-fun",
+              "title": "Garden Fun",
+              "item_image": "shopify:\/\/shop_images\/vidaXLFoldableSlideforKidsIndoorOutdoorRedandYellow_1024x_1ccbd2a9-0b66-4691-b4f4-4a884d44b983.webp"
             }
           },
           "0224c4e9-2b93-4fa1-9d33-f96de0f3a6d8": {
@@ -1171,9 +1171,9 @@
           "25acb3f0-8517-4ff0-bee2-0e8f7cbce402": {
             "type": "collection_block",
             "settings": {
-              "collection": "garden-furniture",
-              "title": "Hammocks",
-              "item_image": "shopify:\/\/shop_images\/e469914a-388b-4b1d-8a6f-c7cad6625a45.webp"
+              "collection": "sunloungers",
+              "title": "Sunloungers",
+              "item_image": "shopify:\/\/shop_images\/202103081529035350_720x_5c8dab16-ea1d-44d9-9462-5742df22392c.webp"
             }
           }
         },
