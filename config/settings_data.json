@@ -617,109 +617,6 @@
           "custom_class": ""
         }
       },
-      "16232932164704bbe7": {
-        "type": "image-with-text-2",
-        "disabled": true,
-        "settings": {
-          "container": "container",
-          "hero_size": "medium",
-          "show_overlay": false,
-          "image": "shopify:\/\/shop_images\/Copy_of_Copy_of_Copy_of_Copy_of_Copy_of_Copy_of_Autumn_Special_Flash_Sale_Landscape_Banner.png",
-          "bg_position": "center",
-          "image_link": "",
-          "parallax": false,
-          "content_in_container": true,
-          "content_position": "right middle",
-          "text_alignment": "center",
-          "text_size": "medium",
-          "text_color": "dark",
-          "title": "",
-          "subtitle": "",
-          "text": "",
-          "button_label": "",
-          "button_link": "",
-          "button_style": "sf__btn-link",
-          "button_size": "sf__btn-large",
-          "custom_class": ""
-        }
-      },
-      "162329352596f1ff1c": {
-        "type": "custom-content",
-        "disabled": true,
-        "blocks": {
-          "71ad9efa-9538-4a97-8eb4-05da1ea4d0cf": {
-            "type": "image_card",
-            "settings": {
-              "width": "33%",
-              "content_position": "bottom_center",
-              "content_alignment": "center",
-              "text_size": "medium",
-              "text_color": "black",
-              "image": "shopify:\/\/shop_images\/11ffb58e-4337-4a45-9c15-f3e24a987926.jpg",
-              "link": "shopify:\/\/collections\/wall-decor",
-              "title": "",
-              "subtitle": "",
-              "button_label": "Wall Art",
-              "button_style": "sf__btn-primary",
-              "button_size": "sf__btn-small",
-              "block_custom_class": ""
-            }
-          },
-          "5cf4c32e-7799-443b-bfda-ffb9faf42df3": {
-            "type": "image_card",
-            "settings": {
-              "width": "33%",
-              "content_position": "bottom_center",
-              "content_alignment": "center",
-              "text_size": "medium",
-              "text_color": "black",
-              "image": "shopify:\/\/shop_images\/8424001628780_S3010911_P00.jpg",
-              "link": "shopify:\/\/collections\/dining-tables",
-              "title": "",
-              "subtitle": "",
-              "button_label": "Dining Tables",
-              "button_style": "sf__btn-primary",
-              "button_size": "sf__btn-small",
-              "block_custom_class": ""
-            }
-          },
-          "b3ab0d2f-3e22-4c19-a42a-267a2b45f0c9": {
-            "type": "image_card",
-            "settings": {
-              "width": "33%",
-              "content_position": "bottom_center",
-              "content_alignment": "center",
-              "text_size": "medium",
-              "text_color": "black",
-              "image": "shopify:\/\/shop_images\/8424001666669_S3012827_A0.jpg",
-              "link": "shopify:\/\/collections\/garden-furniture",
-              "title": "",
-              "subtitle": "",
-              "button_label": "Garden Furniture",
-              "button_style": "sf__btn-primary",
-              "button_size": "sf__btn-small",
-              "block_custom_class": ""
-            }
-          }
-        },
-        "block_order": [
-          "71ad9efa-9538-4a97-8eb4-05da1ea4d0cf",
-          "5cf4c32e-7799-443b-bfda-ffb9faf42df3",
-          "b3ab0d2f-3e22-4c19-a42a-267a2b45f0c9"
-        ],
-        "settings": {
-          "heading": "Popular Collections",
-          "subheading": "",
-          "description": "",
-          "header_alignment": "center",
-          "container": "w-full",
-          "background_color": "rgba(0,0,0,0)",
-          "gap": 0,
-          "use_scroll_mobile": false,
-          "gap_mobile": 0,
-          "custom_class": ""
-        }
-      },
       "16232937433dca4bc9": {
         "type": "custom-content",
         "blocks": {
@@ -828,12 +725,20 @@
       "16302536407167d5f1": {
         "type": "collection-list",
         "blocks": {
+          "bc9e0b76-9772-4bf0-88a0-b1284b3ff435": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "beds",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/afgadfgadfga.jpg"
+            }
+          },
           "16302536407167d5f1-1": {
             "type": "collection_block",
             "settings": {
               "collection": "bedside-table",
               "title": "",
-              "item_image": "shopify:\/\/shop_images\/659200ca-c998-476e-a2e8-ba139e8e8e6b.jpg"
+              "item_image": "shopify:\/\/shop_images\/Screenshot2021-09-06172854.webp"
             }
           },
           "449d7a36-2155-43c4-86cd-4451f9fa2441": {
@@ -849,15 +754,7 @@
             "settings": {
               "collection": "coffee-tables",
               "title": "",
-              "item_image": "shopify:\/\/shop_images\/8434592039186_P0.jpg"
-            }
-          },
-          "ea24a763-f333-4600-8d20-f21452322952": {
-            "type": "collection_block",
-            "settings": {
-              "collection": "dining-chairs",
-              "title": "",
-              "item_image": "shopify:\/\/shop_images\/21126_1.jpg"
+              "item_image": "shopify:\/\/shop_images\/sdgadfgadfgadfgfga.jpg"
             }
           },
           "6b40ccd1-3323-49c7-b93f-f1c51dcee33f": {
@@ -868,12 +765,12 @@
               "item_image": "shopify:\/\/shop_images\/19987_1.jpg"
             }
           },
-          "bc9e0b76-9772-4bf0-88a0-b1284b3ff435": {
+          "1d71995f-9d34-43b3-95e0-b4fd6ba2221e": {
             "type": "collection_block",
             "settings": {
-              "collection": "decor",
+              "collection": "firepits",
               "title": "",
-              "item_image": "shopify:\/\/shop_images\/8c792e5b-bc7d-4efb-8e5b-051649e39738_7512d62b-f879-4f5c-82fe-61771ce2cb54.jpg"
+              "item_image": "shopify:\/\/shop_images\/202205161658254579_2377bb80-24e0-48e0-9166-7154e21f2943.webp"
             }
           },
           "09b4067f-c5c3-48be-ab75-a62dad9d3698": {
@@ -881,15 +778,7 @@
             "settings": {
               "collection": "garden-furniture",
               "title": "",
-              "item_image": "shopify:\/\/shop_images\/8424001666669_S3012827_A0.jpg"
-            }
-          },
-          "1d71995f-9d34-43b3-95e0-b4fd6ba2221e": {
-            "type": "collection_block",
-            "settings": {
-              "collection": "garden-lighting",
-              "title": "",
-              "item_image": "shopify:\/\/shop_images\/a4fdf3c8-ba9c-4894-b8d9-fdfc0b02fdb4.jpg"
+              "item_image": "shopify:\/\/shop_images\/gdfsgsdfggf.jpg"
             }
           },
           "d175678d-631b-4bed-a43d-f2cdd8080405": {
@@ -898,6 +787,22 @@
               "collection": "lighting",
               "title": "",
               "item_image": "shopify:\/\/shop_images\/RopeChandelierLightFitting5_900x_85acdc60-e041-4368-8875-de145b4f060c.jpg"
+            }
+          },
+          "16302536407167d5f1-2": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "mirrors",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/20804.webp"
+            }
+          },
+          "ea24a763-f333-4600-8d20-f21452322952": {
+            "type": "collection_block",
+            "settings": {
+              "collection": "pools-water",
+              "title": "",
+              "item_image": "shopify:\/\/shop_images\/afgadfgadfgadfgadfga.jpg"
             }
           },
           "d03f37f6-2fff-4f99-85f6-2144a396e712": {
@@ -915,29 +820,21 @@
               "title": "",
               "item_image": "shopify:\/\/shop_images\/8424001808977_S3022893_P5.jpg"
             }
-          },
-          "16302536407167d5f1-2": {
-            "type": "collection_block",
-            "settings": {
-              "collection": "wall-decor",
-              "title": "",
-              "item_image": "shopify:\/\/shop_images\/11ffb58e-4337-4a45-9c15-f3e24a987926.jpg"
-            }
           }
         },
         "block_order": [
+          "bc9e0b76-9772-4bf0-88a0-b1284b3ff435",
           "16302536407167d5f1-1",
           "449d7a36-2155-43c4-86cd-4451f9fa2441",
           "16302536407167d5f1-0",
-          "ea24a763-f333-4600-8d20-f21452322952",
           "6b40ccd1-3323-49c7-b93f-f1c51dcee33f",
-          "bc9e0b76-9772-4bf0-88a0-b1284b3ff435",
-          "09b4067f-c5c3-48be-ab75-a62dad9d3698",
           "1d71995f-9d34-43b3-95e0-b4fd6ba2221e",
+          "09b4067f-c5c3-48be-ab75-a62dad9d3698",
           "d175678d-631b-4bed-a43d-f2cdd8080405",
+          "16302536407167d5f1-2",
+          "ea24a763-f333-4600-8d20-f21452322952",
           "d03f37f6-2fff-4f99-85f6-2144a396e712",
-          "9b5570ca-eb8e-45f3-ac04-b34b93e1a1de",
-          "16302536407167d5f1-2"
+          "9b5570ca-eb8e-45f3-ac04-b34b93e1a1de"
         ],
         "settings": {
           "heading": "Popular Collections",
@@ -945,7 +842,7 @@
           "description": "",
           "header_alignment": "center",
           "container": "w-full",
-          "background_color": "#fff",
+          "background_color": "#ffffff",
           "layout": "grid",
           "card_style": "boxed",
           "text_alignment": "center",
@@ -1031,6 +928,7 @@
       },
       "1631209000a6d0f119": {
         "type": "image-with-text-2",
+        "disabled": true,
         "settings": {
           "container": "container",
           "hero_size": "medium",
@@ -1211,6 +1109,98 @@
           "hidden_slide_control_mobile": false,
           "custom_class": ""
         }
+      },
+      "1659016599343572ac": {
+        "type": "lookbook",
+        "blocks": {
+          "1659016599343572ac-0": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Swinging_Chair_Idea_10.jpg",
+              "button_text": "",
+              "button_link": "",
+              "button_style": "dark",
+              "top_1": 50,
+              "left_1": 50,
+              "product_1": "nordic-cotton-rope-hammock-chair-handmade-knitted-indoor-outdoor-kids-swing-bed-adult-swinging-hanging-chair-hammock",
+              "top_2": 26,
+              "left_2": 50,
+              "product_2": "",
+              "top_3": 61,
+              "left_3": 48,
+              "product_3": "",
+              "top_4": 0,
+              "left_4": 0,
+              "product_4": "",
+              "top_5": 20,
+              "left_5": 0,
+              "product_5": ""
+            }
+          },
+          "1659016599343572ac-1": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Swinging_Chair_Idea_6.jpg",
+              "button_text": "",
+              "button_link": "",
+              "button_style": "dark",
+              "top_1": 50,
+              "left_1": 50,
+              "product_1": "hammock-swing-chair-80-cm-anthracite",
+              "top_2": 26,
+              "left_2": 50,
+              "product_2": "",
+              "top_3": 61,
+              "left_3": 48,
+              "product_3": "",
+              "top_4": 0,
+              "left_4": 0,
+              "product_4": "",
+              "top_5": 20,
+              "left_5": 0,
+              "product_5": ""
+            }
+          },
+          "c75d9561-796a-402d-b162-06de4e8cd55f": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Swinging_Chair_Idea_9.jpg",
+              "button_text": "",
+              "button_link": "",
+              "button_style": "dark",
+              "top_1": 50,
+              "left_1": 50,
+              "product_1": "nordic-cotton-rope-hammock-chair-handmade-knitted-indoor-outdoor-kids-swing-bed-adult-swinging-hanging-chair-hammock",
+              "top_2": 26,
+              "left_2": 50,
+              "product_2": "",
+              "top_3": 61,
+              "left_3": 48,
+              "product_3": "",
+              "top_4": 0,
+              "left_4": 0,
+              "product_4": "",
+              "top_5": 20,
+              "left_5": 0,
+              "product_5": ""
+            }
+          }
+        },
+        "block_order": [
+          "1659016599343572ac-0",
+          "1659016599343572ac-1",
+          "c75d9561-796a-402d-b162-06de4e8cd55f"
+        ],
+        "settings": {
+          "heading": "Swinging Chair Ideas",
+          "subheading": "",
+          "description": "",
+          "header_alignment": "center",
+          "container": "container-fluid",
+          "background_color": "rgba(0,0,0,0)",
+          "image_aspect_ratio": "3\/4",
+          "custom_class": ""
+        }
       }
     },
     "content_for_index": [
@@ -1219,11 +1209,10 @@
       "165744644529915948",
       "1630525862f0153637",
       "16302536407167d5f1",
-      "16232932164704bbe7",
+      "1659016599343572ac",
       "1657446095ce52d64d",
       "163447853943c4ec99",
       "1623293128ea15b64a",
-      "162329352596f1ff1c",
       "1631209000a6d0f119",
       "16232937433dca4bc9"
     ]
