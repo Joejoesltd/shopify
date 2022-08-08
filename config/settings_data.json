@@ -625,12 +625,13 @@
             "settings": {
               "heading": "Follow Us On",
               "description": "",
-              "width": "50%",
+              "width": "100%",
               "block_custom_class": ""
             }
           },
           "811af90c-61c6-4828-a559-b66d9083f471": {
             "type": "newsletter",
+            "disabled": true,
             "settings": {
               "heading": "Let’s Stay In Touch",
               "description": "<p>We’ll shout you £10 off your first order over £200<\/p>",
